@@ -1,0 +1,89 @@
+﻿@model OzdilekBtServisTakipPortalı.ViewModel.ServisGelenViewModel
+
+<style type="text/css">
+    .table table-striped tr td{
+        width:350px;
+    }
+</style>
+
+<table class="table table-striped">
+  <thead >
+      <tr>  
+      <td>
+          ID
+      </td>
+      <td>
+          Şube
+      </td>
+      <td>
+          Lokasyon
+      </td>
+      <td>
+          Marka
+      </td>
+      <td>
+          Model
+      </td>
+      <td>
+          Seri Numarası
+      </td>
+        <td>
+          Gönderildiği Tarih
+      </td>
+      <td>
+          Geldiği Tarih
+      </td>
+      <td>
+         Geldiğini Belirten
+      </td>
+           <td>
+         Firma
+      </td>
+       <td>
+          Yapılan Müdahale
+      </td>
+       </tr>
+  </thead>
+    <tbody>
+    @foreach (var k in Model.servisgelenlist)
+    {
+        <tr>
+    
+       <td>
+          @k.EnvanterID4
+      </td>
+      <td>
+          @k.Sube4
+      </td>
+      <td>
+          @k.Lokasyon4
+      </td>
+
+      <td>
+          @k.ServisgelenMarka4
+      </td>
+      <td>
+          @k.ServisgelenModel4
+      </td>
+      <td>
+          @k.ServisgelenSeriNo4
+      </td>
+      <td>
+          @k.GonderildigiTarih4
+      </td>
+      <td>
+          @k.GeldigiTarih4
+      </td>
+     <td>
+          @k.GeldiginiBelirtenKisi4
+      </td>
+            <td>
+          @k.Firma4
+      </td>
+            <td>
+          @k.YapilanMudahale4
+      </td>
+        </tr>
+    }
+    </tbody>
+</table>

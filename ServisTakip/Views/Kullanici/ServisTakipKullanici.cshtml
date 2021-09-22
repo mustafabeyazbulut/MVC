@@ -1,0 +1,55 @@
+﻿@model OzdilekBtServisTakipPortalı.ViewModel.KullaniciViewModel
+@{
+    ViewBag.Title = "ServisTakipKullanici";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+
+<ol class="breadcrumb">
+    <li class="active">Servise Gönderilen Ürünler</li>
+    <li><a href="/Kullanici/ServisTakipKullanici1">Servisten Gelen Ürünler</a></li>
+</ol>
+<h4><small> Hoş Geldiniz <strong>@ViewBag.kadi</strong></small> </h4>
+
+<h2 class="text-center">Servise Gönderilen Ürünler</h2>
+
+<div class="row">
+    <div class="col-md-1">
+  
+  </div>
+<div id="dialog-user"  title="Servisten Gelen Cihaz İşlemleri" class="col-md-10">
+    @using (Ajax.BeginForm("ServisTakipKullanici", "Kullanici", FormMethod.Post, new AjaxOptions { OnSuccess = "loadk" }))
+    {
+        <div class="text-center" >
+            Arama: 
+
+            @Html.TextBoxFor(m=>m.Servisarama)
+         
+            <input class="btn btn-default btn-sm dropdown-toggle" type="submit" value="Ara" name="submit" />
+         
+        </div>
+    }
+ </div>
+    <div class="col-md-18">
+ 
+
+    </div>
+</div>
+
+<div id="ajax-main">
+@Html.Partial("kullaniciservislist", @Model)
+</div>
+
+<br />
+<br />
+<br />
+<br />
+
+
+<script type="text/javascript">
+
+    function loadk(result) {
+        $("#ajax-main").html(result);
+    }
+
+</script>

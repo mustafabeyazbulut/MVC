@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Giris";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+   
+}
+
+
+
+  
+<div class="container">
+
+<div class="page-header">
+
+ <h2>Kullanıcı Girişi</h2>
+</div >
+<form action="/Giris/giris" method="post">
+	
+	<div class="form-group">
+		<label for="inputMail">Kullanıcı Adınız</label>
+		<input type="text" class="form-control" id="UserName" placeholder="Kullanıcı Adınızı giriniz..."name="username">
+       
+	</div>
+	
+	<div class="form-group">
+		<label for="UserPassword">Şifreniz</label>
+		<input  type="password" class="form-control" id="UserPassword" placeholder="Şifrenizi giriniz..."name="password">
+	</div>
+	
+	@*<div class="checkbox">
+		<label> <input type="checkbox"> Beni Hatırla </label>
+	</div>*@
+	
+	<button type="submit" class="btn btn-default">Giriş Yap</button>
+    
+</form>
+    @if(ViewBag.mesaj != null)
+    {
+        <p style="color:red"> @ViewBag.mesaj</p>
+    }
+</div>
+

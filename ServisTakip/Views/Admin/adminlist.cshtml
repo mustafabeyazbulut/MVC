@@ -1,0 +1,205 @@
+﻿@model OzdilekBtServisTakipPortalı.ViewModel.AdminViewModel
+
+<style type="text/css">
+    .table table-striped tr td{
+        width:350px;
+          display: table-cell;
+    vertical-align: inherit;
+    }
+</style>
+
+
+
+<div class="row">
+                  
+  <div class="col-xs-6 col-sm-4">
+
+<table  class="table table-striped">
+  <thead >
+      <tr>  
+      <td>
+         #
+      </td>
+      <td>
+          Kullanıcı Adı
+      </td>
+      <td>
+          Yetkisi
+      </td>
+      </tr>
+  </thead>
+    <tbody>
+    @foreach (var f in Model.Kullanicilist)
+    {
+        <tr>
+      <td>
+          @f.KullaniciID
+      </td>
+
+      <td>
+          @f.KullaniciAdi
+      </td>
+      <td>
+          @f.KullaniciYetki
+      </td>
+          <td class="btn-group">
+          <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">İşlemler<span class="caret"></span></button>
+          <ul class="dropdown-menu">
+          <li class="kullaniciguncelle" data-id="@f.KullaniciID"><a >Güncelle</a></li>
+          <li class="kullanicisil" data-id="@f.KullaniciID"><a >Sil</a></li>
+          </ul>
+          </td>
+
+        </tr>
+      
+    }
+
+        </tbody>
+        
+</table>
+  </div>
+
+
+  <div class="col-xs-6 col-sm-4">                   
+<table  class="table table-striped">
+  <thead >
+      <tr>  
+      <td>
+         #
+      </td>
+      <td>
+          Sube Adi
+      </td>
+          
+      </tr>
+  </thead>
+    <tbody>
+    @foreach (var f in Model.Subelist)
+    {
+        <tr>
+      <td>
+          @f.SubeID
+      </td>
+
+      <td>
+          @f.SubeAdi
+      </td>
+          <td class="btn-group">
+          <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">İşlemler<span class="caret"></span></button>
+          <ul class="dropdown-menu">
+          <li class="subeguncelle" data-id="@f.SubeID"><a >Güncelle</a></li>
+          <li class="subesil" data-id="@f.SubeID"><a >Sil</a></li>
+          </ul>
+          </td>
+
+        </tr>
+      
+    }
+
+        </tbody>
+        
+</table>
+  </div>
+
+  <div class="col-xs-6 col-sm-4">
+      <table class="table table-striped">
+  <thead >
+      <tr>  
+      <td>
+          #
+      </td>
+      <td>
+          Lokasyon Adı
+      </td>
+      </tr>
+  </thead>
+    <tbody>
+    @foreach (var f in Model.Lokasyonlist)
+    {
+        <tr>
+      <td>
+          @f.LokasyonID
+      </td>
+
+      <td>
+          @f.LokasyonAdi
+      </td>
+          <td class="btn-group">
+          <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">İşlemler<span class="caret"></span></button>
+          <ul class="dropdown-menu">
+          <li class="lokasyonguncelle" data-id="@f.LokasyonID"><a >Güncelle</a></li>
+          <li class="lokasyonsil" data-id="@f.LokasyonID"><a >Sil</a></li>
+          </ul>
+          </td>
+
+        </tr>
+      
+    }
+
+        </tbody>
+        
+</table>
+  </div>
+
+ 
+ 
+                 
+ 
+                  
+
+  </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".kullaniciguncelle").click(function () {
+            $("#KullaniciDialog").dialog("open");
+            var id = $(this).attr("data-id");
+            $.ajax({
+                url: '/Admin/KullaniciGetir',
+                type: 'post',
+                dataType: 'json',
+                data: { "id": id },
+
+                success: function (data) {
+                    $("#KullaniciID").val(data.KullaniciID);
+                    $("#KullaniciAdi").val(data.KullaniciAdi);
+                    //$("#KullaniciSifre").val(data.KullaniciSifre);
+                    $("#KullaniciSonGirisTarihi").val(data.KullaniciSonGirisTarihi);
+                    $("#KullaniciYetki").val(data.KullaniciYetki);
+                }
+           });
+        });
+        $(".subeguncelle").click(function () {
+            $("#SubeDialog").dialog("open");
+            var id = $(this).attr("data-id");
+            $.ajax({
+                url: '/Admin/SubeGetir',
+                type: 'post',
+                dataType: 'json',
+                data: { "id": id },
+
+                success: function (data) {
+                    $("#SubeID").val(data.SubeID);
+                    $("#SubeAdi").val(data.SubeAdi);
+                }
+            });
+        });
+        $(".lokasyonguncelle").click(function () {
+            $("#LokasyonDialog").dialog("open");
+            var id = $(this).attr("data-id");
+            $.ajax({
+                url: '/Admin/LokasyonGetir',
+                type: 'post',
+                dataType: 'json',
+                data: { "id": id },
+
+                success: function (data) {
+                    $("#LokasyonID").val(data.LokasyonID);
+                    $("#LokasyonAdi").val(data.LokasyonAdi);
+                }
+            });
+        });
+
+
+     });
+</script>

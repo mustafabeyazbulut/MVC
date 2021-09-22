@@ -1,0 +1,211 @@
+﻿@model OzdilekBtServisTakipPortalı.ViewModel.ServisViewModel
+
+@{
+    ViewBag.Title = "ServisTakip";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+<ol class="breadcrumb">
+    <li class="active">Servise Gönderilen Ürünler</li>
+  <li><a href="/Home/ServisGelen">Servisten Gelen Ürünler</a></li>
+  <li><a href="/Home/EnvanterTakip">Envanter Listesi</a></li>
+</ol>
+<h4><small> Hoş Geldiniz <strong>@ViewBag.kadi</strong></small> </h4>
+
+<h2 class="text-center">Servise Gönderilen Ürünler</h2>
+
+<div class="row">
+    <div class="col-md-1">
+  
+  </div>
+<div id="dialog-user4" title="Servisten Gelen Cihaz İşlemleri" class="col-md-10">
+    @using (Ajax.BeginForm("ServisTakip", "Home", FormMethod.Post, new AjaxOptions { OnSuccess = "loadk" }))
+    {
+        <div class="text-center" >
+            Arama: 
+         @Html.TextBoxFor(m=>m.servisarama)
+            <input class="btn btn-default btn-sm dropdown-toggle" type="submit" value="Ara" name="submit" />
+        </div>
+    }
+ </div>
+     <div class="col-md-18">
+        <a href="@Url.Action("ServisExportToExcel","Home")">Excel'e Aktar</a>
+      @*   <input class="btn btn-default btn-sm dropdown-toggle" type="button" id="btnExport" value=" Excel'e Aktar " />*@
+    </div>
+
+</div>
+<div id="ajax-main">
+@Html.Partial("servislist", @Model)
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<div id="dialog-user" title="Servis Kayıt Güncelleme İşlemleri">
+    @using (Ajax.BeginForm("Create", "Home", FormMethod.Post, new AjaxOptions { OnSuccess = "Create" }, new { id = "frm-create" }))
+    {       
+         @Html.HiddenFor(m => m.ServisID1) 
+        @Html.HiddenFor(m => m.EnvanterID1)  
+        @Html.HiddenFor(m => m.Sube1)
+        @Html.HiddenFor(m => m.Lokasyon1)
+        @Html.HiddenFor(m => m.ServisCinsi1)  
+        @Html.HiddenFor(m => m.ServisMarka1)
+        @Html.HiddenFor(m => m.ServisModel1)
+        @Html.HiddenFor(m => m.ServisSeriNo1)
+        @Html.HiddenFor(m => m.ServisOzellik1)
+        @Html.HiddenFor(m => m.GonderenKisi1)
+        @Html.HiddenFor(m => m.GonderildigiTarih1)
+                <div>
+            Firma:
+            <br />
+            @Html.DropDownListFor(m => m.FirmaID, Model.FirmaList, new { style="height: 30px; width: 163px;"})
+            
+        </div> 
+        <div>
+            Ek Aksesuar:
+            <br />
+            @Html.TextAreaFor(m => m.EkAksesuar1)
+        </div>
+          <div>
+            Arıza Sebebi:
+            <br />
+            @Html.TextAreaFor(m => m.ArizaSebebi1)
+        </div>
+          <div>
+            Servis Durumu:
+            <br />
+              
+            @Html.TextAreaFor(m => m.ServisDurumu1)
+        </div>
+ 
+        <div style="margin-top:10px;">
+            <input class="btn btn-default btn-sm dropdown-toggle" type="submit" value="Kaydet" />
+        </div>
+    }  
+</div>
+
+<div id="dialog-user2" title="Servisten Gelen Cihaz İşlemleri">
+    @using (Ajax.BeginForm("ServisGelenCreate", "Home", FormMethod.Post, new AjaxOptions { OnSuccess = "ServisGelenCreate" }, new { id = "frm-create1" }))
+    {       
+         @Html.HiddenFor(m => m.ServisID2)
+
+            <div>
+            Serviste Yapılan İşlem:
+            <br />
+              @Html.TextAreaFor(m => m.ServisDurumu2)
+        </div>
+        <div style="margin-top:10px;">
+            <input class="btn btn-default btn-sm dropdown-toggle" type="submit" value="Kaydet" />
+        </div>
+    }  
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#dialog-user").dialog({
+            width: 210,
+            height: 455,
+            autoOpen: false,           
+        });
+    });
+
+    function Create(result) {
+        if (result == "1") {
+            $.ajax({
+                url: '/Home/ServisTakip',
+                type: 'get',
+                dataType: 'html',
+                success: function (data) {
+                    $("#ajax-main").html(data);
+                    $("#dialog-user").dialog("close");
+                    $("#frm-create")[0].reset();
+                    $("EnvanterID1").val("0");
+                    alert("Güncelleme Başarılı.");
+                }
+            });
+        }
+
+    }
+
+    function loadk(result) {
+        $("#ajax-main").html(result);
+    }
+
+    $("input").attr("autocomplete", "off");
+
+    //$("#btnExport").click(function (e) {
+    //    window.open('data:application/vnd.ms-excel,' + $('#ajax-main').html());
+    //    e.preventDefault();
+    //});
+
+</script>
+
+
+
+
+@section scripts
+{
+<script type="text/javascript">
+
+    var deleteTrs,id;
+
+    $(document).on("click", ".abc", function () {
+        var confirmdelete = confirm("Silme İşlemini Onaylıyor musunuz?");
+        if (confirmdelete == true) {
+            id = $(this).attr("data-id");
+
+            deleteTr = $(this).closest("tr");
+
+            $.ajax({
+                url: '/Home/ServisDelete/' + id,
+                type: 'POST',
+                success: function (result) {
+                    if (result == "3") {
+                        deleteTr.remove();
+                    }
+                    else {
+                        alert("İşlem sırasında hata oluştu");
+                    }
+                }
+            });
+        }
+
+    });
+
+
+    $(document).on("click", ".ab", function () {
+       id = $(this).attr("data-id");
+       deleteTr = $(this).closest("tr");
+    });
+
+    function ServisGelenCreate(result) {
+        if (result == "6") {
+            $("#dialog-user2").dialog("close");
+            $("#frm-create1")[0].reset();
+            $("ServisID2").val("0");
+            $.ajax({
+                url: '/Home/ServisDelete/' + id,
+                type: 'POST',
+                success: function (result) {
+                    if (result == "3") {
+
+                        deleteTr.remove();
+                        alert("Cihaz Servisten Gelmiştir.");
+                    }
+                    else {
+                        alert("İşlem sırasında hata oluştu");
+                    }
+                }
+            });
+        }
+    }
+ </script>
+    }

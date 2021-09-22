@@ -1,0 +1,269 @@
+﻿@model OzdilekBtServisTakipPortalı.ViewModel.EnvanterViewModel
+
+
+@{
+    ViewBag.Title = "EnvanterTakip";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ol class="breadcrumb">
+  <li><a href="/Home/ServisTakip">Servise Gönderilen Ürünler</a></li>
+  <li><a href="/Home/ServisGelen">Servisten Gelen Ürünler</a></li>
+  <li class="active">Envanter Listesi</li>
+</ol>
+<h4><small> Hoş Geldiniz <strong>@ViewBag.kadi</strong></small> </h4>
+
+<h2 class="text-center">Envanter Listesi</h2>
+<div class="row">
+  <div class="col-md-1">
+  <input class="btn btn-default btn-sm dropdown-toggle" type="button" value="+" id="btn-create1" /> 
+  </div>
+  <div id="dialog-user"  title="Servisten Gelen Cihaz İşlemleri" class="col-md-10">
+      @using (Ajax.BeginForm("EnvanterTakip", "Home", FormMethod.Post, new AjaxOptions { OnSuccess = "loadk" }))
+    {
+        <div class="text-center" id="submitetıklat" >                     
+             Arama: 
+            @Html.TextBoxFor(m=>m.envanterarama) 
+            <input class="btn btn-default btn-sm dropdown-toggle" type="submit" value="Ara" name="submit" />    
+        </div>
+      }
+  </div>
+        <div class="col-md-18">
+        <a href="@Url.Action("EnvanterExportToExcel","Home")">Excel'e Aktar</a>
+
+    </div>
+</div>
+
+
+
+ 
+
+<div id="ajax-main">
+@Html.Partial("envanterlist", @Model)
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+   
+<div id="dialog-user1" title="Envanter Kayıt İşlemleri">
+    @using (Ajax.BeginForm("EnvanterCreate", "Home", FormMethod.Post, new AjaxOptions { OnSuccess = "EnvanterCreate" }, new { id = "frm-create1" }))
+    {
+        
+        @Html.HiddenFor(m => m.EnvanterID2)  
+ 
+        <div>
+            Şube:
+            <br />
+           @* @Html.TextBoxFor(m => m.Sube2)*@
+
+            @Html.DropDownListFor(m => m.SubeID, Model.SubeList, new { style="height: 30px; width: 175px;"})
+            
+        </div>
+          <div>
+            Lokasyon:
+            <br />
+           @* @Html.TextBoxFor(m => m.Lokasyon2)*@
+               @Html.DropDownListFor(m=>m.LokasyonID,Model.LokasyonList,new { style="height: 30px; width: 175px;"})
+        </div>
+          <div>
+            Envanter Cinsi:
+            <br />
+              
+            @*@Html.TextBoxFor(m => m.EnvanterCinsi2)*@
+               @Html.DropDownListFor(m=>m.EnvanterCinsiID,Model.EnvanterCinsiList,new { style="height: 30px; width: 175px;"})
+        </div> 
+        <div>
+            Marka:
+            <br />
+           @* @Html.TextBoxFor(m => m.EnvanterMarka2)*@
+
+            @Html.DropDownListFor(m=>m.MarkaID,Model.MarkaList,new { style="height: 30px; width: 175px;"})
+        </div>
+        <div>
+            Model:
+            <br />
+            @Html.TextBoxFor(m => m.EnvanterModel2)
+        </div>
+        <div>
+            Seri Numarası:
+            <br />
+            @Html.TextBoxFor(m => m.EnvanterSeriNo2)
+        </div>
+        <div>
+            Envanter Özelliği:
+            <br />
+            @Html.TextBoxFor(m => m.EnvanterOzellik2)
+        </div>
+        
+        @*<div id="kapanma">
+          @Html.CheckBoxFor(m=>m.secildimigeldi1)Servise Gönder  &nbsp;  @Html.CheckBoxFor(m=>m.secildimisil1)Sil
+        </div>*@
+        <div>
+          
+        </div>
+        <div style="margin-top:10px;">
+            <input class="btn btn-default btn-sm dropdown-toggle" type="submit" value="Kaydet" />
+        </div>
+       
+    }  
+</div>
+
+
+<div id="dialog-user3" title="Servis Kayıt İşlemleri">
+     @using (Ajax.BeginForm("Create", "Home", FormMethod.Post, new AjaxOptions { OnSuccess = "Create" }, new { id = "frm-create4" }))
+    { 
+        <div>
+
+          @Html.HiddenFor(m => m.EnvanterID3)
+       
+            Ek Aksesuar var mı?:
+            <br />
+            @Html.TextAreaFor(m => m.EkAksesuar3)
+        </div>
+        <div>
+            Arıza Sebebi:
+            <br />
+            @Html.TextAreaFor(m => m.ArizaSebebi3)
+        </div>
+        <div>
+            Servis Durumu:
+            <br />
+            @Html.TextAreaFor(m => m.ServisDurumu3)
+        </div>
+         <div>
+            Firma:
+            <br />
+            @Html.DropDownListFor(m => m.FirmaID, Model.FirmaList, new { style="height: 30px; width: 163px;"})
+            
+        </div>     
+        <div style="margin-top:10px;">
+            <input class="btn btn-default btn-sm dropdown-toggle" type="submit" value="Kaydet" />
+        </div>
+    }  
+</div>
+
+
+
+<script type="text/javascript">
+   
+    $(document).ready(function () {
+        $("#btn-create1").click(function () {      
+            $("#dialog-user1").dialog("open");
+            $("#frm-create1")[0].reset();
+            $("#EnvanterID2").val("0");
+        });
+
+        $("#dialog-user1").dialog({
+            width: 210,
+            height: 455,
+            autoOpen: false,
+        });
+
+    
+
+
+    });
+
+    function EnvanterCreate(result) {
+        if (result == "1") {
+         
+            $.ajax({
+                url: '/Home/EnvanterTakip',
+                type: 'get',
+                dataType: 'html',
+                success: function (data) {
+                    
+                    $("#ajax-main").html(data);
+                    $("#dialog-user1").dialog("close");
+                    $("#frm-create1")[0].reset();
+                    alert("Envanter Kaydı Oluşturulmuştur.");
+                 
+                }
+            });
+        }
+        else if (result == "2") {
+            $.ajax({
+                url: '/Home/EnvanterTakip',
+                type: 'get',
+                dataType: 'html',
+                success: function (data) {
+                    
+                    $("#ajax-main").html(data);
+                    $("#dialog-user1").dialog("close");
+                    $("#frm-create1")[0].reset();
+                    $("#submitetıklat").submit();
+                    alert("Güncelleme Başarılı.");
+                 
+                }
+
+            });
+        }
+        else if (result == "11") {
+
+            alert("Seri Numarası Farklı Bir Üründe Kayıtlı!");
+        }
+      
+    }
+    function loadk(result) {
+        $("#ajax-main").html(result);
+    }
+
+
+</script>
+
+
+
+<script type="text/javascript">
+    $("input").attr("autocomplete", "off");
+    function Create(result) {
+        if (result == "1") {
+            $("#dialog-user3").dialog("close");
+            $("#frm-create4")[0].reset();
+            alert("Cihaz Servise Gönderildi");
+        }
+        else if (result == "11") {         
+                alert("Ürün Daha Önce Servise Gönderildi!");
+        }
+    
+    }
+</script>
+
+
+@section scripts
+{
+<script type="text/javascript">
+    $(document).on("click", ".bcd", function () {
+        var confirmdelete = confirm("Silme İşlemini Onaylıyor musunuz?");
+        if (confirmdelete == true) {
+            var id = $(this).attr("data-id");
+
+            var deleteTr = $(this).closest("tr");
+
+            $.ajax({
+                url: '/Home/EnvanterDelete/' + id,
+                type: 'POST',
+                success: function (result) {
+                    if (result == "2") {
+                        deleteTr.remove();
+                    }
+                    else {
+                        alert("İşlem sırasında hata oluştu");
+                    }
+                }
+            });
+        }
+
+    });
+
+ </script>
+
+    
+    }
+
+
+
