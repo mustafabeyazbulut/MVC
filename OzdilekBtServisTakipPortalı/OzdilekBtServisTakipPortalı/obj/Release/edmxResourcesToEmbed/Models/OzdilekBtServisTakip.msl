@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OzdilekBtServisTakipModelStoreContainer" CdmEntityContainer="OzdilekBtServisTakipEntities">
+    <EntitySetMapping Name="EnvanterCinsi">
+      <EntityTypeMapping TypeName="OzdilekBtServisTakipModel.EnvanterCinsi">
+        <MappingFragment StoreEntitySet="EnvanterCinsi">
+          <ScalarProperty Name="EnvanterCinsiID" ColumnName="EnvanterCinsiID" />
+          <ScalarProperty Name="EnvanterCinsiAdi" ColumnName="EnvanterCinsiAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EnvanterTb">
+      <EntityTypeMapping TypeName="OzdilekBtServisTakipModel.EnvanterTb">
+        <MappingFragment StoreEntitySet="EnvanterTb">
+          <ScalarProperty Name="EnvanterID" ColumnName="EnvanterID" />
+          <ScalarProperty Name="Sube" ColumnName="Sube" />
+          <ScalarProperty Name="Lokasyon" ColumnName="Lokasyon" />
+          <ScalarProperty Name="EnvanterCinsi" ColumnName="EnvanterCinsi" />
+          <ScalarProperty Name="EnvanterMarka" ColumnName="EnvanterMarka" />
+          <ScalarProperty Name="EnvanterModel" ColumnName="EnvanterModel" />
+          <ScalarProperty Name="EnvanterSeriNo" ColumnName="EnvanterSeriNo" />
+          <ScalarProperty Name="EnvanterOzellik" ColumnName="EnvanterOzellik" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Firma">
+      <EntityTypeMapping TypeName="OzdilekBtServisTakipModel.Firma">
+        <MappingFragment StoreEntitySet="Firma">
+          <ScalarProperty Name="FirmaID" ColumnName="FirmaID" />
+          <ScalarProperty Name="FirmaAdi" ColumnName="FirmaAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KullaniciTb">
+      <EntityTypeMapping TypeName="OzdilekBtServisTakipModel.KullaniciTb">
+        <MappingFragment StoreEntitySet="KullaniciTb">
+          <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+          <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="SonGirisTarihi" ColumnName="SonGirisTarihi" />
+          <ScalarProperty Name="KullaniciYetki" ColumnName="KullaniciYetki" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lokasyon">
+      <EntityTypeMapping TypeName="OzdilekBtServisTakipModel.Lokasyon">
+        <MappingFragment StoreEntitySet="Lokasyon">
+          <ScalarProperty Name="LokasyonID" ColumnName="LokasyonID" />
+          <ScalarProperty Name="LokasyonAdi" ColumnName="LokasyonAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Marka">
+      <EntityTypeMapping TypeName="OzdilekBtServisTakipModel.Marka">
+        <MappingFragment StoreEntitySet="Marka">
+          <ScalarProperty Name="MarkaID" ColumnName="MarkaID" />
+          <ScalarProperty Name="MarkaAdi" ColumnName="MarkaAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServisGelenTb">
+      <EntityTypeMapping TypeName="OzdilekBtServisTakipModel.ServisGelenTb">
+        <MappingFragment StoreEntitySet="ServisGelenTb">
+          <ScalarProperty Name="ServisID" ColumnName="ServisID" />
+          <ScalarProperty Name="EnvanterID" ColumnName="EnvanterID" />
+          <ScalarProperty Name="Sube" ColumnName="Sube" />
+          <ScalarProperty Name="Lokasyon" ColumnName="Lokasyon" />
+          <ScalarProperty Name="ServisGelenCinsi" ColumnName="ServisGelenCinsi" />
+          <ScalarProperty Name="ServisGelenMarka" ColumnName="ServisGelenMarka" />
+          <ScalarProperty Name="ServisGelenModel" ColumnName="ServisGelenModel" />
+          <ScalarProperty Name="ServisGelenSeriNo" ColumnName="ServisGelenSeriNo" />
+          <ScalarProperty Name="ServisGelenOzellik" ColumnName="ServisGelenOzellik" />
+          <ScalarProperty Name="GonderenKisi" ColumnName="GonderenKisi" />
+          <ScalarProperty Name="GonderildigiTarih" ColumnName="GonderildigiTarih" />
+          <ScalarProperty Name="GeldiginiBelirtenKisi" ColumnName="GeldiginiBelirtenKisi" />
+          <ScalarProperty Name="GeldigiTarih" ColumnName="GeldigiTarih" />
+          <ScalarProperty Name="EkAksesuar" ColumnName="EkAksesuar" />
+          <ScalarProperty Name="ArizaSebebi" ColumnName="ArizaSebebi" />
+          <ScalarProperty Name="YapilanMudahale" ColumnName="YapilanMudahale" />
+          <ScalarProperty Name="ServisFirma" ColumnName="ServisFirma" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServisTb">
+      <EntityTypeMapping TypeName="OzdilekBtServisTakipModel.ServisTb">
+        <MappingFragment StoreEntitySet="ServisTb">
+          <ScalarProperty Name="ServisID" ColumnName="ServisID" />
+          <ScalarProperty Name="EnvanterID" ColumnName="EnvanterID" />
+          <ScalarProperty Name="Sube" ColumnName="Sube" />
+          <ScalarProperty Name="Lokasyon" ColumnName="Lokasyon" />
+          <ScalarProperty Name="ServisCinsi" ColumnName="ServisCinsi" />
+          <ScalarProperty Name="ServisMarka" ColumnName="ServisMarka" />
+          <ScalarProperty Name="ServisModel" ColumnName="ServisModel" />
+          <ScalarProperty Name="ServisSeriNo" ColumnName="ServisSeriNo" />
+          <ScalarProperty Name="ServisOzellik" ColumnName="ServisOzellik" />
+          <ScalarProperty Name="GonderenKisi" ColumnName="GonderenKisi" />
+          <ScalarProperty Name="GonderildigiTarih" ColumnName="GonderildigiTarih" />
+          <ScalarProperty Name="EkAksesuar" ColumnName="EkAksesuar" />
+          <ScalarProperty Name="ArizaSebebi" ColumnName="ArizaSebebi" />
+          <ScalarProperty Name="ServisDurumu" ColumnName="ServisDurumu" />
+          <ScalarProperty Name="ServisFirma" ColumnName="ServisFirma" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sube">
+      <EntityTypeMapping TypeName="OzdilekBtServisTakipModel.Sube">
+        <MappingFragment StoreEntitySet="Sube">
+          <ScalarProperty Name="SubeID" ColumnName="SubeID" />
+          <ScalarProperty Name="SubeAdi" ColumnName="SubeAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

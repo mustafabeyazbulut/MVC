@@ -1,0 +1,283 @@
+﻿@model OzdilekBtServisTakipPortalı.ViewModel.Admin1ViewModel
+
+@{
+    ViewBag.Title = "YetkiveTanimlamalar1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ol class="breadcrumb">
+  
+  <li><a href="/Admin/YetkiveTanimlamalar">Yetki ve Tanımlamalar</a></li>
+       <li class="active">Yetki ve Tanımlamalar1</li>
+</ol>
+
+<h4><small> Hoş Geldiniz <strong>@ViewBag.kadi</strong></small> </h4>
+
+<h2 class="text-center">Marka - Firma Tanımlama</h2>
+
+<div class="row">
+                  
+  <div class="col-xs-6">
+      <div class="row">
+      <div  class="col-md-1"> 
+      <input class="btn btn-default btn-sm dropdown-toggle" type="button" value="+" id="markaekle" /> 
+         
+          </div>
+        <div  class="col-md-1"> 
+        </div>
+                 @using (Ajax.BeginForm("YetkiveTanimlamalar1", "Admin", FormMethod.Post, new AjaxOptions { OnSuccess = "loadk" }))
+                 {
+                    <div  id="submitetıklat" >  
+                     Arama:         
+                     @Html.TextBoxFor(m=>m.arama) 
+                    <input class="btn btn-default btn-sm dropdown-toggle" type="submit" value="Ara" name="submit" />    
+                    </div>
+                  }
+  </div>
+      </div>
+
+
+  <div class="col-xs-6">
+      <div class="row">
+            <div  class="col-md-1"> 
+      <input class="btn btn-default btn-sm dropdown-toggle" type="button" value="+" id="firmaekle" /> 
+         
+            </div>
+            <div  class="col-md-1"> 
+            </div>
+                     @using (Ajax.BeginForm("YetkiveTanimlamalar1", "Admin", FormMethod.Post, new AjaxOptions { OnSuccess = "loadk" }))
+                     {
+                    <div  id="submitetıklat1" >  
+                     Arama:         
+                     @Html.TextBoxFor(m=>m.arama1) 
+                    <input class="btn btn-default btn-sm dropdown-toggle" type="submit" value="Ara" name="submit" />    
+                    </div>
+                    }
+                 
+        </div>
+    </div>
+         
+  </div>
+
+
+
+<div id="ajax-main">
+@Html.Partial("adminlist1", @Model)
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<script type="text/javascript">
+   
+    function loadk(result) {
+        $("#ajax-main").html(result);
+    }
+
+ </script>
+
+
+<div id="MarkaDialog" title="Şube Kayıt İşlemleri">
+    @using (Ajax.BeginForm("MarkaCreate", "Admin", FormMethod.Post, new AjaxOptions { OnSuccess = "MarkaCreate" }, new { id = "AdminMarkaCreate" }))
+    {   
+        @Html.HiddenFor(m=>m.MarkaID) 
+        <div>
+            Şube Adı:
+            <br />
+            @Html.TextBoxFor(m => m.MarkaAdi)
+        </div>
+        <div style="margin-top:10px;">
+            <input class="btn btn-default btn-sm dropdown-toggle" type="submit" value="Kaydet" />
+        </div>
+       
+    }  
+</div>
+
+<div id="FirmaDialog" title="Lokasyon Kayıt İşlemleri">
+    @using (Ajax.BeginForm("FirmaCreate", "Admin", FormMethod.Post, new AjaxOptions { OnSuccess = "FirmaCreate" }, new { id = "AdminFirmaCreate" }))
+    {   
+        @Html.HiddenFor(m=>m.FirmaID) 
+        <div>
+            Lokasyon Adı:
+            <br />
+            @Html.TextBoxFor(m => m.FirmaAdi)
+        </div>
+        <div style="margin-top:10px;">
+            <input class="btn btn-default btn-sm dropdown-toggle" type="submit" value="Kaydet" />
+        </div>
+       
+    }  
+</div>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#markaekle").click(function () {
+            $("#MarkaDialog").dialog("open");
+            $("#AdminMarkaCreate")[0].reset();
+            $("#MarkaID").val("0");
+        });
+
+        $("#MarkaDialog").dialog({
+            width: 210,
+            height: 210,
+            autoOpen: false,
+        });
+
+        $("#firmaekle").click(function () {
+            $("#FirmaDialog").dialog("open");
+            $("#AdminFirmaCreate")[0].reset();
+            $("#FirmaID").val("0");
+        });
+
+        $("#FirmaDialog").dialog({
+            width: 210,
+            height: 210,
+            autoOpen: false,
+        });
+
+
+    });
+
+
+    function MarkaCreate(result) {
+        if (result == "1") {
+
+            $.ajax({
+                url: '/Admin/YetkiveTanimlamalar1',
+                type: 'get',
+                dataType: 'html',
+                success: function (data) {
+                    $("#ajax-main").html(data);
+                    $("#MarkaDialog").dialog("close");
+                    $("#AdminMarkaCreate")[0].reset();
+                    alert("Kayıt Oluşturulmuştur.");
+                }
+            });
+        }
+        else if (result == "2") {
+            $.ajax({
+                url: '/Admin/YetkiveTanimlamalar',
+                type: 'get',
+                dataType: 'html',
+                success: function (data) {
+                    $("#ajax-main").html(data);
+                    $("#MarkaDialog").dialog("close");
+                    $("#AdminMarkaCreate")[0].reset();
+                    $("#submitetıklat").submit();
+                    alert("Güncellenmiştir");
+                }
+
+            });
+        }
+    }
+
+    function FirmaCreate(result) {
+        if (result == "1") {
+
+            $.ajax({
+                url: '/Admin/YetkiveTanimlamalar1',
+                type: 'get',
+                dataType: 'html',
+                success: function (data) {
+                    $("#ajax-main").html(data);
+                    $("#FirmaDialog").dialog("close");
+                    $("#AdminFirmaCreate")[0].reset();
+                    alert("Kayıt Oluşturulmuştur.");
+                }
+            });
+        }
+        else if (result == "2") {
+            $.ajax({
+                url: '/Admin/YetkiveTanimlamalar1',
+                type: 'get',
+                dataType: 'html',
+                success: function (data) {
+                    $("#ajax-main").html(data);
+                    $("#FirmaDialog").dialog("close");
+                    $("#AdminFirmaCreate")[0].reset();
+                    $("#submitetıklat1").submit();
+                    alert("Güncellenmiştir");
+                }
+
+            });
+        }
+    }
+  
+
+
+
+    function loadk(result) {
+        $("#ajax-main").html(result);
+    }
+ </script>
+
+
+
+
+
+
+@section scripts
+{
+<script type="text/javascript">
+    $(document).on("click", ".markasil", function () {
+        var confirmdelete = confirm("Silme İşlemini Onaylıyor musunuz?");
+        if (confirmdelete == true) {
+            var id = $(this).attr("data-id");
+
+            var deleteTr = $(this).closest("tr");
+
+            $.ajax({
+                url: '/Admin/MarkaDelete/' + id,
+                type: 'POST',
+                success: function (result) {
+                    if (result == "2") {
+                        deleteTr.remove();
+                    }
+                    else {
+                        alert("İşlem sırasında hata oluştu");
+                    }
+                }
+            });
+        }
+
+    });
+    $(document).on("click", ".firmasil", function () {
+        var confirmdelete = confirm("Silme İşlemini Onaylıyor musunuz?");
+        if (confirmdelete == true) {
+            var id = $(this).attr("data-id");
+
+            var deleteTr = $(this).closest("tr");
+
+            $.ajax({
+                url: '/Admin/FirmaDelete/' + id,
+                type: 'POST',
+                success: function (result) {
+                    if (result == "2") {
+                        deleteTr.remove();
+                    }
+                    else {
+                        alert("İşlem sırasında hata oluştu");
+                    }
+                }
+            });
+        }
+
+    });
+ </script> 
+}
+
+
+
+
+
+

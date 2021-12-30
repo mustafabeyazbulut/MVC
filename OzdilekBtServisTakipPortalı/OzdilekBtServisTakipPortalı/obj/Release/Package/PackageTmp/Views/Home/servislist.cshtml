@@ -1,0 +1,170 @@
+﻿@model OzdilekBtServisTakipPortalı.ViewModel.ServisViewModel
+
+<style type="text/css">
+    .table table-striped tr td{
+        width:350px;
+    }
+</style>
+
+
+<table class="table table-striped">
+  <thead >
+      <tr>  
+      <td>
+         ID
+      </td>
+      <td>
+          Şube
+      </td>
+      <td>
+          Lokasyon
+      </td>
+      <td>
+          Bölüm
+      </td>
+      <td>
+          Marka
+      </td>
+      <td>
+          Model
+      </td>
+      <td>
+          Seri Numarası
+      </td>
+      <td>
+          Gönderen Kişi
+      </td>
+      <td>
+          Gönderildiği Tarih
+      </td>
+      <td>
+          Firma
+      </td>
+      <td>
+              İşlemler
+      </td>
+      </tr>
+  </thead>
+    <tbody>
+    @foreach (var servis in Model.servislist)
+    {
+        <tr>
+      <td>
+          @servis.EnvanterID1
+      </td>
+      <td>
+          @servis.Sube1
+      </td>
+      <td>
+          @servis.Lokasyon1
+      </td>
+      <td>
+          @servis.ServisCinsi1
+      </td>
+      <td>
+          @servis.ServisMarka1
+      </td>
+      <td>
+          @servis.ServisModel1
+      </td>
+      <td>
+          @servis.ServisSeriNo1
+      </td>
+      <td>
+          @servis.GonderenKisi1
+      </td>
+      <td>
+          @servis.GonderildigiTarih1
+      </td>
+             <td>
+          @servis.Firma1
+      </td>
+          <td class="btn-group">
+          <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">İşlemler<span class="caret"></span></button>
+          <ul class="dropdown-menu">
+          <li class="a" data-id="@servis.ServisID1"><a>Güncelle</a></li>
+          <li class="ab" data-id="@servis.ServisID1"><a >Servisten Geldi</a></li>
+          <li class="abc" data-id="@servis.ServisID1"><a>Sil</a></li>
+          </ul>
+          </td>
+
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(".a").click(function () {
+            //$("#formula1").hide();
+            //$("#formula2").show();
+            $("#dialog-user").dialog("open");
+            var id = $(this).attr("data-id");
+            $.ajax({
+                url: '/Home/ServisGetir',
+                type: 'post',
+                dataType: 'json',
+                data: { "id": id },
+
+                success: function (data) {
+                    $("#FirmaID").val(data.FirmaID);
+                    $("#ServisID1").val(data.ServisID1);
+                    $("#EnvanterID1").val(data.EnvanterID1);
+                    $("#Sube1").val(data.Sube1);
+                    $("#Lokasyon1").val(data.Lokasyon1);
+                    $("#ServisCinsi1").val(data.ServisCinsi1);
+                    $("#ServisMarka1").val(data.ServisMarka1);
+                    $("#ServisModel1").val(data.ServisModel1);
+                    $("#ServisSeriNo1").val(data.ServisSeriNo1);
+                    $("#GonderenKisi1").val(data.GonderenKisi1);
+                    $("#GonderildigiTarih1").val(data.GonderildigiTarih1);
+                    $("#EkAksesuar1").val(data.EkAksesuar1);
+                    $("#ArizaSebebi1").val(data.ArizaSebebi1);
+                    $("#ServisDurumu1").val(data.ServisDurumu1);
+                   
+                }
+
+        });
+
+        });
+
+        
+
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".ab").click(function () {
+            $("#dialog-user2").dialog("open");
+            var id1 = 1;
+            if (id1 == 1) {
+                $("#frm-create1")[0].reset();
+            }
+            var deleteTr = $(this).closest("tr");
+            var id = $(this).attr("data-id");
+            $.ajax({
+                url: '/Home/ServisGetir',
+                type: 'post',
+                dataType: 'json',
+                data: { "id": id },
+                success: function (data) {
+                    $("#ServisID2").val(data.ServisID1);
+                }
+            });
+            
+        });
+
+
+        $("#dialog-user2").dialog({
+            width: 210,
+            height: 210,
+            autoOpen: false,
+        });
+    });
+</script>
+
+

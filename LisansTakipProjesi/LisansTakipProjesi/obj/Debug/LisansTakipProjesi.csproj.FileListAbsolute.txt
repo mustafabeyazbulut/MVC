@@ -1,0 +1,95 @@
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\LisansTakipProjesi.dll
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\LisansTakipProjesi.pdb
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\Antlr3.Runtime.dll
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.AspNet.dll
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.Core.dll
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.OAuth.Consumer.dll
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.OAuth.dll
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.OpenId.dll
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\EntityFramework.dll
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\Microsoft.Web.Infrastructure.dll
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\Microsoft.Web.WebPages.OAuth.dll
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\Newtonsoft.Json.dll
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.Helpers.dll
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.Mvc.dll
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.Optimization.dll
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.Razor.dll
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.WebPages.Deployment.dll
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.WebPages.dll
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.WebPages.Razor.dll
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\WebGrease.dll
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\WebMatrix.Data.dll
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\WebMatrix.WebData.dll
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\EntityFramework.xml
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\Newtonsoft.Json.xml
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.Helpers.xml
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.Mvc.xml
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.Razor.xml
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.WebPages.xml
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.WebPages.Deployment.xml
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.WebPages.Razor.xml
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\WebMatrix.Data.xml
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\Microsoft.Web.WebPages.OAuth.xml
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\WebMatrix.WebData.xml
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.AspNet.xml
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.Core.xml
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.OAuth.Consumer.xml
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.OAuth.xml
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.OpenId.xml
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\obj\Debug\LisansTakipProjesi.csprojResolveAssemblyReference.cache
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\obj\Debug\LisansTakipProjesi.dll
+c:\users\mustafa.beyazbulut\documents\visual studio 2012\Projects\LisansTakipProjesi\LisansTakipProjesi\obj\Debug\LisansTakipProjesi.pdb
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\LisansTakipProjesi.dll.config
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\LisansTakipProjesi.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\LisansTakipProjesi.pdb
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\Antlr3.Runtime.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.Core.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\EntityFramework.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\Microsoft.Web.WebPages.OAuth.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\Newtonsoft.Json.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\System.Net.Http.Formatting.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.Helpers.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.Http.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.Http.WebHost.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.Mvc.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.Optimization.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.Razor.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.WebPages.Deployment.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.WebPages.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.WebPages.Razor.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\WebGrease.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\WebMatrix.Data.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\WebMatrix.WebData.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\EntityFramework.xml
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\Newtonsoft.Json.xml
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\System.Net.Http.Formatting.xml
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.Helpers.xml
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.Http.xml
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.Http.WebHost.xml
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.Mvc.xml
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.Razor.xml
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.WebPages.xml
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.WebPages.Deployment.xml
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\System.Web.WebPages.Razor.xml
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\WebMatrix.Data.xml
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\Microsoft.Web.WebPages.OAuth.xml
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\WebMatrix.WebData.xml
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.Core.xml
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\obj\Debug\LisansTakipProjesi.csproj.AssemblyReference.cache
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\obj\Debug\LisansTakipProjesi.csproj.CoreCompileInputs.cache
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\obj\Debug\LisansTakipProjesi.csproj.CopyComplete
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\obj\Debug\LisansTakipProjesi.dll
+C:\Users\mustafa\Desktop\LisansTakipProjesi\LisansTakipProjesi\obj\Debug\LisansTakipProjesi.pdb

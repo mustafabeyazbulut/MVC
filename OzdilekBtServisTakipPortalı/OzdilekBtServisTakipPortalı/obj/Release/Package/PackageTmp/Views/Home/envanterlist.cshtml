@@ -1,0 +1,156 @@
+﻿@model OzdilekBtServisTakipPortalı.ViewModel.EnvanterViewModel
+
+<style type="text/css">
+    .table table-striped tr td{
+        width:350px;
+    }
+</style>
+
+<table class="table table-striped">
+  <thead >
+      <tr>  
+      <td>
+          ID
+      </td>
+      <td>
+          Şube
+      </td>
+      <td>
+          Lokasyon
+      </td>
+      <td>
+          Envanter Cinsi
+      </td>
+      <td>
+          Marka
+      </td>
+      <td>
+          Model
+      </td>
+      <td>
+          Seri Numarası
+      </td>
+      <td>
+          Özellikleri
+      </td>
+          <td>
+             İşlemler
+          </td>
+      </tr>
+  </thead>
+    <tbody>
+    @foreach (var envanter in Model.envanterlist)
+    {
+        <tr>
+      <td>
+          @envanter.EnvanterID2
+      </td>
+
+      <td>
+          @envanter.Sube2
+      </td>
+      <td>
+          @envanter.Lokasyon2
+      </td>
+      <td>
+          @envanter.EnvanterCinsi2
+      </td>
+      <td>
+          @envanter.EnvanterMarka2
+      </td>
+      <td>
+          @envanter.EnvanterModel2
+      </td>
+      <td>
+          @envanter.EnvanterSeriNo2
+      </td>
+      <td>
+          @envanter.EnvanterOzellik2
+      </td>
+
+          <td class="btn-group">
+          <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">İşlemler<span class="caret"></span></button>
+          <ul class="dropdown-menu">
+          <li class="b" data-id="@envanter.EnvanterID2"><a >Güncelle</a></li>
+          <li class="bc" data-id="@envanter.EnvanterID2"><a >Servise Gönder</a></li>
+          <li class="bcd" data-id="@envanter.EnvanterID2"><a >Sil</a></li>
+          </ul>
+          </td>
+        </tr>
+      
+    }
+
+        </tbody>
+        
+</table>
+ 
+ 
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".b").click(function () {
+            $("#dialog-user1").dialog("open");
+            var id = $(this).attr("data-id");
+            $.ajax({
+                url: '/Home/EnvanterGetir',
+                type: 'post',
+                dataType: 'json',
+                data: { "id": id },
+
+                success: function (data) {
+                    $("#EnvanterID2").val(data.EnvanterID2);
+                    $("#SubeID").val(data.SubeID);
+                    $("#LokasyonID").val(data.LokasyonID);
+                    $("#EnvanterCinsiID").val(data.EnvanterCinsiID);
+                    $("#MarkaID").val(data.MarkaID);
+                    $("#EnvanterModel2").val(data.EnvanterModel2);
+                    $("#EnvanterSeriNo2").val(data.EnvanterSeriNo2);
+                    $("#EnvanterOzellik2").val(data.EnvanterOzellik2);
+                }
+           });
+        });
+     });
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".bc").click(function () {
+            $("#dialog-user3").dialog("open");
+            var id1 = 1;
+            if (id1 == 1) {
+                $("#frm-create4")[0].reset();
+            }
+            var id = $(this).attr("data-id");
+            $.ajax({
+                url: '/Home/EnvanterGetir',
+                type: 'post',
+                dataType: 'json',
+                data: { "id": id },
+
+                success: function (data) {
+
+                    $("#EnvanterID3").val(id);
+                    $("#Sube3").val(data.Sube3);
+                    $("#Lokasyon3").val(data.Lokasyon3);
+                    $("#EnvanterCinsi3").val(data.EnvanterCinsi3);
+                    $("#EnvanterMarka3").val(data.EnvanterMarka3);
+                    $("#EnvanterModel3").val(data.EnvanterModel3);
+                    $("#EnvanterSeriNo3").val(data.EnvanterSeriNo3);
+                    $("#EnvanterOzellik3").val(data.EnvanterOzellik3);
+                }
+            });
+
+
+        });
+
+
+
+        $("#dialog-user3").dialog({
+            width: 210,
+            height: 455,
+            autoOpen: false,
+        });
+    });
+</script>

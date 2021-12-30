@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnvanterTakipYönetimSistemi", "EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi.csproj", "{30133AEA-1186-4CE7-868C-EE74F2F28C66}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30133AEA-1186-4CE7-868C-EE74F2F28C66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30133AEA-1186-4CE7-868C-EE74F2F28C66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30133AEA-1186-4CE7-868C-EE74F2F28C66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30133AEA-1186-4CE7-868C-EE74F2F28C66}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {222ACF3E-2013-43A9-9A99-E1D9CC6CA0C8}
+	EndGlobalSection
+EndGlobal

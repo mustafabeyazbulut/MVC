@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OzdilekBtServisTakipModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="OzdilekBtServisTakipModelStoreContainer">
+          <EntitySet Name="EnvanterCinsi" EntityType="OzdilekBtServisTakipModel.Store.EnvanterCinsi" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EnvanterTb" EntityType="OzdilekBtServisTakipModel.Store.EnvanterTb" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Firma" EntityType="OzdilekBtServisTakipModel.Store.Firma" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="KullaniciTb" EntityType="OzdilekBtServisTakipModel.Store.KullaniciTb" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Lokasyon" EntityType="OzdilekBtServisTakipModel.Store.Lokasyon" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Marka" EntityType="OzdilekBtServisTakipModel.Store.Marka" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ServisGelenTb" EntityType="OzdilekBtServisTakipModel.Store.ServisGelenTb" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ServisTb" EntityType="OzdilekBtServisTakipModel.Store.ServisTb" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Sube" EntityType="OzdilekBtServisTakipModel.Store.Sube" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="EnvanterCinsi">
+          <Key>
+            <PropertyRef Name="EnvanterCinsiID" />
+          </Key>
+          <Property Name="EnvanterCinsiID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EnvanterCinsiAdi" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EnvanterTb">
+          <Key>
+            <PropertyRef Name="EnvanterID" />
+          </Key>
+          <Property Name="EnvanterID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Sube" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Lokasyon" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="EnvanterCinsi" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EnvanterMarka" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EnvanterModel" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EnvanterSeriNo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EnvanterOzellik" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Firma">
+          <Key>
+            <PropertyRef Name="FirmaID" />
+          </Key>
+          <Property Name="FirmaID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FirmaAdi" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KullaniciTb">
+          <Key>
+            <PropertyRef Name="KullaniciID" />
+          </Key>
+          <Property Name="KullaniciID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciAdi" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Sifre" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SonGirisTarihi" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="KullaniciYetki" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lokasyon">
+          <Key>
+            <PropertyRef Name="LokasyonID" />
+          </Key>
+          <Property Name="LokasyonID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LokasyonAdi" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Marka">
+          <Key>
+            <PropertyRef Name="MarkaID" />
+          </Key>
+          <Property Name="MarkaID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MarkaAdi" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServisGelenTb">
+          <Key>
+            <PropertyRef Name="ServisID" />
+          </Key>
+          <Property Name="ServisID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EnvanterID" Type="int" Nullable="false" />
+          <Property Name="Sube" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Lokasyon" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ServisGelenCinsi" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ServisGelenMarka" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ServisGelenModel" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ServisGelenSeriNo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ServisGelenOzellik" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="GonderenKisi" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="GonderildigiTarih" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="GeldiginiBelirtenKisi" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="GeldigiTarih" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EkAksesuar" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ArizaSebebi" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="YapilanMudahale" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ServisFirma" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServisTb">
+          <Key>
+            <PropertyRef Name="ServisID" />
+          </Key>
+          <Property Name="ServisID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EnvanterID" Type="int" Nullable="false" />
+          <Property Name="Sube" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Lokasyon" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ServisCinsi" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ServisMarka" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ServisModel" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ServisSeriNo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ServisOzellik" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="GonderenKisi" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="GonderildigiTarih" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EkAksesuar" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ArizaSebebi" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ServisDurumu" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ServisFirma" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sube">
+          <Key>
+            <PropertyRef Name="SubeID" />
+          </Key>
+          <Property Name="SubeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SubeAdi" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OzdilekBtServisTakipModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="OzdilekBtServisTakipEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="EnvanterCinsi" EntityType="OzdilekBtServisTakipModel.EnvanterCinsi" />
+          <EntitySet Name="EnvanterTb" EntityType="OzdilekBtServisTakipModel.EnvanterTb" />
+          <EntitySet Name="Firma" EntityType="OzdilekBtServisTakipModel.Firma" />
+          <EntitySet Name="KullaniciTb" EntityType="OzdilekBtServisTakipModel.KullaniciTb" />
+          <EntitySet Name="Lokasyon" EntityType="OzdilekBtServisTakipModel.Lokasyon" />
+          <EntitySet Name="Marka" EntityType="OzdilekBtServisTakipModel.Marka" />
+          <EntitySet Name="ServisGelenTb" EntityType="OzdilekBtServisTakipModel.ServisGelenTb" />
+          <EntitySet Name="ServisTb" EntityType="OzdilekBtServisTakipModel.ServisTb" />
+          <EntitySet Name="Sube" EntityType="OzdilekBtServisTakipModel.Sube" />
+        </EntityContainer>
+        <EntityType Name="EnvanterCinsi">
+          <Key>
+            <PropertyRef Name="EnvanterCinsiID" />
+          </Key>
+          <Property Name="EnvanterCinsiID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="EnvanterCinsiAdi" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="EnvanterTb">
+          <Key>
+            <PropertyRef Name="EnvanterID" />
+          </Key>
+          <Property Name="EnvanterID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Sube" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Lokasyon" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="EnvanterCinsi" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="EnvanterMarka" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="EnvanterModel" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="EnvanterSeriNo" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="EnvanterOzellik" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Firma">
+          <Key>
+            <PropertyRef Name="FirmaID" />
+          </Key>
+          <Property Name="FirmaID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="FirmaAdi" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="KullaniciTb">
+          <Key>
+            <PropertyRef Name="KullaniciID" />
+          </Key>
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciAdi" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Sifre" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SonGirisTarihi" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="KullaniciYetki" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lokasyon">
+          <Key>
+            <PropertyRef Name="LokasyonID" />
+          </Key>
+          <Property Name="LokasyonID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="LokasyonAdi" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Marka">
+          <Key>
+            <PropertyRef Name="MarkaID" />
+          </Key>
+          <Property Name="MarkaID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="MarkaAdi" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ServisGelenTb">
+          <Key>
+            <PropertyRef Name="ServisID" />
+          </Key>
+          <Property Name="ServisID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="EnvanterID" Type="Int32" Nullable="false" />
+          <Property Name="Sube" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Lokasyon" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ServisGelenCinsi" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ServisGelenMarka" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ServisGelenModel" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ServisGelenSeriNo" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ServisGelenOzellik" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="GonderenKisi" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="GonderildigiTarih" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="GeldiginiBelirtenKisi" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="GeldigiTarih" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="EkAksesuar" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ArizaSebebi" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="YapilanMudahale" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ServisFirma" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ServisTb">
+          <Key>
+            <PropertyRef Name="ServisID" />
+          </Key>
+          <Property Name="ServisID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="EnvanterID" Type="Int32" Nullable="false" />
+          <Property Name="Sube" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Lokasyon" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ServisCinsi" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ServisMarka" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ServisModel" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ServisSeriNo" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ServisOzellik" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="GonderenKisi" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="GonderildigiTarih" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="EkAksesuar" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ArizaSebebi" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ServisDurumu" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ServisFirma" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Sube">
+          <Key>
+            <PropertyRef Name="SubeID" />
+          </Key>
+          <Property Name="SubeID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="SubeAdi" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OzdilekBtServisTakipModelStoreContainer" CdmEntityContainer="OzdilekBtServisTakipEntities">
+          <EntitySetMapping Name="EnvanterCinsi">
+            <EntityTypeMapping TypeName="OzdilekBtServisTakipModel.EnvanterCinsi">
+              <MappingFragment StoreEntitySet="EnvanterCinsi">
+                <ScalarProperty Name="EnvanterCinsiID" ColumnName="EnvanterCinsiID" />
+                <ScalarProperty Name="EnvanterCinsiAdi" ColumnName="EnvanterCinsiAdi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EnvanterTb">
+            <EntityTypeMapping TypeName="OzdilekBtServisTakipModel.EnvanterTb">
+              <MappingFragment StoreEntitySet="EnvanterTb">
+                <ScalarProperty Name="EnvanterID" ColumnName="EnvanterID" />
+                <ScalarProperty Name="Sube" ColumnName="Sube" />
+                <ScalarProperty Name="Lokasyon" ColumnName="Lokasyon" />
+                <ScalarProperty Name="EnvanterCinsi" ColumnName="EnvanterCinsi" />
+                <ScalarProperty Name="EnvanterMarka" ColumnName="EnvanterMarka" />
+                <ScalarProperty Name="EnvanterModel" ColumnName="EnvanterModel" />
+                <ScalarProperty Name="EnvanterSeriNo" ColumnName="EnvanterSeriNo" />
+                <ScalarProperty Name="EnvanterOzellik" ColumnName="EnvanterOzellik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Firma">
+            <EntityTypeMapping TypeName="OzdilekBtServisTakipModel.Firma">
+              <MappingFragment StoreEntitySet="Firma">
+                <ScalarProperty Name="FirmaID" ColumnName="FirmaID" />
+                <ScalarProperty Name="FirmaAdi" ColumnName="FirmaAdi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KullaniciTb">
+            <EntityTypeMapping TypeName="OzdilekBtServisTakipModel.KullaniciTb">
+              <MappingFragment StoreEntitySet="KullaniciTb">
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="SonGirisTarihi" ColumnName="SonGirisTarihi" />
+                <ScalarProperty Name="KullaniciYetki" ColumnName="KullaniciYetki" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lokasyon">
+            <EntityTypeMapping TypeName="OzdilekBtServisTakipModel.Lokasyon">
+              <MappingFragment StoreEntitySet="Lokasyon">
+                <ScalarProperty Name="LokasyonID" ColumnName="LokasyonID" />
+                <ScalarProperty Name="LokasyonAdi" ColumnName="LokasyonAdi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marka">
+            <EntityTypeMapping TypeName="OzdilekBtServisTakipModel.Marka">
+              <MappingFragment StoreEntitySet="Marka">
+                <ScalarProperty Name="MarkaID" ColumnName="MarkaID" />
+                <ScalarProperty Name="MarkaAdi" ColumnName="MarkaAdi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServisGelenTb">
+            <EntityTypeMapping TypeName="OzdilekBtServisTakipModel.ServisGelenTb">
+              <MappingFragment StoreEntitySet="ServisGelenTb">
+                <ScalarProperty Name="ServisID" ColumnName="ServisID" />
+                <ScalarProperty Name="EnvanterID" ColumnName="EnvanterID" />
+                <ScalarProperty Name="Sube" ColumnName="Sube" />
+                <ScalarProperty Name="Lokasyon" ColumnName="Lokasyon" />
+                <ScalarProperty Name="ServisGelenCinsi" ColumnName="ServisGelenCinsi" />
+                <ScalarProperty Name="ServisGelenMarka" ColumnName="ServisGelenMarka" />
+                <ScalarProperty Name="ServisGelenModel" ColumnName="ServisGelenModel" />
+                <ScalarProperty Name="ServisGelenSeriNo" ColumnName="ServisGelenSeriNo" />
+                <ScalarProperty Name="ServisGelenOzellik" ColumnName="ServisGelenOzellik" />
+                <ScalarProperty Name="GonderenKisi" ColumnName="GonderenKisi" />
+                <ScalarProperty Name="GonderildigiTarih" ColumnName="GonderildigiTarih" />
+                <ScalarProperty Name="GeldiginiBelirtenKisi" ColumnName="GeldiginiBelirtenKisi" />
+                <ScalarProperty Name="GeldigiTarih" ColumnName="GeldigiTarih" />
+                <ScalarProperty Name="EkAksesuar" ColumnName="EkAksesuar" />
+                <ScalarProperty Name="ArizaSebebi" ColumnName="ArizaSebebi" />
+                <ScalarProperty Name="YapilanMudahale" ColumnName="YapilanMudahale" />
+                <ScalarProperty Name="ServisFirma" ColumnName="ServisFirma" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServisTb">
+            <EntityTypeMapping TypeName="OzdilekBtServisTakipModel.ServisTb">
+              <MappingFragment StoreEntitySet="ServisTb">
+                <ScalarProperty Name="ServisID" ColumnName="ServisID" />
+                <ScalarProperty Name="EnvanterID" ColumnName="EnvanterID" />
+                <ScalarProperty Name="Sube" ColumnName="Sube" />
+                <ScalarProperty Name="Lokasyon" ColumnName="Lokasyon" />
+                <ScalarProperty Name="ServisCinsi" ColumnName="ServisCinsi" />
+                <ScalarProperty Name="ServisMarka" ColumnName="ServisMarka" />
+                <ScalarProperty Name="ServisModel" ColumnName="ServisModel" />
+                <ScalarProperty Name="ServisSeriNo" ColumnName="ServisSeriNo" />
+                <ScalarProperty Name="ServisOzellik" ColumnName="ServisOzellik" />
+                <ScalarProperty Name="GonderenKisi" ColumnName="GonderenKisi" />
+                <ScalarProperty Name="GonderildigiTarih" ColumnName="GonderildigiTarih" />
+                <ScalarProperty Name="EkAksesuar" ColumnName="EkAksesuar" />
+                <ScalarProperty Name="ArizaSebebi" ColumnName="ArizaSebebi" />
+                <ScalarProperty Name="ServisDurumu" ColumnName="ServisDurumu" />
+                <ScalarProperty Name="ServisFirma" ColumnName="ServisFirma" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sube">
+            <EntityTypeMapping TypeName="OzdilekBtServisTakipModel.Sube">
+              <MappingFragment StoreEntitySet="Sube">
+                <ScalarProperty Name="SubeID" ColumnName="SubeID" />
+                <ScalarProperty Name="SubeAdi" ColumnName="SubeAdi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

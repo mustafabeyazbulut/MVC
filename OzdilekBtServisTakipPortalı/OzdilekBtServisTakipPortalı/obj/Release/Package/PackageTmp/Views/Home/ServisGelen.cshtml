@@ -1,0 +1,55 @@
+﻿@model OzdilekBtServisTakipPortalı.ViewModel.ServisGelenViewModel
+@{
+    ViewBag.Title = "ServisGelen";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ol class="breadcrumb">
+    <li><a href="/Home/ServisTakip">Servise Gönderilen Ürünler</a></li>
+  <li class="active">Servisten Gelen Ürünler</li>
+  <li><a href="/Home/EnvanterTakip">Envanter Listesi</a></li>
+</ol>
+<h4><small> Hoş Geldiniz <strong>@ViewBag.kadi</strong></small> </h4>
+
+<h2 class="text-center">Servisten Gelen Ürünler</h2>
+
+<div class="row">
+    <div class="col-md-1">
+  
+  </div>
+<div id="dialog-user"  title="Servisten Gelen Cihaz İşlemleri" class="col-md-10">
+    @using (Ajax.BeginForm("ServisGelen", "Home", FormMethod.Post, new AjaxOptions { OnSuccess = "loadk" }))
+    {
+        <div class="text-center" >
+            Arama: 
+         @Html.TextBoxFor(m=>m.servisarama)
+            <input class="btn btn-default btn-sm dropdown-toggle" type="submit" value="Ara" name="submit" />
+            </div>
+    }
+ </div>
+    <div class="col-md-18">
+        <a href="@Url.Action("ServisGelenExportToExcel","Home")">Excel'e Aktar</a>
+
+    </div>
+</div>
+<div id="ajax-main" >
+@Html.Partial("servisgelenlist", @Model);
+    </div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+@section scripts
+{
+    <script type="text/javascript">
+        function loadk(result) {
+            $("#ajax-main").html(result);
+        }
+
+    </script>
+}
+<script type="text/javascript">
+    $("input").attr("autocomplete", "off");
+ </script>
