@@ -76,3 +76,7 @@ C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakip
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\obj\Debug\EnvanterTakipYönetimSistemi.csproj.CopyComplete
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\obj\Debug\EnvanterTakipYönetimSistemi.dll
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\obj\Debug\EnvanterTakipYönetimSistemi.pdb
+C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\EntityFramework.dll
+C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\EntityFramework.SqlServer.dll
+C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\EntityFramework.xml
+C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\EntityFramework.SqlServer.xml

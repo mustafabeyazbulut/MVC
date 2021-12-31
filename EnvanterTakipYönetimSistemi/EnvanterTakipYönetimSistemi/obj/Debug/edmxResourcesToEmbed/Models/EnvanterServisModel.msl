@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ENVSERVYSModelStoreContainer" CdmEntityContainer="EnvanterServisEntities">
+    <EntitySetMapping Name="Personel">
+      <EntityTypeMapping TypeName="ENVSERVYSModel.Personel">
+        <MappingFragment StoreEntitySet="Personel">
+          <ScalarProperty Name="Per_SonGirisTarihi" ColumnName="Per_SonGirisTarihi" />
+          <ScalarProperty Name="Per_ID" ColumnName="Per_ID" />
+          <ScalarProperty Name="Per_Ad" ColumnName="Per_Ad" />
+          <ScalarProperty Name="Per_Soyad" ColumnName="Per_Soyad" />
+          <ScalarProperty Name="Per_Sube" ColumnName="Per_Sube" />
+          <ScalarProperty Name="Per_Eposta" ColumnName="Per_Eposta" />
+          <ScalarProperty Name="Per_Sifre" ColumnName="Per_Sifre" />
+          <ScalarProperty Name="Per_Rol" ColumnName="Per_Rol" />
+          <ScalarProperty Name="Per_Durum" ColumnName="Per_Durum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

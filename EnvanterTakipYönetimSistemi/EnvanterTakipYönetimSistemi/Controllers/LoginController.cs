@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EnvanterTakipYönetimSistemi.Login;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,36 @@ namespace EnvanterTakipYönetimSistemi.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index(string eposta,string parola)
+        {//Giriş Yapma
+
+            if (new LoginState().IsLoginSuccess(eposta, parola)) // loginstate sınıfına gider ve parola kontrolü yapar. Doğruysa return true döner Session["Per_ID"] kontrolü yapılabilir.
+            {
+                return RedirectToAction("Index", "Envanter");
+                
+            }
+            
+            // şifre girişi yanlışsa buraya gelir ve ekrana uyarı verir
+            ViewBag.mesaj = eposta+parola;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Indexs(string isim, string eposta)
+        {//Şifre Talebi
+
+
+            ViewBag.mesaj1 = isim + eposta;
+            return View("Index");
+        }
+
+        public ActionResult LogOut()
+        {
+            Session.Clear();
+            return RedirectToAction("Index", "Login");
         }
     }
 }

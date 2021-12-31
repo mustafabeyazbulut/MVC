@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ENVSERVYSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Personel">
+          <Key>
+            <PropertyRef Name="Per_ID" />
+          </Key>
+          <Property Name="Per_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Per_Ad" Type="varchar" MaxLength="50" />
+          <Property Name="Per_Soyad" Type="varchar" MaxLength="50" />
+          <Property Name="Per_Sube" Type="varchar" MaxLength="50" />
+          <Property Name="Per_Eposta" Type="varchar" MaxLength="320" />
+          <Property Name="Per_Sifre" Type="varchar" MaxLength="20" />
+          <Property Name="Per_Rol" Type="char" MaxLength="1" />
+          <Property Name="Per_SonGirisTarihi" Type="smalldatetime" />
+          <Property Name="Per_Durum" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="ENVSERVYSModelStoreContainer">
+          <EntitySet Name="Personel" EntityType="Self.Personel" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ENVSERVYSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Personel">
+          <Key>
+            <PropertyRef Name="Per_ID" />
+          </Key>
+          <Property Name="Per_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Per_Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Per_Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Per_Sube" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Per_Eposta" Type="String" MaxLength="320" FixedLength="false" Unicode="false" />
+          <Property Name="Per_Sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Per_Rol" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Per_Durum" Type="Boolean" />
+          <Property Name="Per_SonGirisTarihi" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityContainer Name="EnvanterServisEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Personel" EntityType="Self.Personel" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ENVSERVYSModelStoreContainer" CdmEntityContainer="EnvanterServisEntities">
+          <EntitySetMapping Name="Personel">
+            <EntityTypeMapping TypeName="ENVSERVYSModel.Personel">
+              <MappingFragment StoreEntitySet="Personel">
+                <ScalarProperty Name="Per_SonGirisTarihi" ColumnName="Per_SonGirisTarihi" />
+                <ScalarProperty Name="Per_ID" ColumnName="Per_ID" />
+                <ScalarProperty Name="Per_Ad" ColumnName="Per_Ad" />
+                <ScalarProperty Name="Per_Soyad" ColumnName="Per_Soyad" />
+                <ScalarProperty Name="Per_Sube" ColumnName="Per_Sube" />
+                <ScalarProperty Name="Per_Eposta" ColumnName="Per_Eposta" />
+                <ScalarProperty Name="Per_Sifre" ColumnName="Per_Sifre" />
+                <ScalarProperty Name="Per_Rol" ColumnName="Per_Rol" />
+                <ScalarProperty Name="Per_Durum" ColumnName="Per_Durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
