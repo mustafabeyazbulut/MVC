@@ -18,12 +18,12 @@ namespace EnvanterTakipYönetimSistemi.Login
 
         // LoginController'dan buraya eposta ve parola bilgisi gelir.
         // resultpersonel değişkenine eposta ve parola doğruysa o personeli çeker.
-        //return true ise girişe gider
+        // Personel bilgilerini Session'a ekler ve geriye return true değerini döner
         public bool IsLoginSuccess(string eposta, string parola)
         {
 
 
-            Personel resultPersonel=db.Personel.Where(x => x.Per_Eposta.Equals(eposta) && x.Per_Sifre.Equals(parola)).FirstOrDefault(); // eposta ve parola bilgileri uyuşan personeli çeker.
+            Personel resultPersonel=db.Personel.Where(x => x.Per_Eposta.Equals(eposta) && x.Per_Sifre.Equals(parola)&&x.Per_Durum==true).FirstOrDefault(); // Çalışma durumu true olan eposta ve parola bilgileri uyuşan personeli çeker.
             if (resultPersonel != null)//resultUser boş değilse buraya girer
             {
 

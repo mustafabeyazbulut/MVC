@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EnvanterTakipYönetimSistemi.Login;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,7 @@ namespace EnvanterTakipYönetimSistemi.Controllers
     public class EnvanterController : Controller
     {
         // GET: Home
+        [LoginControl]
         public ActionResult Index()
         {
             return View();
