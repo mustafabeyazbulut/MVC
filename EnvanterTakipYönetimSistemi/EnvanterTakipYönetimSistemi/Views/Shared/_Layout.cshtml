@@ -12,35 +12,43 @@
 <body>
 
 
-    <div class="w3-sidebar w3-light-musto w3-bar-block " style="display:none" id="mySidebar">
+    <div class="w3-sidebar w3-light-musto w3-bar-block " style="display:block;width:9.5%" id="mySidebar">
         <h3 class="w3-bar-item">Menüler</h3>
         <a href="/Envanter/Index" class="w3-bar-item w3-button w3-hover-black">Envanter Listem</a>
-        <a href="#" class="w3-bar-item w3-button w3-hover-black">Servis Taleplerim</a>
-        <a href="#" class="w3-bar-item w3-button w3-hover-black">Servisteki Cihazlarım</a>
+        <a href="#" class="w3-bar-item w3-button w3-hover-black">Taleplerim</a>
+        <a href="#" class="w3-bar-item w3-button w3-hover-black">Servis Listem</a>
 
-        @if(Session["Per_Rol"].ToString() == "A")
+        @if (Session["Per_Rol"] != null && Session["Per_Rol"].ToString() == "A")
         {
             <button class="w3-button w3-block w3-left-align w3-hover-black" onclick="myAccFunc()">Ayarlar </button>
             <div id="demoAcc" class="w3-hide w3-light-musto w3-card">
-                <a href="#" class="w3-bar-item w3-button w3-hover-black">Personel Listesi</a>
-                <a href="#" class="w3-bar-item w3-button w3-hover-black">deneme</a>
+                <a href="#" class="w3-bar-item w3-button w3-hover-black">Personel Tanımlama</a>
+                <a href="#" class="w3-bar-item w3-button w3-hover-black">Envanter Tanımlama</a>
+                <a href="#" class="w3-bar-item w3-button w3-hover-black">Zimmet Tanımlama</a>
+                <a href="#" class="w3-bar-item w3-button w3-hover-black">Talep İşlemleri</a>
+                <a href="#" class="w3-bar-item w3-button w3-hover-black">Servis İşlemleri</a>
+                <a href="#" class="w3-bar-item w3-button w3-hover-black">Duyuru Tanımlama</a>
             </div>
         }
 
 
-        <a href="/Login/LogOut" class="w3-bar-item w3-button w3-hover-black">Çıkış</a>
+        <a href="/Login/LogOut" class="w3-bar-item  w3-button w3-hover-black">Çıkış</a>
+        <a class="w3-bar-item w3-button w3-border-bottom  w3-display-bottomright"> @Session["Per_AdiSoyadi"]</a>
 
     </div>
 
 
-    <div id="main">
+    <div id="main" style="margin-left:10%">
 
         <div class="w3-teal">
             <div class="w3-container w3-light-musto">
-                <h1>
-                    <button id="openNav" class="w3-button w3-teal w3-xlarge " onclick="w3_openclose()">&#9776;</button>
-                    Envanter ve Servis Yönetim Sistemi
-                </h1>
+                
+                <h2>
+                  <button id="openNav" class="w3-button w3-teal w3-xlarge " onclick="w3_openclose()">&#9776;</button>
+                  <a href="/Home/Index" class="w3-bar-item  w3-button w3-hover-light-musto">Envanter ve Servis Yönetim Sistemi </a>
+                </h2>      
+                        
+                
             </div>
         </div>
 
@@ -60,13 +68,13 @@
 
             } else {//kapalı iken çalışır
                 document.getElementById("main").style.marginLeft = "10%";
-                document.getElementById("mySidebar").style.width = "10%";
+                document.getElementById("mySidebar").style.width = "9.5%";
                 document.getElementById("mySidebar").style.display = "block";
                 //document.getElementById("openNav").style.display = 'none';
             }
         }
 
-        function myAccFunc() {
+        function myAccFunc() { // açılır butonla ilgili
             var x = document.getElementById("demoAcc");
             if (x.className.indexOf("w3-show") == -1) {
                 x.className += " w3-show";

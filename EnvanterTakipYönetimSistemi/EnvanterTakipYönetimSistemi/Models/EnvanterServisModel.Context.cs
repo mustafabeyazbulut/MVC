@@ -26,5 +26,6 @@ namespace EnvanterTakipYönetimSistemi.Models
         }
     
         public virtual DbSet<Personel> Personel { get; set; }
+        public virtual DbSet<Duyuru> Duyuru { get; set; }
     }
 }

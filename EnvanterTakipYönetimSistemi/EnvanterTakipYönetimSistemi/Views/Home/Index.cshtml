@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/Home/style.css" rel="stylesheet" />
+
+<div class="cards">
+    <div class="card-single">
+        <div>
+            <h1>50</h1>
+            <span>Envanter</span>
+        </div>
+        <div>
+            <span class="fas fa-users"></span>
+        </div>
+    </div>
+    <div class="card-single">
+        <div>
+            <h1>12</h1>
+            <span>Talep</span>
+        </div>
+        <div>
+            <span class="fas fa-clipboard-list"></span>
+        </div>
+    </div>
+    <div class="card-single">
+        <div>
+            <h1>15</h1>
+            <span>Servis</span>
+        </div>
+        <div>
+            <span class="fas fa-shopping-cart"></span>
+        </div>
+    </div>
+    <div class="card-single">
+        <div id="clock">
+
+            <span class="date">{{ date }}</span>
+            <h1 class="time">{{ time }}</h1>
+            <span>Takvim</span>
+        </div>
+        <div>
+            <span class="fas fa-wallet"></span>
+        </div>
+    </div>
+
+
+</div>
+<script src="~/Content/Home/vue.min.js"></script>
+<script src="~/Content/Home/script.js"></script>
+
+
+<div class="recent-grid">
+
+</div>
+<div class="card">
+    <div class="card-header"><h2>Duyurular</h2></div>
+    <div class="card-body">
+        <div class=" table-responsive">
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <td>Personel</td>
+                        <td>Şube</td>
+                        <td>Konu</td>
+                        <td>İçerik</td>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mustafa Beyazbulut</td>
+                        <td>Çanakkale</td>
+                        <td>Envanter</td>
+                        <td>Lütfen Envanterlerinize şevkatle davranın</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+

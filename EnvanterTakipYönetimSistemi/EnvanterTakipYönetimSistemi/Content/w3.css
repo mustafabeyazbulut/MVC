@@ -20,6 +20,14 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
     display: block
 }
 
+#account {
+
+    display: flex;
+    width: 165px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
 summary {
     display: list-item
 }
@@ -809,7 +817,7 @@ a {
     }
 }
 
-@media (min-width:993px) {
+@media (min-width:992px) {
     .w3-modal-content {
         width: 900px
     }
@@ -1427,6 +1435,7 @@ a {
 .w3-light-musto, .w3-hover-light-musto:hover {
     color: lightgray !important;
     background-color: #181E36 !important
+     
 }
 
 .w3-indigo, .w3-hover-indigo:hover {

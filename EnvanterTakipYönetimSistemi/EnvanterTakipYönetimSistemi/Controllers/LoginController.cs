@@ -21,7 +21,7 @@ namespace EnvanterTakipYönetimSistemi.Controllers
 
             if (new LoginState().IsLoginSuccess(eposta, parola)) // loginstate sınıfına gider ve parola kontrolü yapar. Doğruysa return true döner Session["Per_ID"] kontrolü yapılabilir.
             {
-                return RedirectToAction("Index", "Envanter");
+                return RedirectToAction("Index", "Home");
                 
             }
             

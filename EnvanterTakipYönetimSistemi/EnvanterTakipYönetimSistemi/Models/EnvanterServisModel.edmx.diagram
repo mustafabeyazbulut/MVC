@@ -6,6 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="92619430d22348408b2b480737d24400" Name="Diagram1">
         <EntityTypeShape EntityType="ENVSERVYSModel.Personel" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Duyuru" Width="1.5" PointX="3" PointY="1.25" />
+        <AssociationConnector Association="ENVSERVYSModel.FK_Duyuru_Personel" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
