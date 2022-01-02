@@ -102,7 +102,7 @@
 
 header {
     background: #fff;
-    display: flex;
+    display: block;
     justify-content: space-between;
     padding: 1rem 1.5rem;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
@@ -381,7 +381,7 @@ td .status {
     }
 
     header h2 {
-        display: flex;
+        display: block;
         align-items: center;
     }
 

@@ -98,7 +98,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Home\css2.css" />
     <Content Include="Content\Home\script.js" />
     <Content Include="Content\Home\style.css" />
     <Content Include="Content\Home\vue.min.js" />
