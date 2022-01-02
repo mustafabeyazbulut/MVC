@@ -1,30 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="OzdilekBtServisTakipModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="OzdilekBtServisTakipModelStoreContainer">
-    <EntitySet Name="EnvanterCinsi" EntityType="OzdilekBtServisTakipModel.Store.EnvanterCinsi" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="EnvanterTb" EntityType="OzdilekBtServisTakipModel.Store.EnvanterTb" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Firma" EntityType="OzdilekBtServisTakipModel.Store.Firma" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="KullaniciTb" EntityType="OzdilekBtServisTakipModel.Store.KullaniciTb" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Lokasyon" EntityType="OzdilekBtServisTakipModel.Store.Lokasyon" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Marka" EntityType="OzdilekBtServisTakipModel.Store.Marka" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ServisGelenTb" EntityType="OzdilekBtServisTakipModel.Store.ServisGelenTb" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ServisTb" EntityType="OzdilekBtServisTakipModel.Store.ServisTb" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Sube" EntityType="OzdilekBtServisTakipModel.Store.Sube" store:Type="Tables" Schema="dbo" />
-  </EntityContainer>
+<Schema Namespace="OzdilekBtServisTakipModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="EnvanterCinsi">
     <Key>
       <PropertyRef Name="EnvanterCinsiID" />
     </Key>
-    <Property Name="EnvanterCinsiID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="EnvanterCinsiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="EnvanterCinsiAdi" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="EnvanterTb">
     <Key>
       <PropertyRef Name="EnvanterID" />
     </Key>
-    <Property Name="EnvanterID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="Sube" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Lokasyon" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="EnvanterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sube" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Lokasyon" Type="nvarchar(max)" Nullable="false" />
     <Property Name="EnvanterCinsi" Type="nvarchar(max)" Nullable="false" />
     <Property Name="EnvanterMarka" Type="nvarchar(max)" Nullable="false" />
     <Property Name="EnvanterModel" Type="nvarchar(max)" Nullable="false" />
@@ -35,38 +24,38 @@
     <Key>
       <PropertyRef Name="FirmaID" />
     </Key>
-    <Property Name="FirmaID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FirmaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FirmaAdi" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="KullaniciTb">
     <Key>
       <PropertyRef Name="KullaniciID" />
     </Key>
-    <Property Name="KullaniciID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="KullaniciAdi" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Sifre" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="SonGirisTarihi" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="KullaniciID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullaniciAdi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Sifre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SonGirisTarihi" Type="nvarchar(max)" Nullable="false" />
     <Property Name="KullaniciYetki" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Lokasyon">
     <Key>
       <PropertyRef Name="LokasyonID" />
     </Key>
-    <Property Name="LokasyonID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="LokasyonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="LokasyonAdi" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Marka">
     <Key>
       <PropertyRef Name="MarkaID" />
     </Key>
-    <Property Name="MarkaID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="MarkaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MarkaAdi" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="ServisGelenTb">
     <Key>
       <PropertyRef Name="ServisID" />
     </Key>
-    <Property Name="ServisID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ServisID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="EnvanterID" Type="int" Nullable="false" />
     <Property Name="Sube" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Lokasyon" Type="nvarchar(max)" Nullable="false" />
@@ -88,7 +77,7 @@
     <Key>
       <PropertyRef Name="ServisID" />
     </Key>
-    <Property Name="ServisID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ServisID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="EnvanterID" Type="int" Nullable="false" />
     <Property Name="Sube" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Lokasyon" Type="nvarchar(max)" Nullable="false" />
@@ -101,14 +90,25 @@
     <Property Name="GonderildigiTarih" Type="nvarchar(max)" Nullable="false" />
     <Property Name="EkAksesuar" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ArizaSebebi" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ServisDurumu" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ServisDurumu" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ServisFirma" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Sube">
     <Key>
       <PropertyRef Name="SubeID" />
     </Key>
-    <Property Name="SubeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="SubeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SubeAdi" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
+  <EntityContainer Name="OzdilekBtServisTakipModelStoreContainer">
+    <EntitySet Name="EnvanterCinsi" EntityType="Self.EnvanterCinsi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EnvanterTb" EntityType="Self.EnvanterTb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Firma" EntityType="Self.Firma" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KullaniciTb" EntityType="Self.KullaniciTb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lokasyon" EntityType="Self.Lokasyon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Marka" EntityType="Self.Marka" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServisGelenTb" EntityType="Self.ServisGelenTb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServisTb" EntityType="Self.ServisTb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sube" EntityType="Self.Sube" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
 </Schema>

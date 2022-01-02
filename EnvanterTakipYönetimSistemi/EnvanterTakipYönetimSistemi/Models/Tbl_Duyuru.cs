@@ -12,13 +12,14 @@ namespace EnvanterTakipYönetimSistemi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Duyuru
+    public partial class Tbl_Duyuru
     {
         public int D_ID { get; set; }
         public string D_Konu { get; set; }
         public string D_Icerik { get; set; }
         public Nullable<int> Per_ID { get; set; }
+        public Nullable<bool> D_Kayit { get; set; }
     
-        public virtual Personel Personel { get; set; }
+        public virtual Tbl_Personel Tbl_Personel { get; set; }
     }
 }

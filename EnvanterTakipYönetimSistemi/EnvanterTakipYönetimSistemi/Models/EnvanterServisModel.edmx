@@ -5,7 +5,7 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ENVSERVYSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Duyuru">
+        <EntityType Name="Tbl_Duyuru">
           <Key>
             <PropertyRef Name="D_ID" />
           </Key>
@@ -13,8 +13,9 @@
           <Property Name="D_Konu" Type="nvarchar" MaxLength="50" />
           <Property Name="D_Icerik" Type="nvarchar" MaxLength="200" />
           <Property Name="Per_ID" Type="int" />
+          <Property Name="D_Kayit" Type="bit" />
         </EntityType>
-        <EntityType Name="Personel">
+        <EntityType Name="Tbl_Personel">
           <Key>
             <PropertyRef Name="Per_ID" />
           </Key>
@@ -26,33 +27,52 @@
           <Property Name="Per_Sifre" Type="varchar" MaxLength="20" />
           <Property Name="Per_Rol" Type="char" MaxLength="1" />
           <Property Name="Per_SonGirisTarihi" Type="smalldatetime" />
-          <Property Name="Per_Durum" Type="bit" />
+          <Property Name="Per_Kayit" Type="bit" />
         </EntityType>
         <Association Name="FK_Duyuru_Personel">
-          <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
-          <End Role="Duyuru" Type="Self.Duyuru" Multiplicity="*" />
+          <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="0..1" />
+          <End Role="Tbl_Duyuru" Type="Self.Tbl_Duyuru" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Personel">
+            <Principal Role="Tbl_Personel">
               <PropertyRef Name="Per_ID" />
             </Principal>
-            <Dependent Role="Duyuru">
+            <Dependent Role="Tbl_Duyuru">
               <PropertyRef Name="Per_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ENVSERVYSModelStoreContainer">
-          <EntitySet Name="Duyuru" EntityType="Self.Duyuru" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Personel" EntityType="Self.Personel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Duyuru" EntityType="Self.Tbl_Duyuru" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Personel" EntityType="Self.Tbl_Personel" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Duyuru_Personel" Association="Self.FK_Duyuru_Personel">
-            <End Role="Personel" EntitySet="Personel" />
-            <End Role="Duyuru" EntitySet="Duyuru" />
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+            <End Role="Tbl_Duyuru" EntitySet="Tbl_Duyuru" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ENVSERVYSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Personel">
+        <EntityContainer Name="EnvanterServisEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Tbl_Duyuru" EntityType="ENVSERVYSModel.Tbl_Duyuru" />
+          <EntitySet Name="Tbl_Personel" EntityType="ENVSERVYSModel.Tbl_Personel" />
+          <AssociationSet Name="FK_Duyuru_Personel" Association="ENVSERVYSModel.FK_Duyuru_Personel">
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+            <End Role="Tbl_Duyuru" EntitySet="Tbl_Duyuru" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Tbl_Duyuru">
+          <Key>
+            <PropertyRef Name="D_ID" />
+          </Key>
+          <Property Name="D_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="D_Konu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="D_Icerik" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Per_ID" Type="Int32" />
+          <Property Name="D_Kayit" Type="Boolean" />
+          <NavigationProperty Name="Tbl_Personel" Relationship="ENVSERVYSModel.FK_Duyuru_Personel" FromRole="Tbl_Duyuru" ToRole="Tbl_Personel" />
+        </EntityType>
+        <EntityType Name="Tbl_Personel">
           <Key>
             <PropertyRef Name="Per_ID" />
           </Key>
@@ -63,36 +83,18 @@
           <Property Name="Per_Eposta" Type="String" MaxLength="320" FixedLength="false" Unicode="false" />
           <Property Name="Per_Sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Per_Rol" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="Per_Durum" Type="Boolean" />
           <Property Name="Per_SonGirisTarihi" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Duyuru" Relationship="ENVSERVYSModel.FK_Duyuru_Personel" FromRole="Personel" ToRole="Duyuru" />
-        </EntityType>
-        <EntityContainer Name="EnvanterServisEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Personel" EntityType="Self.Personel" />
-          <EntitySet Name="Duyuru" EntityType="ENVSERVYSModel.Duyuru" />
-          <AssociationSet Name="FK_Duyuru_Personel" Association="ENVSERVYSModel.FK_Duyuru_Personel">
-            <End Role="Personel" EntitySet="Personel" />
-            <End Role="Duyuru" EntitySet="Duyuru" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="Duyuru">
-          <Key>
-            <PropertyRef Name="D_ID" />
-          </Key>
-          <Property Name="D_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="D_Konu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="D_Icerik" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Per_ID" Type="Int32" />
-          <NavigationProperty Name="Personel" Relationship="ENVSERVYSModel.FK_Duyuru_Personel" FromRole="Duyuru" ToRole="Personel" />
+          <Property Name="Per_Kayit" Type="Boolean" />
+          <NavigationProperty Name="Tbl_Duyuru" Relationship="ENVSERVYSModel.FK_Duyuru_Personel" FromRole="Tbl_Personel" ToRole="Tbl_Duyuru" />
         </EntityType>
         <Association Name="FK_Duyuru_Personel">
-          <End Type="ENVSERVYSModel.Personel" Role="Personel" Multiplicity="0..1" />
-          <End Type="ENVSERVYSModel.Duyuru" Role="Duyuru" Multiplicity="*" />
+          <End Type="ENVSERVYSModel.Tbl_Personel" Role="Tbl_Personel" Multiplicity="0..1" />
+          <End Type="ENVSERVYSModel.Tbl_Duyuru" Role="Tbl_Duyuru" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Personel">
+            <Principal Role="Tbl_Personel">
               <PropertyRef Name="Per_ID" />
             </Principal>
-            <Dependent Role="Duyuru">
+            <Dependent Role="Tbl_Duyuru">
               <PropertyRef Name="Per_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -103,28 +105,29 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ENVSERVYSModelStoreContainer" CdmEntityContainer="EnvanterServisEntities">
-          <EntitySetMapping Name="Personel">
-            <EntityTypeMapping TypeName="ENVSERVYSModel.Personel">
-              <MappingFragment StoreEntitySet="Personel">
-                <ScalarProperty Name="Per_SonGirisTarihi" ColumnName="Per_SonGirisTarihi" />
-                <ScalarProperty Name="Per_ID" ColumnName="Per_ID" />
-                <ScalarProperty Name="Per_Ad" ColumnName="Per_Ad" />
-                <ScalarProperty Name="Per_Soyad" ColumnName="Per_Soyad" />
-                <ScalarProperty Name="Per_Sube" ColumnName="Per_Sube" />
-                <ScalarProperty Name="Per_Eposta" ColumnName="Per_Eposta" />
-                <ScalarProperty Name="Per_Sifre" ColumnName="Per_Sifre" />
-                <ScalarProperty Name="Per_Rol" ColumnName="Per_Rol" />
-                <ScalarProperty Name="Per_Durum" ColumnName="Per_Durum" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Duyuru">
-            <EntityTypeMapping TypeName="ENVSERVYSModel.Duyuru">
-              <MappingFragment StoreEntitySet="Duyuru">
+          <EntitySetMapping Name="Tbl_Duyuru">
+            <EntityTypeMapping TypeName="ENVSERVYSModel.Tbl_Duyuru">
+              <MappingFragment StoreEntitySet="Tbl_Duyuru">
+                <ScalarProperty Name="D_Kayit" ColumnName="D_Kayit" />
                 <ScalarProperty Name="Per_ID" ColumnName="Per_ID" />
                 <ScalarProperty Name="D_Icerik" ColumnName="D_Icerik" />
                 <ScalarProperty Name="D_Konu" ColumnName="D_Konu" />
                 <ScalarProperty Name="D_ID" ColumnName="D_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Personel">
+            <EntityTypeMapping TypeName="ENVSERVYSModel.Tbl_Personel">
+              <MappingFragment StoreEntitySet="Tbl_Personel">
+                <ScalarProperty Name="Per_Kayit" ColumnName="Per_Kayit" />
+                <ScalarProperty Name="Per_SonGirisTarihi" ColumnName="Per_SonGirisTarihi" />
+                <ScalarProperty Name="Per_Rol" ColumnName="Per_Rol" />
+                <ScalarProperty Name="Per_Sifre" ColumnName="Per_Sifre" />
+                <ScalarProperty Name="Per_Eposta" ColumnName="Per_Eposta" />
+                <ScalarProperty Name="Per_Sube" ColumnName="Per_Sube" />
+                <ScalarProperty Name="Per_Soyad" ColumnName="Per_Soyad" />
+                <ScalarProperty Name="Per_Ad" ColumnName="Per_Ad" />
+                <ScalarProperty Name="Per_ID" ColumnName="Per_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

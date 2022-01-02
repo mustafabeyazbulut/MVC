@@ -1,8 +1,14 @@
-﻿
+﻿@using EnvanterTakipYönetimSistemi.ViewModels;
+@model HomeViewModel
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<!--Home Sayfası -->
+
+
+
 
 <link href="~/Content/Home/style.css" rel="stylesheet" />
 
@@ -61,21 +67,25 @@
         <div class=" table-responsive">
             <table width="100%">
                 <thead>
+
                     <tr>
-                        <td>Personel</td>
+                        <td>Yayınlayan</td>
                         <td>Şube</td>
                         <td>Konu</td>
                         <td>İçerik</td>
-
                     </tr>
+
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Mustafa Beyazbulut</td>
-                        <td>Çanakkale</td>
-                        <td>Envanter</td>
-                        <td>Lütfen Envanterlerinize şevkatle davranın</td>
-                    </tr>
+                    @foreach (var duyuru in Model.DuyuruList)
+                    {
+                        <tr>
+                            <td>@duyuru.DuyuruYayinlayan</td>
+                            <td>@duyuru.DuyuruYayinlayanSube</td>
+                            <td>@duyuru.DuyuruKonu</td>
+                            <td>@duyuru.DuyuruIcerik</td>
+                        </tr>
+                    }
                 </tbody>
 
             </table>
@@ -83,6 +93,8 @@
     </div>
 
 </div>
+
+
 
 
 

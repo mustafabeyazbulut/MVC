@@ -1,6 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ENVSERVYSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="Personel">
+  <EntityType Name="Tbl_Duyuru">
+    <Key>
+      <PropertyRef Name="D_ID" />
+    </Key>
+    <Property Name="D_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="D_Konu" Type="nvarchar" MaxLength="50" />
+    <Property Name="D_Icerik" Type="nvarchar" MaxLength="200" />
+    <Property Name="Per_ID" Type="int" />
+    <Property Name="D_Kayit" Type="bit" />
+  </EntityType>
+  <EntityType Name="Tbl_Personel">
     <Key>
       <PropertyRef Name="Per_ID" />
     </Key>
@@ -12,9 +22,26 @@
     <Property Name="Per_Sifre" Type="varchar" MaxLength="20" />
     <Property Name="Per_Rol" Type="char" MaxLength="1" />
     <Property Name="Per_SonGirisTarihi" Type="smalldatetime" />
-    <Property Name="Per_Durum" Type="bit" />
+    <Property Name="Per_Kayit" Type="bit" />
   </EntityType>
+  <Association Name="FK_Duyuru_Personel">
+    <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="0..1" />
+    <End Role="Tbl_Duyuru" Type="Self.Tbl_Duyuru" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Personel">
+        <PropertyRef Name="Per_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Duyuru">
+        <PropertyRef Name="Per_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="ENVSERVYSModelStoreContainer">
-    <EntitySet Name="Personel" EntityType="Self.Personel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Duyuru" EntityType="Self.Tbl_Duyuru" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Personel" EntityType="Self.Tbl_Personel" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Duyuru_Personel" Association="Self.FK_Duyuru_Personel">
+      <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+      <End Role="Tbl_Duyuru" EntitySet="Tbl_Duyuru" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

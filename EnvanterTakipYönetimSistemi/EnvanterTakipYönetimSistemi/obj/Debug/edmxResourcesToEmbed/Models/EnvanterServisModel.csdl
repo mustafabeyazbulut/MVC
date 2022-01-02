@@ -1,6 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ENVSERVYSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="Personel">
+  <EntityContainer Name="EnvanterServisEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Tbl_Duyuru" EntityType="ENVSERVYSModel.Tbl_Duyuru" />
+    <EntitySet Name="Tbl_Personel" EntityType="ENVSERVYSModel.Tbl_Personel" />
+    <AssociationSet Name="FK_Duyuru_Personel" Association="ENVSERVYSModel.FK_Duyuru_Personel">
+      <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+      <End Role="Tbl_Duyuru" EntitySet="Tbl_Duyuru" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Tbl_Duyuru">
+    <Key>
+      <PropertyRef Name="D_ID" />
+    </Key>
+    <Property Name="D_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="D_Konu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="D_Icerik" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Per_ID" Type="Int32" />
+    <Property Name="D_Kayit" Type="Boolean" />
+    <NavigationProperty Name="Tbl_Personel" Relationship="ENVSERVYSModel.FK_Duyuru_Personel" FromRole="Tbl_Duyuru" ToRole="Tbl_Personel" />
+  </EntityType>
+  <EntityType Name="Tbl_Personel">
     <Key>
       <PropertyRef Name="Per_ID" />
     </Key>
@@ -11,10 +30,20 @@
     <Property Name="Per_Eposta" Type="String" MaxLength="320" FixedLength="false" Unicode="false" />
     <Property Name="Per_Sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="Per_Rol" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-    <Property Name="Per_Durum" Type="Boolean" />
     <Property Name="Per_SonGirisTarihi" Type="DateTime" Precision="0" />
+    <Property Name="Per_Kayit" Type="Boolean" />
+    <NavigationProperty Name="Tbl_Duyuru" Relationship="ENVSERVYSModel.FK_Duyuru_Personel" FromRole="Tbl_Personel" ToRole="Tbl_Duyuru" />
   </EntityType>
-  <EntityContainer Name="EnvanterServisEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Personel" EntityType="Self.Personel" />
-  </EntityContainer>
+  <Association Name="FK_Duyuru_Personel">
+    <End Type="ENVSERVYSModel.Tbl_Personel" Role="Tbl_Personel" Multiplicity="0..1" />
+    <End Type="ENVSERVYSModel.Tbl_Duyuru" Role="Tbl_Duyuru" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Personel">
+        <PropertyRef Name="Per_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Duyuru">
+        <PropertyRef Name="Per_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

@@ -12,12 +12,12 @@ namespace EnvanterTakipYönetimSistemi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Personel
+    public partial class Tbl_Personel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Personel()
+        public Tbl_Personel()
         {
-            this.Duyuru = new HashSet<Duyuru>();
+            this.Tbl_Duyuru = new HashSet<Tbl_Duyuru>();
         }
     
         public int Per_ID { get; set; }
@@ -27,10 +27,10 @@ namespace EnvanterTakipYönetimSistemi.Models
         public string Per_Eposta { get; set; }
         public string Per_Sifre { get; set; }
         public string Per_Rol { get; set; }
-        public Nullable<bool> Per_Durum { get; set; }
         public Nullable<System.DateTime> Per_SonGirisTarihi { get; set; }
+        public Nullable<bool> Per_Kayit { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Duyuru> Duyuru { get; set; }
+        public virtual ICollection<Tbl_Duyuru> Tbl_Duyuru { get; set; }
     }
 }

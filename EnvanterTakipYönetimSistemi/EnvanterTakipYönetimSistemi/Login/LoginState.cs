@@ -23,7 +23,7 @@ namespace EnvanterTakipYönetimSistemi.Login
         {
 
 
-            Personel resultPersonel=db.Personel.Where(x => x.Per_Eposta.Equals(eposta) && x.Per_Sifre.Equals(parola)&&x.Per_Durum==true).FirstOrDefault(); // Çalışma durumu true olan eposta ve parola bilgileri uyuşan personeli çeker.
+            Tbl_Personel resultPersonel=db.Tbl_Personel.Where(x => x.Per_Eposta.Equals(eposta) && x.Per_Sifre.Equals(parola)&&x.Per_Kayit==true).FirstOrDefault(); // Çalışma durumu true olan eposta ve parola bilgileri uyuşan personeli çeker.
             if (resultPersonel != null)//resultUser boş değilse buraya girer
             {
 
