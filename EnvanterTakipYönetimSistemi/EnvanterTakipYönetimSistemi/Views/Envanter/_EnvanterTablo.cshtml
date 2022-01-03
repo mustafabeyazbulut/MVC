@@ -1,10 +1,14 @@
 ﻿@using EnvanterTakipYönetimSistemi.ViewModels
 @model EnvanterViewModel
 
+
+
 <link href="~/Content/Table/bootstrap.min.css" rel="stylesheet" />
 <link href="~/Content/Table/bootstrap-table.min.css" rel="stylesheet" />
 <link href="~/Content/Table/bootstrap-editable.css" rel="stylesheet" />
 <link href="~/Content/Table/style.css" rel="stylesheet" />
+
+
 <link href="~/Content/popupstyle.css" rel="stylesheet" />
 
 <div>
@@ -20,13 +24,13 @@
                 </select>
             </div>
 
-            <button type="button" class="btn btn-outline-primary" onclick="window.location.href='#popup1'">+</button>
-            <button  id="kontrol" class="btn btn-default" onclick="selectMe()">()</button>
-           
+            <button type="button" class="btn btn-default" onclick="window.location.href='#popup1'"> + </button>
+            <button id="kontrol" class="btn btn-default" onclick="selectMe()">Seçimi Güncelle</button>
+
         </div>
     </div>
 
-       
+
 
 
 
@@ -41,10 +45,9 @@
            data-show-pagination-switch="true"
            data-pagination="true"
            data-toolbar="#toolbar"
-           data-buttons="buttons"
-           data-side-pagination="server"
            data-show-columns="true"
            >
+       
         <thead>
             <tr>
                 <th data-field="cekbox" data-checkbox="true">+</th>
@@ -63,26 +66,26 @@
         <tbody>
             @foreach (var envanter in Model.TabloEnvanterList)
             {
-            <tr>
-                <td class="bs-checkbox ">
-                    <input data-index="@envanter.Envanter_ID" name="btSelectItem" type="checkbox">
-                </td>
-                <td>@envanter.Envanter_ID</td>
-                <td>@envanter.EnvanterCinsAdi</td>
-                <td>@envanter.EnvanterMarkaAdi</td>
-                <td>@envanter.EnvanterModel</td>
-                <td>@envanter.EnvanterSeriNo</td>
-                <td>@envanter.EnvanterKayitTarih.ToString("dd/MM/yyyy")</td>
-                <td>@envanter.EnvanterKaydeden</td>
-                <td>@envanter.EnvanterSube</td>
-                <td>@envanter.EnvanterDurum</td>
-                <td>@envanter.EnvanterKayit</td>
-            </tr>
-            
-        }
-            </tbody>
-        </table>
-    </div>
+                <tr>
+                    <td class="bs-checkbox ">
+                        <input data-index="@envanter.Envanter_ID" name="btSelectItem" type="checkbox">
+                    </td>
+                    <td>@envanter.Envanter_ID</td>
+                    <td>@envanter.EnvanterCinsAdi</td>
+                    <td>@envanter.EnvanterMarkaAdi</td>
+                    <td>@envanter.EnvanterModel</td>
+                    <td>@envanter.EnvanterSeriNo</td>
+                    <td>@envanter.EnvanterKayitTarih.ToString("dd/MM/yyyy")</td>
+                    <td>@envanter.EnvanterKaydeden</td>
+                    <td>@envanter.EnvanterSube</td>
+                    <td>@envanter.EnvanterDurum</td>
+                    <td>@envanter.EnvanterKayit</td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
 
 
 
@@ -93,18 +96,25 @@
         //    field: 'id',
         //    values: ["30"]
         //});
-        
         var secili = getIdSelections()
-        
-        if (secili.length>= 1) {
+        if (secili.length >= 1) {
             alert(secili[0])
         }
     }
-
-    function getIdSelections() {
+      function getIdSelections() { // table seçili checkbox'a göre id
         return $.map($table.bootstrapTable('getSelections'), ({ id }) => id);
     }
-   
+  
+
+    window.icons = {
+        paginationSwift: 'fa-collapse-up',
+        export: 'fa-refresh',
+        toggle: 'fa-toggle-on',
+        columns: 'fa-th-list'
+    };
+
+
+
 </script>
 
 

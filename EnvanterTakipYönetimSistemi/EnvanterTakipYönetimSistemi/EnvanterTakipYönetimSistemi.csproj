@@ -112,7 +112,7 @@
     <Content Include="Content\Table\bootstrap-table-export.js" />
     <Content Include="Content\Table\bootstrap-table-filter-control.js" />
     <Content Include="Content\Table\bootstrap-table.js" />
-    <Content Include="Content\Table\bootstrap-table.min.js" />
+    <Content Include="Content\Table\bootstrap-table.min.css" />
     <Content Include="Content\Table\bootstrap.min.css" />
     <Content Include="Content\Table\bootstrap.min.js" />
     <Content Include="Content\Table\jquery.min.js" />
