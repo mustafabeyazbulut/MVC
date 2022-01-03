@@ -10,6 +10,45 @@
     <Property Name="Per_ID" Type="int" />
     <Property Name="D_Kayit" Type="bit" />
   </EntityType>
+  <EntityType Name="Tbl_Envanter">
+    <Key>
+      <PropertyRef Name="Env_ID" />
+    </Key>
+    <Property Name="Env_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EnvCins_ID" Type="int" />
+    <Property Name="EnvMarka_ID" Type="int" />
+    <Property Name="Env_Model" Type="nvarchar" MaxLength="50" />
+    <Property Name="Env_SeriNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Env_Durum" Type="nvarchar" MaxLength="50" />
+    <Property Name="Env_Kayit" Type="bit" />
+    <Property Name="Env_Tarih" Type="date" />
+    <Property Name="Per_ID" Type="int" />
+    <Property Name="Sube_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Tbl_P_EnvanterCinsi">
+    <Key>
+      <PropertyRef Name="EnvCins_ID" />
+    </Key>
+    <Property Name="EnvCins_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EnvCins_Adi" Type="nvarchar" MaxLength="50" />
+    <Property Name="EnvCins_Kayit" Type="bit" />
+  </EntityType>
+  <EntityType Name="Tbl_P_EnvanterMarka">
+    <Key>
+      <PropertyRef Name="EnvMarka_ID" />
+    </Key>
+    <Property Name="EnvMarka_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EnvMarka_Adi" Type="nvarchar" MaxLength="50" />
+    <Property Name="EnvMarka_Kayit" Type="bit" />
+  </EntityType>
+  <EntityType Name="Tbl_P_Sube">
+    <Key>
+      <PropertyRef Name="Sube_ID" />
+    </Key>
+    <Property Name="Sube_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sube_Adi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sube_Kayit" Type="bit" />
+  </EntityType>
   <EntityType Name="Tbl_Personel">
     <Key>
       <PropertyRef Name="Per_ID" />
@@ -17,7 +56,7 @@
     <Property Name="Per_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Per_Ad" Type="varchar" MaxLength="50" />
     <Property Name="Per_Soyad" Type="varchar" MaxLength="50" />
-    <Property Name="Per_Sube" Type="varchar" MaxLength="50" />
+    <Property Name="Sube_ID" Type="int" />
     <Property Name="Per_Eposta" Type="varchar" MaxLength="320" />
     <Property Name="Per_Sifre" Type="varchar" MaxLength="20" />
     <Property Name="Per_Rol" Type="char" MaxLength="1" />
@@ -36,12 +75,96 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Tbl_Envanter_Tbl_P_EnvanterCinsi">
+    <End Role="Tbl_P_EnvanterCinsi" Type="Self.Tbl_P_EnvanterCinsi" Multiplicity="0..1" />
+    <End Role="Tbl_Envanter" Type="Self.Tbl_Envanter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_P_EnvanterCinsi">
+        <PropertyRef Name="EnvCins_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Envanter">
+        <PropertyRef Name="EnvCins_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_Envanter_Tbl_P_EnvanterMarka">
+    <End Role="Tbl_P_EnvanterMarka" Type="Self.Tbl_P_EnvanterMarka" Multiplicity="0..1" />
+    <End Role="Tbl_Envanter" Type="Self.Tbl_Envanter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_P_EnvanterMarka">
+        <PropertyRef Name="EnvMarka_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Envanter">
+        <PropertyRef Name="EnvMarka_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_Envanter_Tbl_P_Sube">
+    <End Role="Tbl_P_Sube" Type="Self.Tbl_P_Sube" Multiplicity="0..1" />
+    <End Role="Tbl_Envanter" Type="Self.Tbl_Envanter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_P_Sube">
+        <PropertyRef Name="Sube_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Envanter">
+        <PropertyRef Name="Sube_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_Envanter_Tbl_Personel">
+    <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="0..1" />
+    <End Role="Tbl_Envanter" Type="Self.Tbl_Envanter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Personel">
+        <PropertyRef Name="Per_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Envanter">
+        <PropertyRef Name="Per_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_Personel_Tbl_P_Sube">
+    <End Role="Tbl_P_Sube" Type="Self.Tbl_P_Sube" Multiplicity="0..1" />
+    <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_P_Sube">
+        <PropertyRef Name="Sube_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Personel">
+        <PropertyRef Name="Sube_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="ENVSERVYSModelStoreContainer">
     <EntitySet Name="Tbl_Duyuru" EntityType="Self.Tbl_Duyuru" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Envanter" EntityType="Self.Tbl_Envanter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_P_EnvanterCinsi" EntityType="Self.Tbl_P_EnvanterCinsi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_P_EnvanterMarka" EntityType="Self.Tbl_P_EnvanterMarka" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_P_Sube" EntityType="Self.Tbl_P_Sube" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_Personel" EntityType="Self.Tbl_Personel" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Duyuru_Personel" Association="Self.FK_Duyuru_Personel">
       <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
       <End Role="Tbl_Duyuru" EntitySet="Tbl_Duyuru" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Envanter_Tbl_P_EnvanterCinsi" Association="Self.FK_Tbl_Envanter_Tbl_P_EnvanterCinsi">
+      <End Role="Tbl_P_EnvanterCinsi" EntitySet="Tbl_P_EnvanterCinsi" />
+      <End Role="Tbl_Envanter" EntitySet="Tbl_Envanter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Envanter_Tbl_P_EnvanterMarka" Association="Self.FK_Tbl_Envanter_Tbl_P_EnvanterMarka">
+      <End Role="Tbl_P_EnvanterMarka" EntitySet="Tbl_P_EnvanterMarka" />
+      <End Role="Tbl_Envanter" EntitySet="Tbl_Envanter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Envanter_Tbl_P_Sube" Association="Self.FK_Tbl_Envanter_Tbl_P_Sube">
+      <End Role="Tbl_P_Sube" EntitySet="Tbl_P_Sube" />
+      <End Role="Tbl_Envanter" EntitySet="Tbl_Envanter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Envanter_Tbl_Personel" Association="Self.FK_Tbl_Envanter_Tbl_Personel">
+      <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+      <End Role="Tbl_Envanter" EntitySet="Tbl_Envanter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Personel_Tbl_P_Sube" Association="Self.FK_Tbl_Personel_Tbl_P_Sube">
+      <End Role="Tbl_P_Sube" EntitySet="Tbl_P_Sube" />
+      <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -2,10 +2,34 @@
 <Schema Namespace="ENVSERVYSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="EnvanterServisEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Tbl_Duyuru" EntityType="ENVSERVYSModel.Tbl_Duyuru" />
+    <EntitySet Name="Tbl_Envanter" EntityType="ENVSERVYSModel.Tbl_Envanter" />
+    <EntitySet Name="Tbl_P_EnvanterCinsi" EntityType="ENVSERVYSModel.Tbl_P_EnvanterCinsi" />
+    <EntitySet Name="Tbl_P_EnvanterMarka" EntityType="ENVSERVYSModel.Tbl_P_EnvanterMarka" />
+    <EntitySet Name="Tbl_P_Sube" EntityType="ENVSERVYSModel.Tbl_P_Sube" />
     <EntitySet Name="Tbl_Personel" EntityType="ENVSERVYSModel.Tbl_Personel" />
     <AssociationSet Name="FK_Duyuru_Personel" Association="ENVSERVYSModel.FK_Duyuru_Personel">
       <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
       <End Role="Tbl_Duyuru" EntitySet="Tbl_Duyuru" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Envanter_Tbl_P_EnvanterCinsi" Association="ENVSERVYSModel.FK_Tbl_Envanter_Tbl_P_EnvanterCinsi">
+      <End Role="Tbl_P_EnvanterCinsi" EntitySet="Tbl_P_EnvanterCinsi" />
+      <End Role="Tbl_Envanter" EntitySet="Tbl_Envanter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Envanter_Tbl_P_EnvanterMarka" Association="ENVSERVYSModel.FK_Tbl_Envanter_Tbl_P_EnvanterMarka">
+      <End Role="Tbl_P_EnvanterMarka" EntitySet="Tbl_P_EnvanterMarka" />
+      <End Role="Tbl_Envanter" EntitySet="Tbl_Envanter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Envanter_Tbl_P_Sube" Association="ENVSERVYSModel.FK_Tbl_Envanter_Tbl_P_Sube">
+      <End Role="Tbl_P_Sube" EntitySet="Tbl_P_Sube" />
+      <End Role="Tbl_Envanter" EntitySet="Tbl_Envanter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Envanter_Tbl_Personel" Association="ENVSERVYSModel.FK_Tbl_Envanter_Tbl_Personel">
+      <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+      <End Role="Tbl_Envanter" EntitySet="Tbl_Envanter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Personel_Tbl_P_Sube" Association="ENVSERVYSModel.FK_Tbl_Personel_Tbl_P_Sube">
+      <End Role="Tbl_P_Sube" EntitySet="Tbl_P_Sube" />
+      <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Tbl_Duyuru">
@@ -19,6 +43,53 @@
     <Property Name="D_Kayit" Type="Boolean" />
     <NavigationProperty Name="Tbl_Personel" Relationship="ENVSERVYSModel.FK_Duyuru_Personel" FromRole="Tbl_Duyuru" ToRole="Tbl_Personel" />
   </EntityType>
+  <EntityType Name="Tbl_Envanter">
+    <Key>
+      <PropertyRef Name="Env_ID" />
+    </Key>
+    <Property Name="Env_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EnvCins_ID" Type="Int32" />
+    <Property Name="EnvMarka_ID" Type="Int32" />
+    <Property Name="Env_Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Env_SeriNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Env_Durum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Env_Kayit" Type="Boolean" />
+    <Property Name="Env_Tarih" Type="DateTime" Precision="0" />
+    <Property Name="Per_ID" Type="Int32" />
+    <Property Name="Sube_ID" Type="Int32" />
+    <NavigationProperty Name="Tbl_P_EnvanterCinsi" Relationship="ENVSERVYSModel.FK_Tbl_Envanter_Tbl_P_EnvanterCinsi" FromRole="Tbl_Envanter" ToRole="Tbl_P_EnvanterCinsi" />
+    <NavigationProperty Name="Tbl_P_EnvanterMarka" Relationship="ENVSERVYSModel.FK_Tbl_Envanter_Tbl_P_EnvanterMarka" FromRole="Tbl_Envanter" ToRole="Tbl_P_EnvanterMarka" />
+    <NavigationProperty Name="Tbl_P_Sube" Relationship="ENVSERVYSModel.FK_Tbl_Envanter_Tbl_P_Sube" FromRole="Tbl_Envanter" ToRole="Tbl_P_Sube" />
+    <NavigationProperty Name="Tbl_Personel" Relationship="ENVSERVYSModel.FK_Tbl_Envanter_Tbl_Personel" FromRole="Tbl_Envanter" ToRole="Tbl_Personel" />
+  </EntityType>
+  <EntityType Name="Tbl_P_EnvanterCinsi">
+    <Key>
+      <PropertyRef Name="EnvCins_ID" />
+    </Key>
+    <Property Name="EnvCins_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EnvCins_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EnvCins_Kayit" Type="Boolean" />
+    <NavigationProperty Name="Tbl_Envanter" Relationship="ENVSERVYSModel.FK_Tbl_Envanter_Tbl_P_EnvanterCinsi" FromRole="Tbl_P_EnvanterCinsi" ToRole="Tbl_Envanter" />
+  </EntityType>
+  <EntityType Name="Tbl_P_EnvanterMarka">
+    <Key>
+      <PropertyRef Name="EnvMarka_ID" />
+    </Key>
+    <Property Name="EnvMarka_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EnvMarka_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EnvMarka_Kayit" Type="Boolean" />
+    <NavigationProperty Name="Tbl_Envanter" Relationship="ENVSERVYSModel.FK_Tbl_Envanter_Tbl_P_EnvanterMarka" FromRole="Tbl_P_EnvanterMarka" ToRole="Tbl_Envanter" />
+  </EntityType>
+  <EntityType Name="Tbl_P_Sube">
+    <Key>
+      <PropertyRef Name="Sube_ID" />
+    </Key>
+    <Property Name="Sube_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sube_Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sube_Kayit" Type="Boolean" />
+    <NavigationProperty Name="Tbl_Envanter" Relationship="ENVSERVYSModel.FK_Tbl_Envanter_Tbl_P_Sube" FromRole="Tbl_P_Sube" ToRole="Tbl_Envanter" />
+    <NavigationProperty Name="Tbl_Personel" Relationship="ENVSERVYSModel.FK_Tbl_Personel_Tbl_P_Sube" FromRole="Tbl_P_Sube" ToRole="Tbl_Personel" />
+  </EntityType>
   <EntityType Name="Tbl_Personel">
     <Key>
       <PropertyRef Name="Per_ID" />
@@ -26,13 +97,15 @@
     <Property Name="Per_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Per_Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Per_Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Per_Sube" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sube_ID" Type="Int32" />
     <Property Name="Per_Eposta" Type="String" MaxLength="320" FixedLength="false" Unicode="false" />
     <Property Name="Per_Sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="Per_Rol" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
     <Property Name="Per_SonGirisTarihi" Type="DateTime" Precision="0" />
     <Property Name="Per_Kayit" Type="Boolean" />
     <NavigationProperty Name="Tbl_Duyuru" Relationship="ENVSERVYSModel.FK_Duyuru_Personel" FromRole="Tbl_Personel" ToRole="Tbl_Duyuru" />
+    <NavigationProperty Name="Tbl_Envanter" Relationship="ENVSERVYSModel.FK_Tbl_Envanter_Tbl_Personel" FromRole="Tbl_Personel" ToRole="Tbl_Envanter" />
+    <NavigationProperty Name="Tbl_P_Sube" Relationship="ENVSERVYSModel.FK_Tbl_Personel_Tbl_P_Sube" FromRole="Tbl_Personel" ToRole="Tbl_P_Sube" />
   </EntityType>
   <Association Name="FK_Duyuru_Personel">
     <End Type="ENVSERVYSModel.Tbl_Personel" Role="Tbl_Personel" Multiplicity="0..1" />
@@ -43,6 +116,66 @@
       </Principal>
       <Dependent Role="Tbl_Duyuru">
         <PropertyRef Name="Per_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_Envanter_Tbl_P_EnvanterCinsi">
+    <End Type="ENVSERVYSModel.Tbl_P_EnvanterCinsi" Role="Tbl_P_EnvanterCinsi" Multiplicity="0..1" />
+    <End Type="ENVSERVYSModel.Tbl_Envanter" Role="Tbl_Envanter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_P_EnvanterCinsi">
+        <PropertyRef Name="EnvCins_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Envanter">
+        <PropertyRef Name="EnvCins_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_Envanter_Tbl_P_EnvanterMarka">
+    <End Type="ENVSERVYSModel.Tbl_P_EnvanterMarka" Role="Tbl_P_EnvanterMarka" Multiplicity="0..1" />
+    <End Type="ENVSERVYSModel.Tbl_Envanter" Role="Tbl_Envanter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_P_EnvanterMarka">
+        <PropertyRef Name="EnvMarka_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Envanter">
+        <PropertyRef Name="EnvMarka_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_Envanter_Tbl_P_Sube">
+    <End Type="ENVSERVYSModel.Tbl_P_Sube" Role="Tbl_P_Sube" Multiplicity="0..1" />
+    <End Type="ENVSERVYSModel.Tbl_Envanter" Role="Tbl_Envanter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_P_Sube">
+        <PropertyRef Name="Sube_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Envanter">
+        <PropertyRef Name="Sube_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_Envanter_Tbl_Personel">
+    <End Type="ENVSERVYSModel.Tbl_Personel" Role="Tbl_Personel" Multiplicity="0..1" />
+    <End Type="ENVSERVYSModel.Tbl_Envanter" Role="Tbl_Envanter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Personel">
+        <PropertyRef Name="Per_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Envanter">
+        <PropertyRef Name="Per_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_Personel_Tbl_P_Sube">
+    <End Type="ENVSERVYSModel.Tbl_P_Sube" Role="Tbl_P_Sube" Multiplicity="0..1" />
+    <End Type="ENVSERVYSModel.Tbl_Personel" Role="Tbl_Personel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_P_Sube">
+        <PropertyRef Name="Sube_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Personel">
+        <PropertyRef Name="Sube_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

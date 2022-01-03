@@ -48,7 +48,7 @@
 <div id="dialog-user" title="Servis Kayıt Güncelleme İşlemleri">
     @using (Ajax.BeginForm("Create", "Home", FormMethod.Post, new AjaxOptions { OnSuccess = "Create" }, new { id = "frm-create" }))
     {       
-         @Html.HiddenFor(m => m.ServisID1) 
+        @Html.HiddenFor(m => m.ServisID1) 
         @Html.HiddenFor(m => m.EnvanterID1)  
         @Html.HiddenFor(m => m.Sube1)
         @Html.HiddenFor(m => m.Lokasyon1)

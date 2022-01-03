@@ -12,6 +12,49 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Envanter">
+      <EntityTypeMapping TypeName="ENVSERVYSModel.Tbl_Envanter">
+        <MappingFragment StoreEntitySet="Tbl_Envanter">
+          <ScalarProperty Name="Sube_ID" ColumnName="Sube_ID" />
+          <ScalarProperty Name="Per_ID" ColumnName="Per_ID" />
+          <ScalarProperty Name="Env_Tarih" ColumnName="Env_Tarih" />
+          <ScalarProperty Name="Env_Kayit" ColumnName="Env_Kayit" />
+          <ScalarProperty Name="Env_Durum" ColumnName="Env_Durum" />
+          <ScalarProperty Name="Env_SeriNo" ColumnName="Env_SeriNo" />
+          <ScalarProperty Name="Env_Model" ColumnName="Env_Model" />
+          <ScalarProperty Name="EnvMarka_ID" ColumnName="EnvMarka_ID" />
+          <ScalarProperty Name="EnvCins_ID" ColumnName="EnvCins_ID" />
+          <ScalarProperty Name="Env_ID" ColumnName="Env_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_P_EnvanterCinsi">
+      <EntityTypeMapping TypeName="ENVSERVYSModel.Tbl_P_EnvanterCinsi">
+        <MappingFragment StoreEntitySet="Tbl_P_EnvanterCinsi">
+          <ScalarProperty Name="EnvCins_Kayit" ColumnName="EnvCins_Kayit" />
+          <ScalarProperty Name="EnvCins_Adi" ColumnName="EnvCins_Adi" />
+          <ScalarProperty Name="EnvCins_ID" ColumnName="EnvCins_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_P_EnvanterMarka">
+      <EntityTypeMapping TypeName="ENVSERVYSModel.Tbl_P_EnvanterMarka">
+        <MappingFragment StoreEntitySet="Tbl_P_EnvanterMarka">
+          <ScalarProperty Name="EnvMarka_Kayit" ColumnName="EnvMarka_Kayit" />
+          <ScalarProperty Name="EnvMarka_Adi" ColumnName="EnvMarka_Adi" />
+          <ScalarProperty Name="EnvMarka_ID" ColumnName="EnvMarka_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_P_Sube">
+      <EntityTypeMapping TypeName="ENVSERVYSModel.Tbl_P_Sube">
+        <MappingFragment StoreEntitySet="Tbl_P_Sube">
+          <ScalarProperty Name="Sube_Kayit" ColumnName="Sube_Kayit" />
+          <ScalarProperty Name="Sube_Adi" ColumnName="Sube_Adi" />
+          <ScalarProperty Name="Sube_ID" ColumnName="Sube_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Tbl_Personel">
       <EntityTypeMapping TypeName="ENVSERVYSModel.Tbl_Personel">
         <MappingFragment StoreEntitySet="Tbl_Personel">
@@ -20,7 +63,7 @@
           <ScalarProperty Name="Per_Rol" ColumnName="Per_Rol" />
           <ScalarProperty Name="Per_Sifre" ColumnName="Per_Sifre" />
           <ScalarProperty Name="Per_Eposta" ColumnName="Per_Eposta" />
-          <ScalarProperty Name="Per_Sube" ColumnName="Per_Sube" />
+          <ScalarProperty Name="Sube_ID" ColumnName="Sube_ID" />
           <ScalarProperty Name="Per_Soyad" ColumnName="Per_Soyad" />
           <ScalarProperty Name="Per_Ad" ColumnName="Per_Ad" />
           <ScalarProperty Name="Per_ID" ColumnName="Per_ID" />

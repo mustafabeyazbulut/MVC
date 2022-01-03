@@ -26,7 +26,7 @@ namespace EnvanterTakipYönetimSistemi.Controllers
             }
             
             // şifre girişi yanlışsa buraya gelir ve ekrana uyarı verir
-            ViewBag.mesaj = eposta+parola;
+            ViewBag.mesaj = "Eposta veya Parola hatalıdır.";
             return View();
         }
 
@@ -35,7 +35,7 @@ namespace EnvanterTakipYönetimSistemi.Controllers
         {//Şifre Talebi
 
 
-            ViewBag.mesaj1 = isim + eposta;
+            ViewBag.mesaj1 = "İsim veya Eposta hatalıdır.";
             return View("Index");
         }
 

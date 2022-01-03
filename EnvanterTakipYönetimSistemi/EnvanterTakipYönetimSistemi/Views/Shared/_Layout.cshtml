@@ -9,7 +9,9 @@
     <title>Envanter Yönetim Sistemi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="~/Content/w3.css">
-    
+
+    <link href="~/Content/alert/sweetalert2.min.css" rel="stylesheet" />
+    <script src="~/Content/alert/sweetalert2.min.js"></script>
 </head>
 
 
@@ -18,7 +20,7 @@
 
     <div class="w3-sidebar w3-light-musto w3-bar-block " style="display:block;width:9.5%" id="mySidebar">
         <h3 class="w3-bar-item">Menüler</h3>
-        <a href="/Envanter/Index" class="w3-bar-item w3-button w3-hover-black">Envanter Listem</a>
+        <a href="#" class="w3-bar-item w3-button w3-hover-black">Envanter Listem</a>
         <a href="/Taleplerim/Index" class="w3-bar-item w3-button w3-hover-black">Taleplerim</a>
         <a href="#" class="w3-bar-item w3-button w3-hover-black">Servis Listem</a>
 
@@ -27,7 +29,7 @@
             <button class="w3-button w3-block w3-left-align w3-hover-black" onclick="myAccFunc()">Ayarlar </button>
             <div id="demoAcc" class="w3-hide w3-light-musto w3-card">
                 <a href="#" class="w3-bar-item w3-button w3-hover-black">Personel Tanımlama</a>
-                <a href="#" class="w3-bar-item w3-button w3-hover-black">Envanter Tanımlama</a>
+                <a href="/Envanter/Index" class="w3-bar-item w3-button w3-hover-black">Envanter Tanımlama</a>
                 <a href="#" class="w3-bar-item w3-button w3-hover-black">Zimmet Tanımlama</a>
                 <a href="#" class="w3-bar-item w3-button w3-hover-black">Talep İşlemleri</a>
                 <a href="#" class="w3-bar-item w3-button w3-hover-black">Servis İşlemleri</a>
@@ -94,6 +96,6 @@
         }
 
     </script>
-
+    
 </body>
 </html>

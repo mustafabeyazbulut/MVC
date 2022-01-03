@@ -7,10 +7,10 @@ namespace EnvanterTakipYönetimSistemi.ViewModels
 {
     public class HomeViewModel
     {
-        public List<DuyuruViewModel> DuyuruList { get; set; }
-        public List<DashboardViewModel> DashboardList { get; set; }
+        public List<DuyuruHomeViewModel> DuyuruList { get; set; }
+        public List<DashboardHomeViewModel> DashboardList { get; set; }
     }
-    public class DuyuruViewModel
+    public class DuyuruHomeViewModel
     {
         public int DuyuruID { get; set; }
         public string DuyuruKonu { get; set; }
@@ -19,15 +19,15 @@ namespace EnvanterTakipYönetimSistemi.ViewModels
         public string DuyuruYayinlayanSube { get; set; }
 
     }
-    public class DashboardViewModel
+    public class DashboardHomeViewModel
     {
-        public int EnvanterAdet { get; set; }
-        public int TalepAdet { get; set; }
-        public int ServisAdet { get; set; }
+        //public int EnvanterAdet { get; set; }
+        //public int TalepAdet { get; set; }
+        //public int ServisAdet { get; set; }
 
         public int EnvanterToplamAdet { get; set; }
-        public int TalepToplamAdet { get; set; }
-        public int ServisToplamAdet { get; set; }
+        //public int TalepToplamAdet { get; set; }
+        //public int ServisToplamAdet { get; set; }
     }
 
 }

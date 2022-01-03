@@ -106,6 +106,11 @@ namespace OzdilekBtServisTakipPortalı.Controllers
                                       Value = s.SubeID.ToString()
                                   }).ToList();
                 model.SubeList.Insert(0, new SelectListItem { Value = "", Text = "Seçiniz", Selected = true });
+
+
+
+
+
                 
 
                 List<Lokasyon> LokasyonList = db.Lokasyon.OrderBy(f => f.LokasyonAdi).ToList();
@@ -353,6 +358,8 @@ namespace OzdilekBtServisTakipPortalı.Controllers
                                      lokasyontb = db.Lokasyon.FirstOrDefault(f => f.LokasyonID == model.LokasyonID);
                                      envantercinsitb = db.EnvanterCinsi.FirstOrDefault(f => f.EnvanterCinsiID == model.EnvanterCinsiID);
                                      markatb = db.Marka.FirstOrDefault(f => f.MarkaID == model.MarkaID);
+
+
                                      envanterkayit = db.EnvanterTb.FirstOrDefault(f => f.EnvanterID == model.EnvanterID2);
                                         //mevcut envanter id de ki seri no ile modelden gelen seri no 
                                         //karşılaştığında aynı ise kaydı gunceller değil ise farklı alanda yeni girilen seri no var mı diye bakar
@@ -398,10 +405,14 @@ namespace OzdilekBtServisTakipPortalı.Controllers
                                          {
                                  //Yeni Kayıt
                                  envanterkayit = new EnvanterTb();
+
+
                                  subetb = db.Sube.FirstOrDefault(f => f.SubeID == model.SubeID);
                                  lokasyontb = db.Lokasyon.FirstOrDefault(f => f.LokasyonID == model.LokasyonID);
                                  envantercinsitb = db.EnvanterCinsi.FirstOrDefault(f => f.EnvanterCinsiID == model.EnvanterCinsiID);
                                  markatb = db.Marka.FirstOrDefault(f => f.MarkaID == model.MarkaID);
+
+
                                  envanterkayit.Sube = subetb.SubeAdi;
                                  envanterkayit.Lokasyon = lokasyontb.LokasyonAdi;
                                  envanterkayit.EnvanterCinsi = envantercinsitb.EnvanterCinsiAdi;

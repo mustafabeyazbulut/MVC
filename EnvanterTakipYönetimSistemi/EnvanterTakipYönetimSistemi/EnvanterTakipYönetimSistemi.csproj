@@ -98,18 +98,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\alert\sweetalert2.min.css" />
+    <Content Include="Content\alert\sweetalert2.min.js" />
     <Content Include="Content\Home\script.js" />
     <Content Include="Content\Home\style.css" />
     <Content Include="Content\Home\vue.min.js" />
     <Content Include="Content\Login\google-plus.png" />
     <Content Include="Content\Login\script.js" />
     <Content Include="Content\Login\style.css" />
+    <Content Include="Content\popupstyle.css" />
     <Content Include="Content\Table\bootstrap-editable.css" />
     <Content Include="Content\Table\bootstrap-table-editable.js" />
     <Content Include="Content\Table\bootstrap-table-export.js" />
     <Content Include="Content\Table\bootstrap-table-filter-control.js" />
     <Content Include="Content\Table\bootstrap-table.js" />
-    <Content Include="Content\Table\bootstrap-table.min.css" />
+    <Content Include="Content\Table\bootstrap-table.min.js" />
     <Content Include="Content\Table\bootstrap.min.css" />
     <Content Include="Content\Table\bootstrap.min.js" />
     <Content Include="Content\Table\jquery.min.js" />
@@ -128,6 +131,31 @@
       <DependentUpon>EnvanterServisModel.edmx</DependentUpon>
       <LastGenOutput>EnvanterServisModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.6.0.js" />
+    <Content Include="Scripts\jquery-3.6.0.min.js" />
+    <Content Include="Scripts\jquery-3.6.0.min.map" />
+    <Content Include="Scripts\jquery-3.6.0.slim.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-2.1.0.debug.js" />
+    <Content Include="Scripts\knockout-2.1.0.js" />
+    <Content Include="Scripts\modernizr-2.5.3.js" />
+    <None Include="Scripts\_references.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -159,7 +187,19 @@
     <Compile Include="Models\Tbl_Duyuru.cs">
       <DependentUpon>EnvanterServisModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Tbl_Envanter.cs">
+      <DependentUpon>EnvanterServisModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tbl_Personel.cs">
+      <DependentUpon>EnvanterServisModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_P_EnvanterCinsi.cs">
+      <DependentUpon>EnvanterServisModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_P_EnvanterMarka.cs">
+      <DependentUpon>EnvanterServisModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_P_Sube.cs">
       <DependentUpon>EnvanterServisModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -181,6 +221,11 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Taleplerim\Index.cshtml" />
+    <Content Include="Views\Envanter\_EnvanterTablo.cshtml" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <None Include="Scripts\jquery-3.6.0.intellisense.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -26,6 +26,10 @@ namespace EnvanterTakipYönetimSistemi.Models
         }
     
         public virtual DbSet<Tbl_Duyuru> Tbl_Duyuru { get; set; }
+        public virtual DbSet<Tbl_Envanter> Tbl_Envanter { get; set; }
+        public virtual DbSet<Tbl_P_EnvanterCinsi> Tbl_P_EnvanterCinsi { get; set; }
+        public virtual DbSet<Tbl_P_EnvanterMarka> Tbl_P_EnvanterMarka { get; set; }
+        public virtual DbSet<Tbl_P_Sube> Tbl_P_Sube { get; set; }
         public virtual DbSet<Tbl_Personel> Tbl_Personel { get; set; }
     }
 }

@@ -18,12 +18,13 @@ namespace EnvanterTakipYönetimSistemi.Models
         public Tbl_Personel()
         {
             this.Tbl_Duyuru = new HashSet<Tbl_Duyuru>();
+            this.Tbl_Envanter = new HashSet<Tbl_Envanter>();
         }
     
         public int Per_ID { get; set; }
         public string Per_Ad { get; set; }
         public string Per_Soyad { get; set; }
-        public string Per_Sube { get; set; }
+        public Nullable<int> Sube_ID { get; set; }
         public string Per_Eposta { get; set; }
         public string Per_Sifre { get; set; }
         public string Per_Rol { get; set; }
@@ -32,5 +33,8 @@ namespace EnvanterTakipYönetimSistemi.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_Duyuru> Tbl_Duyuru { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_Envanter> Tbl_Envanter { get; set; }
+        public virtual Tbl_P_Sube Tbl_P_Sube { get; set; }
     }
 }

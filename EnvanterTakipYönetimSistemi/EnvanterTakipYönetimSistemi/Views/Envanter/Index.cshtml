@@ -1,76 +1,131 @@
-﻿
+﻿@using EnvanterTakipYönetimSistemi.ViewModels
+
+@model EnvanterViewModel
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
-<!--Envanterlerim Sayfası    -->
+<!--Envanterler Tanımlama Sayfası    -->
 
 
-    <link href="~/Content/Table/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/Table/bootstrap-table.min.css" rel="stylesheet" />
-    <link href="~/Content/Table/bootstrap-editable.css" rel="stylesheet" />
-    <link href="~/Content/Table/style.css" rel="stylesheet" />
+
+<div id="ajax-main">
+    @Html.Partial("_EnvanterTablo", @Model)
+</div>
 
 
-    <div>
-        <h1>Taleplerim</h1>
-        <p> Bu alanda kullanmakta olduğunuz envanter listesi bulunmaktadır. Bu listede bir sorun olduğunu düşünüyorsanız lütfen sistem yöneticisi ile iletişime geçiniz.</a></p>
+<div id="popup1" class="overlay">
+    <div class="popup">
+        <h2>Envanter Ekleme ve Düzenleme Sayfası</h2>
+        <h5>Yeni alan eklemek için hiçbir seçim olmamalıdır. Düzenleme için tek bir alan seçebilirsiniz. </h5>
+        <a id="close" class="close" href="#">&times;</a>
+        <div class="content">
+            @using (Ajax.BeginForm("EnvanterKayit", "Envanter", FormMethod.Post, new AjaxOptions { OnSuccess = "EnvanterKayit" }, new { id = "frm-envanterKayit" }))
+            {
+                @Html.HiddenFor(m => m.Envanter_ID)
 
-        <div id="toolbar">
-            <select class="form-control">
-                <option value="">Temel Dışa Aktar</option>
-                <option value="all">Tümünü Dışa Aktar</option>
-                <option value="selected">Seçimi Dışa Aktar</option>
-            </select>
+                <div style="position:center">
+                    Cinsi:
+                    @Html.DropDownListFor(m => m.EnvanterCins_ID, Model.CinsiList, new { style = "height: 30px; width: 300px; position:absolute;left:100px;" })
+
+                </div>
+                <br />
+                <div>
+                    Marka:
+
+                    @Html.DropDownListFor(m => m.EnvanterMarka_ID, Model.MarkaList, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+                </div>
+                <br />
+                <div>
+                    Model:
+
+                    @Html.TextBoxFor(m => m.EnvanterModel, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+                </div>
+                <br />
+                <div>
+                    Seri No:
+
+                    @Html.TextBoxFor(m => m.EnvanterSeriNo, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+                </div>
+                <br />
+                <div>
+                    Şube:
+
+                    @Html.DropDownListFor(m => m.EnvanterSube_ID, Model.SubeList, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+                </div>
+                <br />
+                <div>
+                    <input style="width: 300px; position: absolute; left: 100px " class="btn btn-primary " type="submit" value="Kaydet" />
+                </div>
+                <br />
+                <br />
+            }
         </div>
-
-        <table id="table"
-               data-toggle="table"
-               data-search="true"
-               data-filter-control="true"
-               data-show-export="true"
-               data-click-to-select="true"
-               data-toolbar="#toolbar">
-            <thead>
-                <tr>
-                    <th data-field="state" data-checkbox="true"></th>
-                    <th data-field="prenom" data-filter-control="input" data-sortable="true">Prénom</th>
-                    <th data-field="date" data-filter-control="select" data-sortable="true">Date</th>
-                    <th data-field="examen" data-filter-control="select" data-sortable="true">Examen</th>
-                    <th data-field="note" data-sortable="true">Note</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
-                    <td>Valérie</td>
-                    <td>01/09/2015</td>
-                    <td>Français</td>
-                    <td>12/20</td>
-
-
-                </tr>
-
-                <tr>
-                    <td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
-                    <td>meleni</td>
-                    <td>01/09/2015</td>
-                    <td>Français</td>
-                    <td>12/20</td>
-
-
-                </tr>
-
-            </tbody>
-        </table>
     </div>
+</div>
 
-    <script src="~/Content/Table/jquery.min.js"></script>
-    <script src="~/Content/Table/bootstrap.min.js"></script>
-    <script src="~/Content/Table/bootstrap-table.js"></script>
-    <script src="~/Content/Table/bootstrap-table-editable.js"></script>
-    <script src="~/Content/Table/bootstrap-table-export.js"></script>
-    <script src="~/Content/Table/tableExport.js"></script>
-    <script src="~/Content/Table/bootstrap-table-filter-control.js"></script>
-    <script src="~/Content/Table/script.js"></script>
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+<script type="text/javascript">
+
+    function EnvanterKayit(result) {
+        if (result == "1") {
+
+            $.ajax({
+                url: '/Envanter/Index',
+                type: 'get',
+                dataType: 'html',
+                success: function (data) {
+                    $("#ajax-main").html(data);
+                    $("#frm-envanterKayit")[0].reset();
+                    window.location.href = '#';
+                    
+                    Swal.fire({
+                        title: 'Başarılı!',
+                        text: 'Yeni envanter kayıt edilmiştir',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+                }
+            });
+        }
+        else if (result == "0") {
+            $.ajax({
+                url: '/Envanter/Index',
+                type: 'get',
+                dataType: 'html',
+                success: function (data) {
+
+                    $("#ajax-main").html(data);
+                    $("#frm-envanterKayit")[0].reset();
+                    Swal.fire({
+                        title: 'Başarılı!',
+                        text: 'Envanter Güncellenmiştir',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+
+                }
+
+            });
+        }
+        else if (result == "-1") {
+
+            Swal.fire({
+                title: 'Hata!',
+                text: 'Seri no farklı bir üründe kayıtlıdır.',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })
+         
+        }
+
+    }
+
+
+
+
+</script>

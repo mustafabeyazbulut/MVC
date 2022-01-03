@@ -46,9 +46,38 @@
             <span class="fas fa-wallet"></span>
         </div>
     </div>
+    @if (Session["Per_Rol"] != null && Session["Per_Rol"].ToString() == "A")
+    {
+        <div class="card-single">
+            <div>
+                <h1>@Model.DashboardList[0].EnvanterToplamAdet</h1>
+                <span>Toplam Envanter</span>
+            </div>
+            <div>
+                <span class="fas fa-users"></span>
+            </div>
+        </div>
+        <div class="card-single">
+            <div>
+                <h1>12</h1>
+                <span>Toplam Talep</span>
+            </div>
+            <div>
+                <span class="fas fa-clipboard-list"></span>
+            </div>
+        </div>
+        <div class="card-single">
+            <div>
+                <h1>15</h1>
+                <span>Toplam Servis</span>
+            </div>
+            <div>
+                <span class="fas fa-shopping-cart"></span>
+            </div>
+        </div>
+    }
 
-
-</div>
+    </div>
 <script src="~/Content/Home/vue.min.js"></script>
 <script src="~/Content/Home/script.js"></script>
 
