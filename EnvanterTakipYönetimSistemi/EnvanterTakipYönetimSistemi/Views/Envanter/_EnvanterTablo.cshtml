@@ -7,6 +7,7 @@
 <link href="~/Content/Table/bootstrap-table.min.css" rel="stylesheet" />
 <link href="~/Content/Table/bootstrap-editable.css" rel="stylesheet" />
 <link href="~/Content/Table/style.css" rel="stylesheet" />
+<link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet" />
 
 
 <link href="~/Content/popupstyle.css" rel="stylesheet" />
@@ -46,8 +47,8 @@
            data-pagination="true"
            data-toolbar="#toolbar"
            data-show-columns="true"
-           >
-       
+           data-icons="icons">
+
         <thead>
             <tr>
                 <th data-field="cekbox" data-checkbox="true">+</th>
@@ -87,8 +88,6 @@
     </table>
 </div>
 
-
-
 <script type="text/javascript">
 
     function selectMe() {
@@ -101,31 +100,33 @@
             alert(secili[0])
         }
     }
-      function getIdSelections() { // table seçili checkbox'a göre id
+
+
+    function getIdSelections() { // table seçili checkbox'a göre id
         return $.map($table.bootstrapTable('getSelections'), ({ id }) => id);
     }
-  
 
     window.icons = {
         paginationSwift: 'fa-collapse-up',
-        export: 'fa-refresh',
+        export: 'far fa-download',
         toggle: 'fa-toggle-on',
         columns: 'fa-th-list'
     };
 
 
 
+
 </script>
 
+<script src="~/Content/Table/js/jquery.min.js"></script>
+<script src="~/Content/Table/js/bootstrap.min.js"></script>
+<script src="~/Content/Table/js/bootstrap-table.js"></script>
+<script src="~/Content/Table/js/bootstrap-table-editable.js"></script>
+<script src="~/Content/Table/js/bootstrap-table-export.js"></script>
+<script src="~/Content/Table/js/tableExport.js"></script>
+<script src="~/Content/Table/js/bootstrap-table-filter-control.js"></script>
+<script src="~/Content/Table/js/script.js"></script>
 
-<script src="~/Content/Table/jquery.min.js"></script>
-<script src="~/Content/Table/bootstrap.min.js"></script>
-<script src="~/Content/Table/bootstrap-table.js"></script>
-<script src="~/Content/Table/bootstrap-table-editable.js"></script>
-<script src="~/Content/Table/bootstrap-table-export.js"></script>
-<script src="~/Content/Table/tableExport.js"></script>
-<script src="~/Content/Table/bootstrap-table-filter-control.js"></script>
-<script src="~/Content/Table/script.js"></script>
 
 
 
