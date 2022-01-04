@@ -43,40 +43,43 @@
     @foreach (var envanter in Model.envanterlist)
     {
         <tr>
-      <td>
-          @envanter.EnvanterID2
-      </td>
+            <td>
+                @envanter.EnvanterID2
+            </td>
 
-      <td>
-          @envanter.Sube2
-      </td>
-      <td>
-          @envanter.Lokasyon2
-      </td>
-      <td>
-          @envanter.EnvanterCinsi2
-      </td>
-      <td>
-          @envanter.EnvanterMarka2
-      </td>
-      <td>
-          @envanter.EnvanterModel2
-      </td>
-      <td>
-          @envanter.EnvanterSeriNo2
-      </td>
-      <td>
-          @envanter.EnvanterOzellik2
-      </td>
+            <td>
+                @envanter.Sube2
+            </td>
+            <td>
+                @envanter.Lokasyon2
+            </td>
+            <td>
+                @envanter.EnvanterCinsi2
+            </td>
+            <td>
+                @envanter.EnvanterMarka2
+            </td>
+            <td>
+                @envanter.EnvanterModel2
+            </td>
+            <td>
+                @envanter.EnvanterSeriNo2
+            </td>
+            <td>
+                @envanter.EnvanterOzellik2
+            </td>
+            <td style="display:none;">
 
-          <td class="btn-group">
-          <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">İşlemler<span class="caret"></span></button>
-          <ul class="dropdown-menu">
-          <li class="b" data-id="@envanter.EnvanterID2"><a >Güncelle</a></li>
-          <li class="bc" data-id="@envanter.EnvanterID2"><a >Servise Gönder</a></li>
-          <li class="bcd" data-id="@envanter.EnvanterID2"><a >Sil</a></li>
-          </ul>
-          </td>
+            </td>
+
+            <td class="btn-group">
+                <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">İşlemler<span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li class="b" data-id="@envanter.EnvanterID2"><a>Güncelle</a></li>
+                    <li class="bc" data-id="@envanter.EnvanterID2"><a>Servise Gönder</a></li>
+                    <li class="bcd" data-id="@envanter.EnvanterID2"><a>Sil</a></li>
+                </ul>
+            </td>
         </tr>
       
     }

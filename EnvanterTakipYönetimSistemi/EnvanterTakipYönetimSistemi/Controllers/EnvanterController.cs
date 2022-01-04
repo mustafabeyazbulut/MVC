@@ -20,9 +20,7 @@ namespace EnvanterTakipYönetimSistemi.Controllers
                                        select new EnvanterViewModel
                                        {
                                            Envanter_ID = x.Env_ID,
-                                           
                                            EnvanterCinsAdi = x.Tbl_P_EnvanterCinsi.EnvCins_Adi,
-                                           
                                            EnvanterMarkaAdi = x.Tbl_P_EnvanterMarka.EnvMarka_Adi,
                                            EnvanterModel = x.Env_Model,
                                            EnvanterSeriNo = x.Env_SeriNo,
@@ -31,8 +29,11 @@ namespace EnvanterTakipYönetimSistemi.Controllers
                                            EnvanterKayitTarih = (DateTime)x.Env_Tarih,
                                            EnvanterKaydeden_ID = x.Tbl_Personel.Per_ID,
                                            EnvanterKaydeden = x.Tbl_Personel.Per_Ad + " " + x.Tbl_Personel.Per_Soyad,
+                                           EnvanterSube = x.Tbl_P_Sube.Sube_Adi,
+                                           EnvanterCins_ID= (int)x.EnvCins_ID,
+                                           EnvanterSube_ID= (int)x.Sube_ID,
+                                           EnvanterMarka_ID= (int)x.EnvMarka_ID,
                                            
-                                           EnvanterSube = x.Tbl_P_Sube.Sube_Adi
                                        }).ToList();
 
             List<Tbl_P_EnvanterCinsi> cinsilist = db.Tbl_P_EnvanterCinsi.Where(f => f.EnvCins_Kayit == true).OrderBy(f => f.EnvCins_ID).ToList();

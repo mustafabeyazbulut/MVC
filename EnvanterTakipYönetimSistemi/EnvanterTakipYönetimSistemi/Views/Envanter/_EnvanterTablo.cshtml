@@ -3,12 +3,11 @@
 
 
 
+
 <link href="~/Content/Table/bootstrap.min.css" rel="stylesheet" />
 <link href="~/Content/Table/bootstrap-table.min.css" rel="stylesheet" />
 <link href="~/Content/Table/bootstrap-editable.css" rel="stylesheet" />
 <link href="~/Content/Table/style.css" rel="stylesheet" />
-<link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet" />
-
 
 <link href="~/Content/popupstyle.css" rel="stylesheet" />
 
@@ -47,7 +46,7 @@
            data-pagination="true"
            data-toolbar="#toolbar"
            data-show-columns="true"
-           data-icons="icons">
+           >
 
         <thead>
             <tr>
@@ -55,33 +54,39 @@
                 <th data-field="id" data-filter-control="select" data-sortable="true">ID</th>
                 <th data-field="cinsi" data-filter-control="select" data-sortable="true">Cinsi</th>
                 <th data-field="marka" data-filter-control="select" data-sortable="true">Marka</th>
-                <th data-field="model" data-filter-control="input" data-sortable="false">Model</th>
+                <th data-field="models" data-filter-control="input" data-sortable="false">Model</th>
                 <th data-field="serino" data-filter-control="input" data-sortable="false">SeriNo</th>
                 <th data-field="tarih" data-filter-control="select" data-sortable="true">Tarih</th>
                 <th data-field="kaydeden" data-filter-control="select" data-sortable="false">Kaydeden</th>
                 <th data-field="Şube" data-filter-control="select" data-sortable="false">Şube</th>
                 <th data-field="Durum" data-filter-control="select" data-sortable="true">Durum</th>
                 <th data-field="aktiflik" data-filter-control="select" data-sortable="true">Aktiflik</th>
+                <th data-field="markaid" data-visible="false" ></th>
+                <th data-field="subeid" data-visible="false" ></th>
+                <th data-field="cinsid" data-visible="false" ></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var envanter in Model.TabloEnvanterList)
             {
-                <tr>
-                    <td class="bs-checkbox ">
-                        <input data-index="@envanter.Envanter_ID" name="btSelectItem" type="checkbox">
-                    </td>
-                    <td>@envanter.Envanter_ID</td>
-                    <td>@envanter.EnvanterCinsAdi</td>
-                    <td>@envanter.EnvanterMarkaAdi</td>
-                    <td>@envanter.EnvanterModel</td>
-                    <td>@envanter.EnvanterSeriNo</td>
-                    <td>@envanter.EnvanterKayitTarih.ToString("dd/MM/yyyy")</td>
-                    <td>@envanter.EnvanterKaydeden</td>
-                    <td>@envanter.EnvanterSube</td>
-                    <td>@envanter.EnvanterDurum</td>
-                    <td>@envanter.EnvanterKayit</td>
-                </tr>
+            <tr>
+                <td class="bs-checkbox ">
+                    <input data-index="@envanter.Envanter_ID" name="btSelectItem" type="checkbox">
+                </td>
+                <td>@envanter.Envanter_ID</td>
+                <td>@envanter.EnvanterCinsAdi</td>
+                <td>@envanter.EnvanterMarkaAdi</td>
+                <td>@envanter.EnvanterModel</td>
+                <td>@envanter.EnvanterSeriNo</td>
+                <td>@envanter.EnvanterKayitTarih.ToString("dd/MM/yyyy")</td>
+                <td>@envanter.EnvanterKaydeden</td>
+                <td>@envanter.EnvanterSube</td>
+                <td>@envanter.EnvanterDurum</td>
+                <td>@envanter.EnvanterKayit</td>
+                <td style="display:none;">@envanter.EnvanterMarka_ID</td>
+                <td style="display:none;">@envanter.EnvanterSube_ID</td>
+                <td style="display:none;">@envanter.EnvanterCins_ID</td>
+            </tr>
 
             }
         </tbody>
@@ -95,23 +100,55 @@
         //    field: 'id',
         //    values: ["30"]
         //});
-        var secili = getIdSelections()
-        if (secili.length >= 1) {
-            alert(secili[0])
+        var _id = getIdSelections(1)
+        var _cinsid = getIdSelections(2)
+        var _markaid = getIdSelections(3)
+        var _model = getIdSelections(4)
+        var _serino = getIdSelections(5)
+        var _subeid = getIdSelections(6)
+        if (_id.length >= 1) {
+            window.location.href = '#popup1';
+
+            $("#Envanter_ID").val(_id[0]);
+            $("#EnvanterCins_ID").val(_cinsid[0]);
+            $("#EnvanterMarka_ID").val(_markaid[0]);
+            $("#EnvanterModel").val(_model[0]);
+            $("#EnvanterSeriNo").val(_serino[0]);
+            $("#EnvanterSube_ID").val(_subeid[0]);
+            
         }
     }
 
 
-    function getIdSelections() { // table seçili checkbox'a göre id
-        return $.map($table.bootstrapTable('getSelections'), ({ id }) => id);
+    function getIdSelections(i) { // table seçili checkbox'a göre id
+        switch (i) {
+            case 1:
+                return $.map($table.bootstrapTable('getSelections'), ({ id }) => id);
+                break;
+            case 2:
+                return $.map($table.bootstrapTable('getSelections'), ({ cinsid }) => cinsid);
+                break;
+            case 3:
+                return $.map($table.bootstrapTable('getSelections'), ({ markaid }) => markaid);
+                break;
+            case 4:
+                
+                return $.map($table.bootstrapTable('getSelections'), ({ models }) => models);
+                break;
+            case 5:
+                
+                return $.map($table.bootstrapTable('getSelections'), ({ serino }) => serino);
+                break;
+            case 6:
+            
+                return $.map($table.bootstrapTable('getSelections'), ({ subeid }) => subeid);
+                break;
+        }  
     }
 
-    window.icons = {
-        paginationSwift: 'fa-collapse-up',
-        export: 'far fa-download',
-        toggle: 'fa-toggle-on',
-        columns: 'fa-th-list'
-    };
+
+
+
 
 
 

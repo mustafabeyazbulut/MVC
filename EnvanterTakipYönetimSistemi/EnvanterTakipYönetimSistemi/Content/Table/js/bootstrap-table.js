@@ -5,6 +5,7 @@
  */
 
 !function ($) {
+    
     'use strict';
 
     // TOOLS DEFINITION
@@ -319,7 +320,7 @@
             paginationSwitchUp: 'glyphicon-collapse-up icon-chevron-up',
             refresh: 'glyphicon-refresh icon-refresh',
             toggle: 'glyphicon-list-alt icon-list-alt',
-            columns: 'glyphicon-th icon-th',
+            columns: 'glyphicon-list-alt icon-list-alt',
             detailOpen: 'glyphicon-plus icon-plus',
             detailClose: 'glyphicon-minus icon-minus'
         },

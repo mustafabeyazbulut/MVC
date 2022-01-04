@@ -18,15 +18,16 @@
 </head>
 <body>
 
+
     <h2>Envanter ve Servis Yönetim Sistemine Hoş Geldiniz</h2>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
             <form action="/Login/Indexs" name="Talep" method="post">
                 <h1>Parola Talebi</h1>
                 <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social"><img src="~/Content/svg/facebook.svg" /></a>
+                    <a href="#" class="social"><img src="~/Content/svg/google.svg" /></a>
+                    <a href="#" class="social"> <img src="~/Content/svg/linkedin.svg" /></a>
                 </div>
                 <!--<span>or use your email for registration</span>-->
                 @if (ViewBag.mesaj1 != null)
@@ -35,16 +36,16 @@
                 }
                 <input type="text" name="isim" placeholder="İsim ve Soyisim" />
                 <input type="email" name="eposta" placeholder="E-Posta" />
-                <button type="submit" >Talep Et</button>
+                <button type="submit">Talep Et</button>
             </form>
         </div>
         <div class="form-container sign-in-container">
             <form action="/Login/Index" name="Giris" method="post">
                 <h1>Giriş Yapınız</h1>
                 <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social"><img src="~/Content/svg/facebook.svg" /></a>
+                    <a href="#" class="social"><img src="~/Content/svg/google.svg" /></a>
+                    <a href="#" class="social"><img src="~/Content/svg/linkedin.svg" /></a>
                 </div>
                 <!--<span>or use your account</span>-->
                 @if (ViewBag.mesaj != null)
@@ -53,7 +54,7 @@
                 }
                 <input type="email" id="eposta" name="eposta" placeholder="E-Posta" />
                 <input type="password" id="parola" name="parola" placeholder="Parola" />
-                <button type="submit" >Giriş Yap</button>
+                <button type="submit">Giriş Yap</button>
             </form>
         </div>
         <div class="overlay-container ">
@@ -75,10 +76,10 @@
     <footer>
         <p>
             Devoloped by
-            <a target="_blank"  href="https://github.com/mustafabeyazbulut">Mustafa Beyazbulut</a>
+            <a target="_blank" href="https://github.com/mustafabeyazbulut">Mustafa Beyazbulut</a>
             and
             <a target="_blank" href="https://github.com/melihgul">Melihşah Gül</a>
-            
+
         </p>
     </footer>
     <script src="~/Content/Login/script.js"></script>

@@ -107,6 +107,10 @@
     <Content Include="Content\Login\script.js" />
     <Content Include="Content\Login\style.css" />
     <Content Include="Content\popupstyle.css" />
+    <Content Include="Content\svg\box-arrow-up.svg" />
+    <Content Include="Content\svg\facebook.svg" />
+    <Content Include="Content\svg\google.svg" />
+    <Content Include="Content\svg\linkedin.svg" />
     <Content Include="Content\Table\bootstrap-editable.css" />
     <Content Include="Content\Table\bootstrap-table.min.css" />
     <Content Include="Content\Table\bootstrap.min.css" />
