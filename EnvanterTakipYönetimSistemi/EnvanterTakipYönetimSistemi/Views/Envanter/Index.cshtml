@@ -20,7 +20,7 @@
         <h2>Envanter İşlemleri Sayfası</h2>
         <h5>Düzenleme için tek bir alan seçebilirsiniz. </h5>
 
-        <a id="close"onclick="popupclose()" class="close" href="#">&times;</a>
+        <a id="close"onclick="popupclose()" class="close"  href="#">&times;</a>
         <div class="content">
             @using (Ajax.BeginForm("EnvanterKayit", "Envanter", FormMethod.Post, new AjaxOptions { OnSuccess = "EnvanterKayit" }, new { id = "frm-envanterKayit" }))
             {
@@ -72,8 +72,9 @@
 <script type="text/javascript">
 
     function popupclose() {
+        
+        window.location.href = '#';
         $("#frm-envanterKayit")[0].reset();
-
     }
 
     function EnvanterKayit(result) {
@@ -106,6 +107,7 @@
 
                     $("#ajax-main").html(data);
                     $("#frm-envanterKayit")[0].reset();
+                    window.location.href = '#';
                     Swal.fire({
                         title: 'Başarılı!',
                         text: 'Envanter Güncellenmiştir',
@@ -129,8 +131,6 @@
         }
 
     }
-
-
 
 
 </script>
