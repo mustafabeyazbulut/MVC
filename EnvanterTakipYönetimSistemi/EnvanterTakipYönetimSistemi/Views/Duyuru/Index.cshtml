@@ -1,0 +1,137 @@
+﻿@using EnvanterTakipYönetimSistemi.ViewModels
+@model EnvanterViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @using (Ajax.BeginForm("EnvanterKayit", "Envanter", FormMethod.Post, new AjaxOptions { OnSuccess = "EnvanterKayit" }, new { id = "frm-envanterKayit" }))
+                {
+                    @Html.HiddenFor(m => m.Envanter_ID)
+
+                    <div style="position:center">
+                        Cinsi:
+                        @Html.DropDownListFor(m => m.EnvanterCins_ID, Model.CinsiList, new { style = "height: 30px; width: 300px; position:absolute;left:100px;" })
+
+                    </div>
+                    <br />
+                    <div>
+                        Marka:
+
+                        @Html.DropDownListFor(m => m.EnvanterMarka_ID, Model.MarkaList, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+                    </div>
+                    <br />
+                    <div>
+                        Model:
+
+                        @Html.TextBoxFor(m => m.EnvanterModel, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+                    </div>
+                    <br />
+                    <div>
+                        Seri No:
+
+                        @Html.TextBoxFor(m => m.EnvanterSeriNo, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+                    </div>
+                    <br />
+                    <div>
+                        Şube:
+
+                        @Html.DropDownListFor(m => m.EnvanterSube_ID, Model.SubeList, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+                    </div>
+                    <br />
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="popupclose()">Close</button>
+                        <button type="submit" class="btn btn-primary" value="Kaydet">Save changes</button>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div id="ajax-main">
+    @Html.Partial("_DuyuruTable", @Model)
+</div>
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+<script type="text/javascript">
+
+    function popupclose() {
+
+        $("#frm-envanterKayit")[0].reset();
+    }
+
+    function EnvanterKayit(result) {
+        if (result == "1") {
+
+            $.ajax({
+                url: '/Envanter/Index',
+                type: 'get',
+                dataType: 'html',
+                success: function (data) {
+                    $("#ajax-main").html(data);
+                    $("#frm-envanterKayit")[0].reset();
+         
+
+                    Swal.fire({
+                        title: 'Başarılı!',
+                        text: 'Yeni envanter kayıt edilmiştir',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+                }
+            });
+        }
+        else if (result == "0") {
+            $.ajax({
+                url: '/Envanter/Index',
+                type: 'get',
+                dataType: 'html',
+                success: function (data) {
+
+                    $("#ajax-main").html(data);
+                    $("#frm-envanterKayit")[0].reset();
+                    window.location.href = '#';
+                    Swal.fire({
+                        title: 'Başarılı!',
+                        text: 'Envanter Güncellenmiştir',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+
+                }
+
+            });
+        }
+        else if (result == "-1") {
+
+            Swal.fire({
+                title: 'Hata!',
+                text: 'Seri no farklı bir üründe kayıtlıdır.',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })
+
+        }
+
+    }
+
+
+</script>
