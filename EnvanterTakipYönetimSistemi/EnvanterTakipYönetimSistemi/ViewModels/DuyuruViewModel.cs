@@ -13,6 +13,7 @@ namespace EnvanterTakipYönetimSistemi.ViewModels
         public string DuyuruIcerik { get; set; }
         public string DuyuruYayinlayan { get; set; }
         public string DuyuruYayinlayanSube { get; set; }
+        public bool DuyuruKayit { get; set; }
         public List<DuyuruViewModel> DuyuruList { get; set; }
 
         public int DuyuruYayinlayanID { get; set; }

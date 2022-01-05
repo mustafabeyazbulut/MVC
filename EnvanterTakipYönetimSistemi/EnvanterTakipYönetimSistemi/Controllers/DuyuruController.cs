@@ -16,7 +16,7 @@ namespace EnvanterTakipYönetimSistemi.Controllers
         [LoginControl]
         public ActionResult Index(DuyuruViewModel model)
         {
-            model.DuyuruList = (from k in db.Tbl_Duyuru.Where(f => (f.D_Kayit == true)).OrderByDescending(f => f.D_ID)
+            model.DuyuruList = (from k in db.Tbl_Duyuru.OrderByDescending(f => f.D_ID)
                                 select new DuyuruViewModel
                                 {
                                     DuyuruID = k.D_ID,
@@ -24,6 +24,7 @@ namespace EnvanterTakipYönetimSistemi.Controllers
                                     DuyuruIcerik = k.D_Icerik,
                                     DuyuruYayinlayan = k.Tbl_Personel.Per_Ad + " " + k.Tbl_Personel.Per_Soyad,
                                     DuyuruYayinlayanSube = k.Tbl_Personel.Tbl_P_Sube.Sube_Adi,
+                                    DuyuruKayit= (bool)k.D_Kayit,
                                 }).ToList();
 
             if (Request.IsAjaxRequest()) // index sayfası ilk defa açılmadıysa sadece tabloyu günceller

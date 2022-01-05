@@ -65,6 +65,7 @@
                     <th data-field="yayinlayansube" data-filter-control="select" data-sortable="true">Şubesi</th>
                     <th data-field="konu" data-filter-control="input" data-sortable="false">Konu</th>
                     <th data-field="icerik" data-filter-control="input" data-sortable="false">İçerik</th>
+                    <th data-field="aktiflik" data-filter-control="select" data-sortable="true">Aktiflik</th>
 
                     <th data-field="yayinlayanid" data-visible="false"></th>
                     <th data-field="yayinlayanSubeid" data-visible="false"></th>
@@ -74,18 +75,20 @@
             <tbody>
                 @foreach (var duyuru in Model.DuyuruList)
                 {
-                    <tr>
-                        <td class="bs-checkbox ">
-                            <input name="btSelectItem" type="checkbox">
-                        </td>
-                        <td>@duyuru.DuyuruID</td>
-                        <td>@duyuru.DuyuruYayinlayan</td>
-                        <td>@duyuru.DuyuruYayinlayanSube</td>
-                        <td>@duyuru.DuyuruKonu</td>
-                        <td>@duyuru.DuyuruIcerik</td>
-                        <td>@duyuru.DuyuruYayinlayanID</td>
-                        <td>@duyuru.DuyuruYayinlayanSubeID</td>
-                    </tr>
+                <tr>
+                    <td class="bs-checkbox ">
+                        <input name="btSelectItem" type="checkbox">
+                    </td>
+                    <td>@duyuru.DuyuruID</td>
+                    <td>@duyuru.DuyuruYayinlayan</td>
+                    <td>@duyuru.DuyuruYayinlayanSube</td>
+                    <td>@duyuru.DuyuruKonu</td>
+                    <td>@duyuru.DuyuruIcerik</td>
+                    <td>@duyuru.DuyuruKayit</td>
+                    <td>@duyuru.DuyuruYayinlayanID</td>
+                    <td>@duyuru.DuyuruYayinlayanSubeID</td>
+
+                </tr>
                 }
             </tbody>
         </table>
