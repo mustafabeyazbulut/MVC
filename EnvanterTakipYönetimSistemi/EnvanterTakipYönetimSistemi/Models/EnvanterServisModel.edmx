@@ -46,6 +46,14 @@
           <Property Name="EnvMarka_Adi" Type="nvarchar" MaxLength="50" />
           <Property Name="EnvMarka_Kayit" Type="bit" />
         </EntityType>
+        <EntityType Name="Tbl_P_Rol">
+          <Key>
+            <PropertyRef Name="Rol_Value" />
+          </Key>
+          <Property Name="Rol_Value" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Rol_Aciklama" Type="nvarchar" MaxLength="50" />
+          <Property Name="Rol_Kayit" Type="bit" />
+        </EntityType>
         <EntityType Name="Tbl_P_Sube">
           <Key>
             <PropertyRef Name="Sube_ID" />
@@ -128,6 +136,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Tbl_Personel_Tbl_P_Rol">
+          <End Role="Tbl_P_Rol" Type="Self.Tbl_P_Rol" Multiplicity="0..1" />
+          <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_P_Rol">
+              <PropertyRef Name="Rol_Value" />
+            </Principal>
+            <Dependent Role="Tbl_Personel">
+              <PropertyRef Name="Per_Rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tbl_Personel_Tbl_P_Sube">
           <End Role="Tbl_P_Sube" Type="Self.Tbl_P_Sube" Multiplicity="0..1" />
           <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="*" />
@@ -145,6 +165,7 @@
           <EntitySet Name="Tbl_Envanter" EntityType="Self.Tbl_Envanter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_P_EnvanterCinsi" EntityType="Self.Tbl_P_EnvanterCinsi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_P_EnvanterMarka" EntityType="Self.Tbl_P_EnvanterMarka" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_P_Rol" EntityType="Self.Tbl_P_Rol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_P_Sube" EntityType="Self.Tbl_P_Sube" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Personel" EntityType="Self.Tbl_Personel" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Duyuru_Personel" Association="Self.FK_Duyuru_Personel">
@@ -167,6 +188,10 @@
             <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
             <End Role="Tbl_Envanter" EntitySet="Tbl_Envanter" />
           </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Personel_Tbl_P_Rol" Association="Self.FK_Tbl_Personel_Tbl_P_Rol">
+            <End Role="Tbl_P_Rol" EntitySet="Tbl_P_Rol" />
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+          </AssociationSet>
           <AssociationSet Name="FK_Tbl_Personel_Tbl_P_Sube" Association="Self.FK_Tbl_Personel_Tbl_P_Sube">
             <End Role="Tbl_P_Sube" EntitySet="Tbl_P_Sube" />
             <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
@@ -181,6 +206,7 @@
           <EntitySet Name="Tbl_Envanter" EntityType="ENVSERVYSModel.Tbl_Envanter" />
           <EntitySet Name="Tbl_P_EnvanterCinsi" EntityType="ENVSERVYSModel.Tbl_P_EnvanterCinsi" />
           <EntitySet Name="Tbl_P_EnvanterMarka" EntityType="ENVSERVYSModel.Tbl_P_EnvanterMarka" />
+          <EntitySet Name="Tbl_P_Rol" EntityType="ENVSERVYSModel.Tbl_P_Rol" />
           <EntitySet Name="Tbl_P_Sube" EntityType="ENVSERVYSModel.Tbl_P_Sube" />
           <EntitySet Name="Tbl_Personel" EntityType="ENVSERVYSModel.Tbl_Personel" />
           <AssociationSet Name="FK_Duyuru_Personel" Association="ENVSERVYSModel.FK_Duyuru_Personel">
@@ -202,6 +228,10 @@
           <AssociationSet Name="FK_Tbl_Envanter_Tbl_Personel" Association="ENVSERVYSModel.FK_Tbl_Envanter_Tbl_Personel">
             <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
             <End Role="Tbl_Envanter" EntitySet="Tbl_Envanter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Personel_Tbl_P_Rol" Association="ENVSERVYSModel.FK_Tbl_Personel_Tbl_P_Rol">
+            <End Role="Tbl_P_Rol" EntitySet="Tbl_P_Rol" />
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
           </AssociationSet>
           <AssociationSet Name="FK_Tbl_Personel_Tbl_P_Sube" Association="ENVSERVYSModel.FK_Tbl_Personel_Tbl_P_Sube">
             <End Role="Tbl_P_Sube" EntitySet="Tbl_P_Sube" />
@@ -256,6 +286,15 @@
           <Property Name="EnvMarka_Kayit" Type="Boolean" />
           <NavigationProperty Name="Tbl_Envanter" Relationship="ENVSERVYSModel.FK_Tbl_Envanter_Tbl_P_EnvanterMarka" FromRole="Tbl_P_EnvanterMarka" ToRole="Tbl_Envanter" />
         </EntityType>
+        <EntityType Name="Tbl_P_Rol">
+          <Key>
+            <PropertyRef Name="Rol_Value" />
+          </Key>
+          <Property Name="Rol_Value" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Rol_Aciklama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Rol_Kayit" Type="Boolean" />
+          <NavigationProperty Name="Tbl_Personel" Relationship="ENVSERVYSModel.FK_Tbl_Personel_Tbl_P_Rol" FromRole="Tbl_P_Rol" ToRole="Tbl_Personel" />
+        </EntityType>
         <EntityType Name="Tbl_P_Sube">
           <Key>
             <PropertyRef Name="Sube_ID" />
@@ -281,6 +320,7 @@
           <Property Name="Per_Kayit" Type="Boolean" />
           <NavigationProperty Name="Tbl_Duyuru" Relationship="ENVSERVYSModel.FK_Duyuru_Personel" FromRole="Tbl_Personel" ToRole="Tbl_Duyuru" />
           <NavigationProperty Name="Tbl_Envanter" Relationship="ENVSERVYSModel.FK_Tbl_Envanter_Tbl_Personel" FromRole="Tbl_Personel" ToRole="Tbl_Envanter" />
+          <NavigationProperty Name="Tbl_P_Rol" Relationship="ENVSERVYSModel.FK_Tbl_Personel_Tbl_P_Rol" FromRole="Tbl_Personel" ToRole="Tbl_P_Rol" />
           <NavigationProperty Name="Tbl_P_Sube" Relationship="ENVSERVYSModel.FK_Tbl_Personel_Tbl_P_Sube" FromRole="Tbl_Personel" ToRole="Tbl_P_Sube" />
         </EntityType>
         <Association Name="FK_Duyuru_Personel">
@@ -340,6 +380,18 @@
             </Principal>
             <Dependent Role="Tbl_Envanter">
               <PropertyRef Name="Per_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Personel_Tbl_P_Rol">
+          <End Type="ENVSERVYSModel.Tbl_P_Rol" Role="Tbl_P_Rol" Multiplicity="0..1" />
+          <End Type="ENVSERVYSModel.Tbl_Personel" Role="Tbl_Personel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_P_Rol">
+              <PropertyRef Name="Rol_Value" />
+            </Principal>
+            <Dependent Role="Tbl_Personel">
+              <PropertyRef Name="Per_Rol" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -403,6 +455,15 @@
                 <ScalarProperty Name="EnvMarka_Kayit" ColumnName="EnvMarka_Kayit" />
                 <ScalarProperty Name="EnvMarka_Adi" ColumnName="EnvMarka_Adi" />
                 <ScalarProperty Name="EnvMarka_ID" ColumnName="EnvMarka_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_P_Rol">
+            <EntityTypeMapping TypeName="ENVSERVYSModel.Tbl_P_Rol">
+              <MappingFragment StoreEntitySet="Tbl_P_Rol">
+                <ScalarProperty Name="Rol_Kayit" ColumnName="Rol_Kayit" />
+                <ScalarProperty Name="Rol_Aciklama" ColumnName="Rol_Aciklama" />
+                <ScalarProperty Name="Rol_Value" ColumnName="Rol_Value" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

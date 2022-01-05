@@ -46,6 +46,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_P_Rol">
+      <EntityTypeMapping TypeName="ENVSERVYSModel.Tbl_P_Rol">
+        <MappingFragment StoreEntitySet="Tbl_P_Rol">
+          <ScalarProperty Name="Rol_Kayit" ColumnName="Rol_Kayit" />
+          <ScalarProperty Name="Rol_Aciklama" ColumnName="Rol_Aciklama" />
+          <ScalarProperty Name="Rol_Value" ColumnName="Rol_Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Tbl_P_Sube">
       <EntityTypeMapping TypeName="ENVSERVYSModel.Tbl_P_Sube">
         <MappingFragment StoreEntitySet="Tbl_P_Sube">

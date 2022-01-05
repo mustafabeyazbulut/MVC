@@ -210,6 +210,9 @@
     <Compile Include="Models\Tbl_P_EnvanterMarka.cs">
       <DependentUpon>EnvanterServisModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Tbl_P_Rol.cs">
+      <DependentUpon>EnvanterServisModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tbl_P_Sube.cs">
       <DependentUpon>EnvanterServisModel.tt</DependentUpon>
     </Compile>
@@ -217,6 +220,8 @@
     <Compile Include="ViewModels\DuyuruViewModel.cs" />
     <Compile Include="ViewModels\EnvanterViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="Controllers\PersonelController.cs" />
+    <Compile Include="ViewModels\PersonelViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -239,7 +244,9 @@
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Views\Duyuru\Index.cshtml" />
-    <Content Include="Views\Duyuru\_DuyuruTable.cshtml" />
+    <Content Include="Views\Duyuru\_DuyuruTablo.cshtml" />
+    <Content Include="Views\Personel\Index.cshtml" />
+    <Content Include="Views\Personel\_PersonelTablo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

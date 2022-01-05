@@ -34,7 +34,7 @@ namespace EnvanterTakipYönetimSistemi.Login
                 HttpContext.Current.Session.Add("Per_ID", resultPersonel.Per_ID);
                 HttpContext.Current.Session.Add("Per_AdiSoyadi", resultPersonel.Per_Ad+" "+resultPersonel.Per_Soyad);
                 HttpContext.Current.Session.Add("Per_eposta", resultPersonel.Per_Eposta);
-                HttpContext.Current.Session.Add("Per_Rol", resultPersonel.Per_Rol);
+                HttpContext.Current.Session.Add("Per_Rol", resultPersonel.Tbl_P_Rol.Rol_Value);
                 //
                 return true;
             }

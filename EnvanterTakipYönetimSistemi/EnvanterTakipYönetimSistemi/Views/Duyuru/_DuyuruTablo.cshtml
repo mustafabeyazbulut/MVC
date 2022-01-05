@@ -1,5 +1,5 @@
 ﻿@using EnvanterTakipYönetimSistemi.ViewModels
-@model EnvanterViewModel
+@model DuyuruViewModel
 
 <!doctype html>
 <html lang="tr">
@@ -9,9 +9,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+
     <link href="~/Content/Table/css/bootstrap-table.min.css" rel="stylesheet" />
     <link href="~/Content/Table/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">  
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
 </head>
 
@@ -60,42 +61,31 @@
                 <tr>
                     <th data-field="state" data-checkbox="true"></th>
                     <th data-field="id" data-filter-control="select" data-sortable="true">ID</th>
-                    <th data-field="cinsi" data-filter-control="select" data-sortable="true">Cinsi</th>
-                    <th data-field="marka" data-filter-control="select" data-sortable="true">Marka</th>
-                    <th data-field="models" data-filter-control="input" data-sortable="false">Model</th>
-                    <th data-field="serino" data-filter-control="input" data-sortable="false">SeriNo</th>
-                    <th data-field="tarih" data-filter-control="select" data-sortable="true">Tarih</th>
-                    <th data-field="kaydeden" data-filter-control="select" data-sortable="false">Kaydeden</th>
-                    <th data-field="Şube" data-filter-control="select" data-sortable="false">Şube</th>
-                    <th data-field="Durum" data-filter-control="select" data-sortable="true">Durum</th>
-                    <th data-field="aktiflik" data-filter-control="select" data-sortable="true">Aktiflik</th>
-                    <th data-field="markaid" data-visible="false"></th>
-                    <th data-field="subeid" data-visible="false"></th>
-                    <th data-field="cinsid" data-visible="false"></th>
+                    <th data-field="yayinlayan" data-filter-control="select" data-sortable="true">Yayınlayan</th>
+                    <th data-field="yayinlayansube" data-filter-control="select" data-sortable="true">Şubesi</th>
+                    <th data-field="konu" data-filter-control="input" data-sortable="false">Konu</th>
+                    <th data-field="icerik" data-filter-control="input" data-sortable="false">İçerik</th>
+
+                    <th data-field="yayinlayanid" data-visible="false"></th>
+                    <th data-field="yayinlayanSubeid" data-visible="false"></th>
+
                 </tr>
             </thead>
             <tbody>
-                @foreach (var envanter in Model.TabloEnvanterList)
+                @foreach (var duyuru in Model.DuyuruList)
                 {
                     <tr>
                         <td class="bs-checkbox ">
                             <input name="btSelectItem" type="checkbox">
                         </td>
-                        <td>@envanter.Envanter_ID</td>
-                        <td>@envanter.EnvanterCinsAdi</td>
-                        <td>@envanter.EnvanterMarkaAdi</td>
-                        <td>@envanter.EnvanterModel</td>
-                        <td>@envanter.EnvanterSeriNo</td>
-                        <td>@envanter.EnvanterKayitTarih.ToString("dd/MM/yyyy")</td>
-                        <td>@envanter.EnvanterKaydeden</td>
-                        <td>@envanter.EnvanterSube</td>
-                        <td>@envanter.EnvanterDurum</td>
-                        <td>@envanter.EnvanterKayit</td>
-                        <td>@envanter.EnvanterMarka_ID</td>
-                        <td>@envanter.EnvanterSube_ID</td>
-                        <td>@envanter.EnvanterCins_ID</td>
+                        <td>@duyuru.DuyuruID</td>
+                        <td>@duyuru.DuyuruYayinlayan</td>
+                        <td>@duyuru.DuyuruYayinlayanSube</td>
+                        <td>@duyuru.DuyuruKonu</td>
+                        <td>@duyuru.DuyuruIcerik</td>
+                        <td>@duyuru.DuyuruYayinlayanID</td>
+                        <td>@duyuru.DuyuruYayinlayanSubeID</td>
                     </tr>
-
                 }
             </tbody>
         </table>
@@ -103,24 +93,18 @@
     <script type="text/javascript">
 
         function selectMe() {
-            //$('#table').bootstrapTable("checkBy", {
-            //    field: 'id',
-            //    values: ["30"]
-            //});
             var _id = getIdSelections(1)
-            var _cinsid = getIdSelections(2)
-            var _markaid = getIdSelections(3)
-            var _model = getIdSelections(4)
-            var _serino = getIdSelections(5)
-            var _subeid = getIdSelections(6)
+            var _konu = getIdSelections(2)
+            var _icerik = getIdSelections(3)
+            var _yayinlayanid = getIdSelections(4)
+            var _yayinlayansubeid = getIdSelections(5)
 
             if (_id.length >= 1) {
-                $("#Envanter_ID").val(_id[0]);
-                $("#EnvanterCins_ID").val(_cinsid[0]);
-                $("#EnvanterMarka_ID").val(_markaid[0]);
-                $("#EnvanterModel").val(_model[0]);
-                $("#EnvanterSeriNo").val(_serino[0]);
-                $("#EnvanterSube_ID").val(_subeid[0]);
+                $("#DuyuruID").val(_id[0]);
+                $("#DuyuruKonu").val(_konu[0]);
+                $("#DuyuruIcerik").val(_icerik[0]);
+                $("#DuyuruYayinlayanID").val(_yayinlayanid[0]);
+                $("#DuyuruYayinlayanSubeID").val(_yayinlayansubeid[0]);
             }
         }
 
@@ -131,22 +115,17 @@
                     return $.map($table.bootstrapTable('getSelections'), ({ id }) => id);
                     break;
                 case 2:
-                    return $.map($table.bootstrapTable('getSelections'), ({ cinsid }) => cinsid);
+                    return $.map($table.bootstrapTable('getSelections'), ({ konu }) => konu);
                     break;
                 case 3:
-                    return $.map($table.bootstrapTable('getSelections'), ({ markaid }) => markaid);
+                    return $.map($table.bootstrapTable('getSelections'), ({ icerik }) => icerik);
                     break;
                 case 4:
 
-                    return $.map($table.bootstrapTable('getSelections'), ({ models }) => models);
+                    return $.map($table.bootstrapTable('getSelections'), ({ yayinlayanid }) => yayinlayanid);
                     break;
                 case 5:
-
-                    return $.map($table.bootstrapTable('getSelections'), ({ serino }) => serino);
-                    break;
-                case 6:
-
-                    return $.map($table.bootstrapTable('getSelections'), ({ subeid }) => subeid);
+                    return $.map($table.bootstrapTable('getSelections'), ({ yayinlayanSubeid }) => yayinlayanSubeid);
                     break;
             }
         }
@@ -167,18 +146,8 @@
     <script src="~/Content/Table/javaS/jspdf.plugin.autotable.js"></script>
     <script src="~/Content/Table/javaS/bootstrap-table.min.js"></script>
     <script src="~/Content/Table/javaS/bootstrap-table-export.min.js"></script>
-    <script src="~/Content/Table/js/script.js"></script>
+    <script src="~/Content/Table/javaS/seciliExscript.js"></script>
     <script src="~/Content/Table/javaS/bootstrap-table-filter-control.min.js"></script>
-
-
-
-
-   
-
-
-
-
-
 </body>
 
 

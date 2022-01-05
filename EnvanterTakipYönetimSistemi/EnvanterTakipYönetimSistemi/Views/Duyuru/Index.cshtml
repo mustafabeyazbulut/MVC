@@ -1,17 +1,17 @@
 ﻿@using EnvanterTakipYönetimSistemi.ViewModels
-@model EnvanterViewModel
+@model DuyuruViewModel
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Envanter Listesi</h1>
-<p> Bu alanda şirketinize ait olan envanterlerin listesi bulunmaktadır. Bu listede envanter bilgileri üzerinde düzenlemeler yapabilirsiniz.</a></p>
+<h1>Duyurular Listesi</h1>
+<p> Bu alanda şirketinize ait olan duyuruların listesi bulunmaktadır. Bu listede duyurular üzerinde düzenlemeler yapabilirsiniz. Unutmayınız duyurular tüm kullanıcılarda gözükmektedir.</a></p>
 
 
 <div id="ajax-main">
-    @Html.Partial("_DuyuruTable", @Model)
+    @Html.Partial("_DuyuruTablo", @Model)
 </div>
 
 
@@ -20,46 +20,32 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Envanter Ekleme-Düzenleme İşlemi</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title" id="exampleModalLabel">Duyuru Ekleme-Düzenleme İşlemi</h5>
+                <button type="button" class="close" data-dismiss="modal" onclick="popupclose()" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                @using (Ajax.BeginForm("EnvanterKayit", "Envanter", FormMethod.Post, new AjaxOptions { OnSuccess = "EnvanterKayit" }, new { id = "frm-envanterKayit" }))
+                @using (Ajax.BeginForm("DuyuruKayit", "Duyuru", FormMethod.Post, new AjaxOptions { OnSuccess = "DuyuruKayit" }, new { id = "frm-duyuruKayit" }))
                 {
-                    @Html.HiddenFor(m => m.Envanter_ID)
-
-                    <div style="position:center">
-                        Cinsi:
-                        @Html.DropDownListFor(m => m.EnvanterCins_ID, Model.CinsiList, new { style = "height: 30px; width: 300px; position:absolute;left:100px;" })
-
+                    @Html.HiddenFor(m => m.DuyuruID)
+                    @Html.HiddenFor(m => m.DuyuruYayinlayanID)
+                    @Html.HiddenFor(m => m.DuyuruYayinlayanSubeID)
+                    <div>
+                        Konu:
+                        @Html.TextBoxFor(m => m.DuyuruKonu, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" });
                     </div>
                     <br />
                     <div>
-                        Marka:
+                        İçerik:
 
-                        @Html.DropDownListFor(m => m.EnvanterMarka_ID, Model.MarkaList, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+                        @Html.TextAreaFor(m => m.DuyuruIcerik,10,55, new {  style = "height: 100px; width: 300px;position:absolute;left:100px;" })
                     </div>
                     <br />
-                    <div>
-                        Model:
-
-                        @Html.TextBoxFor(m => m.EnvanterModel, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
-                    </div>
                     <br />
-                    <div>
-                        Seri No:
-
-                        @Html.TextBoxFor(m => m.EnvanterSeriNo, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
-                    </div>
                     <br />
-                    <div>
-                        Şube:
-
-                        @Html.DropDownListFor(m => m.EnvanterSube_ID, Model.SubeList, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
-                    </div>
                     <br />
+             
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="popupclose()">Çıkış</button>
                         <button type="submit" class="btn btn-primary" value="Kaydet">Kaydet</button>
@@ -74,30 +60,31 @@
 
 
 
-<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Content/Table/javaS/jquery.unobtrusive-ajax.js"></script>
+
 
 <script type="text/javascript">
 
     function popupclose() {
-
-        $("#frm-envanterKayit")[0].reset();
+        $('#exampleModal').modal('hide');
+        $("#frm-duyuruKayit")[0].reset();
     }
 
-    function EnvanterKayit(result) {
+    function DuyuruKayit(result) {
         if (result == "1") {
 
             $.ajax({
-                url: '/Envanter/Index',
+                url: '/Duyuru/Index',
                 type: 'get',
                 dataType: 'html',
                 success: function (data) {
+                    popupclose()
                     $("#ajax-main").html(data);
-                    $("#frm-envanterKayit")[0].reset();
 
 
                     Swal.fire({
                         title: 'Başarılı!',
-                        text: 'Yeni envanter kayıt edilmiştir',
+                        text: 'Yeni duyuru eklenmiştir',
                         icon: 'success',
                         confirmButtonText: 'Cool'
                     })
@@ -106,36 +93,22 @@
         }
         else if (result == "0") {
             $.ajax({
-                url: '/Envanter/Index',
+                url: '/Duyuru/Index',
                 type: 'get',
                 dataType: 'html',
                 success: function (data) {
-
+                    popupclose()
                     $("#ajax-main").html(data);
-                    $("#frm-envanterKayit")[0].reset();
-                    window.location.href = '#';
+
                     Swal.fire({
                         title: 'Başarılı!',
-                        text: 'Envanter Güncellenmiştir',
+                        text: 'Duyuru Güncellenmiştir',
                         icon: 'success',
                         confirmButtonText: 'Cool'
                     })
-
                 }
-
             });
         }
-        else if (result == "-1") {
-
-            Swal.fire({
-                title: 'Hata!',
-                text: 'Seri no farklı bir üründe kayıtlıdır.',
-                icon: 'error',
-                confirmButtonText: 'Cool'
-            })
-
-        }
-
     }
 
 

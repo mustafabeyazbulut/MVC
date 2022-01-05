@@ -1,17 +1,16 @@
 ﻿@using EnvanterTakipYönetimSistemi.ViewModels
-@model EnvanterViewModel
-
+@model PersonelViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Envanter Listesi</h1>
-<p> Bu alanda şirketinize ait olan envanterlerin listesi bulunmaktadır. Bu listede envanter bilgileri üzerinde düzenlemeler yapabilirsiniz.</a></p>
+<h1>Personel Listesi</h1>
+<p> Bu alanda şirketinizde çalışan personellerin (kullanıcı) listesi bulunmaktadır. Bu listede bulunan personel bilgileri üzerinde düzenlemeler yapabilirsiniz.</a></p>
 
 
 <div id="ajax-main">
-    @Html.Partial("_EnvanterTablo", @Model)
+    @Html.Partial("_PersonelTablo", @Model)
 </div>
 
 
@@ -26,39 +25,51 @@
                 </button>
             </div>
             <div class="modal-body">
-                @using (Ajax.BeginForm("EnvanterKayit", "Envanter", FormMethod.Post, new AjaxOptions { OnSuccess = "EnvanterKayit" }, new { id = "frm-envanterKayit" }))
+                @using (Ajax.BeginForm("PersonelKayit", "Envanter", FormMethod.Post, new AjaxOptions { OnSuccess = "PersonelKayit" }, new { id = "frm-PersonelKayit" }))
                 {
-                    @Html.HiddenFor(m => m.Envanter_ID)
+                    @Html.HiddenFor(m => m.PersonelID)
+                    <br />
+                    <div>
+                        Ad:
 
+                        @Html.TextBoxFor(m => m.PersonelAd, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+                    </div>
+                    <br />
+                    <div>
+                        Soyad:
+
+                        @Html.TextBoxFor(m => m.PersonelSoyad, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+                    </div>
+                    <br />
                     <div style="position:center">
-                        Cinsi:
-                        @Html.DropDownListFor(m => m.EnvanterCins_ID, Model.CinsiList, new { style = "height: 30px; width: 300px; position:absolute;left:100px;" })
-
-                    </div>
-                    <br />
-                    <div>
-                        Marka:
-
-                        @Html.DropDownListFor(m => m.EnvanterMarka_ID, Model.MarkaList, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
-                    </div>
-                    <br />
-                    <div>
-                        Model:
-
-                        @Html.TextBoxFor(m => m.EnvanterModel, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
-                    </div>
-                    <br />
-                    <div>
-                        Seri No:
-
-                        @Html.TextBoxFor(m => m.EnvanterSeriNo, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
-                    </div>
-                    <br />
-                    <div>
                         Şube:
+                        @Html.DropDownListFor(m => m.PerSubeID, Model.PersonelSubeList, new { style = "height: 30px; width: 300px; position:absolute;left:100px;" })
 
-                        @Html.DropDownListFor(m => m.EnvanterSube_ID, Model.SubeList, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
                     </div>
+                    <br />
+                    <div class="editor-field">
+                        E-posta:
+                        &nbsp;&nbsp;&nbsp;&nbsp; @Html.ValidationMessageFor(m => m.PersonelEposta)
+                        <br />
+                        @Html.TextBoxFor(m => m.PersonelEposta, new { @type = "email", style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+                        <br />
+                    </div>
+                    <br />
+                    <div>
+                        Parola:
+                        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;@Html.ValidationMessageFor(m => m.Personel_Sifre)
+                        <br />
+                        @Html.TextBoxFor(m => m.Personel_Sifre, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+                        <br />
+                    </div>
+                   
+                    <br />
+                    <div style="position:center">
+                        Rol:
+                        @Html.DropDownListFor(m => m.PersonelRol, Model.PersonelRolList, new { style = "height: 30px; width: 300px; position:absolute;left:100px;" })
+
+                    </div>
+                    <br />
                     <br />
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="popupclose()">Çıkış</button>
@@ -78,24 +89,24 @@
 
     function popupclose() {
         $('#exampleModal').modal('hide');
-        $("#frm-envanterKayit")[0].reset();
+        $("#frm-PersonelKayit")[0].reset();
     }
 
-    function EnvanterKayit(result) {
+    function PersonelKayit(result) {
         if (result == "1") {
 
             $.ajax({
-                url: '/Envanter/Index',
+                url: '/Personel/Index',
                 type: 'get',
                 dataType: 'html',
                 success: function (data) {
                     popupclose()
                     $("#ajax-main").html(data);
-                    
+
 
                     Swal.fire({
                         title: 'Başarılı!',
-                        text: 'Yeni envanter kayıt edilmiştir',
+                        text: 'Yeni Personel Eklenmiştir',
                         icon: 'success',
                         confirmButtonText: 'Cool'
                     })
@@ -104,21 +115,21 @@
         }
         else if (result == "0") {
             $.ajax({
-                url: '/Envanter/Index',
+                url: '/Personel/Index',
                 type: 'get',
                 dataType: 'html',
                 success: function (data) {
                     popupclose()
                     $("#ajax-main").html(data);
-                   
-                    
+
+
                     Swal.fire({
                         title: 'Başarılı!',
-                        text: 'Envanter Güncellenmiştir',
+                        text: 'Personel Bilgileri Güncellenmiştir',
                         icon: 'success',
                         confirmButtonText: 'Cool'
                     })
-                    
+
 
                 }
 
@@ -128,11 +139,11 @@
 
             Swal.fire({
                 title: 'Hata!',
-                text: 'Seri no farklı bir üründe kayıtlıdır.',
+                text: 'Uyarı.',
                 icon: 'error',
                 confirmButtonText: 'Cool'
             })
-           
+
 
         }
 

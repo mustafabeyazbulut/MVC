@@ -35,6 +35,7 @@ namespace EnvanterTakipYönetimSistemi.Models
         public virtual ICollection<Tbl_Duyuru> Tbl_Duyuru { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_Envanter> Tbl_Envanter { get; set; }
+        public virtual Tbl_P_Rol Tbl_P_Rol { get; set; }
         public virtual Tbl_P_Sube Tbl_P_Sube { get; set; }
     }
 }
