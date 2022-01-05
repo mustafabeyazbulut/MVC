@@ -18,9 +18,6 @@
 
 
 <body>
-
-
-
     <div id="toolbar" class="select">
         <div class="form-inline" role="form">
             <div id="toolbar">
@@ -33,7 +30,7 @@
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal">
                 <img src="~/Content/svg/add.svg" />
             </button>
-            <button id="kontrol" class="btn btn-default" onclick="selectMe()" data-toggle="modal" data-target="#exampleModal">
+            <button id="kontrol" class="btn btn-default" onclick="selectMe()">
                 <img src="~/Content/svg/update.svg" />
             </button>
             <button id="kontrol" class="btn btn-default" onclick="selectMe()" data-toggle="modal" data-target="#exampleModal">
@@ -56,7 +53,6 @@
                data-pagination="true"
                data-show-columns="true"
                data-show-footer="true">
-
             <thead>
                 <tr>
                     <th data-field="state" data-checkbox="true"></th>
@@ -103,6 +99,8 @@
             var _yayinlayansubeid = getIdSelections(5)
 
             if (_id.length >= 1) {
+                $('#exampleModal').modal('show');
+
                 $("#DuyuruID").val(_id[0]);
                 $("#DuyuruKonu").val(_konu[0]);
                 $("#DuyuruIcerik").val(_icerik[0]);
@@ -132,8 +130,6 @@
                     break;
             }
         }
-
-
 
     </script>
 

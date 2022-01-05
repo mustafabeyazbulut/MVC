@@ -26,7 +26,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                @using (Ajax.BeginForm("DuyuruKayit", "Duyuru", FormMethod.Post, new AjaxOptions { OnSuccess = "DuyuruKayit" }, new { id = "frm-duyuruKayit" }))
+                @using (Ajax.BeginForm("DuyuruKayit", "Duyuru", FormMethod.Post, new AjaxOptions { OnSuccess = "DuyuruKayit", OnBegin = "return dogrula();" }, new { id = "frm-duyuruKayit" }))
                 {
                     @Html.HiddenFor(m => m.DuyuruID)
                     @Html.HiddenFor(m => m.DuyuruYayinlayanID)
@@ -64,6 +64,37 @@
 
 
 <script type="text/javascript">
+    function dogrula() {
+        var uyari = "";
+        var kontrol = 0;
+
+        if ($("#DuyuruKonu").val() == null || $("#DuyuruKonu").val() == "") {
+            uyari += "Konu boş geçilemez.<br />"
+            kontrol = 1
+        }
+        if ($("#DuyuruIcerik").val() == null || $("#DuyuruIcerik").val() == "") {
+            uyari += "İçerik alanı boş geçilemez. <br />"
+            kontrol = 1
+        }
+
+        if (kontrol == 1) {
+
+            Swal.fire({
+                title: 'Hata!',
+                html: uyari,
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
+            return false;
+
+        } else {
+            return true;
+        }
+
+    }
+
+
+
 
     function popupclose() {
         $('#exampleModal').modal('hide');

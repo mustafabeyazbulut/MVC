@@ -26,7 +26,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                @using (Ajax.BeginForm("EnvanterKayit", "Envanter", FormMethod.Post, new AjaxOptions { OnSuccess = "EnvanterKayit" }, new { id = "frm-envanterKayit" }))
+                @using (Ajax.BeginForm("EnvanterKayit", "Envanter", FormMethod.Post, new AjaxOptions { OnSuccess = "EnvanterKayit", OnBegin = "return dogrula();" }, new { id = "frm-envanterKayit" }))
                 {
                     @Html.HiddenFor(m => m.Envanter_ID)
 
@@ -75,6 +75,49 @@
 
 
 <script type="text/javascript">
+
+    function dogrula() {
+        var uyari = "";
+        var kontrol = 0;
+
+        if ($("#EnvanterCins_ID").val() == null || $("#EnvanterCins_ID").val() == "") {
+            uyari += "Lütfen Envanter Cinsi Seçiniz.<br />"
+            kontrol = 1
+        }
+        if ($("#EnvanterMarka_ID").val() == null || $("#EnvanterMarka_ID").val() == "") {
+            uyari += "Lütfen Marka Seçiniz. <br/>"
+            kontrol = 1
+        }
+        if ($("#EnvanterModel").val() == null || $("#EnvanterModel").val() == "") {
+            uyari += "Model alanı boş bırakılamaz.<br />"
+            kontrol = 1
+        }
+        if ($("#EnvanterSeriNo").val() == null || $("#EnvanterSeriNo").val() == "") {
+            uyari += "Seri No alanı boş geçilemez. <br />"
+            kontrol = 1
+        }
+        if ($("#EnvanterSube_ID").val() == null || $("#EnvanterSube_ID").val() == "") {
+            uyari += "Lütfen Şube seçiniz. <br />"
+            kontrol = 1
+        }
+
+        if (kontrol == 1) {
+
+            Swal.fire({
+                title: 'Hata!',
+                html: uyari,
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
+            return false;
+
+        } else {
+            return true;
+        }
+
+    }
+
+
 
     function popupclose() {
         $('#exampleModal').modal('hide');
