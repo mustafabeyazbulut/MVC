@@ -1,79 +1,83 @@
 ﻿@using EnvanterTakipYönetimSistemi.ViewModels
-
 @model EnvanterViewModel
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
 }
-<!--Envanterler Tanımlama Sayfası    -->
 
+<h1>Envanter Listesi</h1>
+<p> Bu alanda şirketinize ait olan envanterlerin listesi bulunmaktadır. Bu listede envanter bilgileri üzerinde düzenlemeler yapabilirsiniz.</a></p>
 
 
 <div id="ajax-main">
     @Html.Partial("_EnvanterTablo", @Model)
 </div>
 
-<div id="popup1" class="overlay">
-    <div class="popup">
-        <h2>Envanter İşlemleri Sayfası</h2>
-        <h5>Düzenleme için tek bir alan seçebilirsiniz. </h5>
 
-        <a id="close"onclick="popupclose()" class="close"  href="#">&times;</a>
-        <div class="content">
-            @using (Ajax.BeginForm("EnvanterKayit", "Envanter", FormMethod.Post, new AjaxOptions { OnSuccess = "EnvanterKayit" }, new { id = "frm-envanterKayit" }))
-            {
-                @Html.HiddenFor(m => m.Envanter_ID)
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Envanter Ekleme-Düzenleme İşlemi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @using (Ajax.BeginForm("EnvanterKayit", "Envanter", FormMethod.Post, new AjaxOptions { OnSuccess = "EnvanterKayit" }, new { id = "frm-envanterKayit" }))
+                {
+                    @Html.HiddenFor(m => m.Envanter_ID)
 
-                <div style="position:center">
-                    Cinsi:
-                    @Html.DropDownListFor(m => m.EnvanterCins_ID, Model.CinsiList, new { style = "height: 30px; width: 300px; position:absolute;left:100px;" })
+                    <div style="position:center">
+                        Cinsi:
+                        @Html.DropDownListFor(m => m.EnvanterCins_ID, Model.CinsiList, new { style = "height: 30px; width: 300px; position:absolute;left:100px;" })
 
-                </div>
-                <br />
-                <div>
-                    Marka:
+                    </div>
+                    <br />
+                    <div>
+                        Marka:
 
-                    @Html.DropDownListFor(m => m.EnvanterMarka_ID, Model.MarkaList, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
-                </div>
-                <br />
-                <div>
-                    Model:
+                        @Html.DropDownListFor(m => m.EnvanterMarka_ID, Model.MarkaList, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+                    </div>
+                    <br />
+                    <div>
+                        Model:
 
-                    @Html.TextBoxFor(m => m.EnvanterModel, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
-                </div>
-                <br />
-                <div>
-                    Seri No:
+                        @Html.TextBoxFor(m => m.EnvanterModel, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+                    </div>
+                    <br />
+                    <div>
+                        Seri No:
 
-                    @Html.TextBoxFor(m => m.EnvanterSeriNo, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
-                </div>
-                <br />
-                <div>
-                    Şube:
+                        @Html.TextBoxFor(m => m.EnvanterSeriNo, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+                    </div>
+                    <br />
+                    <div>
+                        Şube:
 
-                    @Html.DropDownListFor(m => m.EnvanterSube_ID, Model.SubeList, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
-                </div>
-                <br />
-                <div>
-                    <input style="width: 300px; position: absolute; left: 100px " class="btn btn-primary " type="submit" value="Kaydet" />
-                </div>
-                <br />
-                <br />
-            }
+                        @Html.DropDownListFor(m => m.EnvanterSube_ID, Model.SubeList, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+                    </div>
+                    <br />
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="popupclose()">Çıkış</button>
+                        <button type="submit" class="btn btn-primary" value="Kaydet">Kaydet</button>
+                    </div>
+                }
+            </div>
         </div>
     </div>
 </div>
 
 
-<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Content/Table/javaS/jquery.unobtrusive-ajax.js"></script>
+
 
 <script type="text/javascript">
 
     function popupclose() {
-        
-        window.location.href = '#';
+        $('#exampleModal').modal('hide');
         $("#frm-envanterKayit")[0].reset();
     }
 
@@ -85,10 +89,10 @@
                 type: 'get',
                 dataType: 'html',
                 success: function (data) {
+                    popupclose()
                     $("#ajax-main").html(data);
-                    $("#frm-envanterKayit")[0].reset();
-                    window.location.href = '#';
                     
+
                     Swal.fire({
                         title: 'Başarılı!',
                         text: 'Yeni envanter kayıt edilmiştir',
@@ -104,16 +108,17 @@
                 type: 'get',
                 dataType: 'html',
                 success: function (data) {
-
+                    popupclose()
                     $("#ajax-main").html(data);
-                    $("#frm-envanterKayit")[0].reset();
-                    window.location.href = '#';
+                   
+                    
                     Swal.fire({
                         title: 'Başarılı!',
                         text: 'Envanter Güncellenmiştir',
                         icon: 'success',
                         confirmButtonText: 'Cool'
                     })
+                    
 
                 }
 
@@ -127,7 +132,8 @@
                 icon: 'error',
                 confirmButtonText: 'Cool'
             })
-         
+            $('#myModal').modal('hide');
+
         }
 
     }

@@ -1,180 +1,187 @@
 ﻿@using EnvanterTakipYönetimSistemi.ViewModels
 @model EnvanterViewModel
 
+<!doctype html>
+<html lang="tr">
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="~/Content/Table/css/bootstrap-table.min.css" rel="stylesheet" />
+    <link href="~/Content/Table/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+</head>
+
+
+<body>
 
 
 
-<link href="~/Content/Table/bootstrap.min.css" rel="stylesheet" />
-<link href="~/Content/Table/bootstrap-table.min.css" rel="stylesheet" />
-<link href="~/Content/Table/bootstrap-editable.css" rel="stylesheet" />
-<link href="~/Content/Table/style.css" rel="stylesheet" />
-
-<link href="~/Content/popupstyle.css" rel="stylesheet" />
-
-
-    <h1>Envanter Listesi</h1>
-    <p> Bu alanda şirketinize ait olan envanterlerin listesi bulunmaktadır. Bu listede envanter bilgileri üzerinde düzenlemeler yapabilirsiniz.</a></p>
-
-    <div id="toolbar">
+    <div id="toolbar" class="select">
         <div class="form-inline" role="form">
-            <div class="form-group">
+            <div id="toolbar">
                 <select class="form-control">
                     <option value="all">Tümünü Dışa Aktar</option>
                     <option value="selected">Seçimi Dışa Aktar</option>
                 </select>
             </div>
 
-            <button type="button" class="btn btn-default" onclick="window.location.href='#popup1'">
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal">
                 <img src="~/Content/svg/add.svg" />
             </button>
-            <button id="kontrol" class="btn btn-default" onclick="selectMe()">
+            <button id="kontrol" class="btn btn-default" onclick="selectMe()" >
                 <img src="~/Content/svg/update.svg" />
             </button>
-            <button id="kontrol" class="btn btn-default" onclick="selectMe()">
+            <button id="kontrol" class="btn btn-default" onclick="selectMe()" data-toggle="modal" data-target="#exampleModal">
                 <img src="~/Content/svg/delete.svg" />
             </button>
-
         </div>
     </div>
 
+    <div id="wrapper">
+        <table id="table"
+               data-toggle="table"
+               data-toolbar="#toolbar"
+               data-search="true"
+               data-filter-control="true"
+               data-show-export="true"
+               data-single-select="false"
+               data-click-to-select="true"
+               data-maintain-meta-data="false"
+               data-show-pagination-switch="true"
+               data-pagination="true"
+               data-show-columns="true"
+               data-show-footer="true">
 
+            <thead>
+                <tr>
+                    <th data-field="state" data-checkbox="true"></th>
+                    <th data-field="id" data-filter-control="select" data-sortable="true">ID</th>
+                    <th data-field="cinsi" data-filter-control="select" data-sortable="true">Cinsi</th>
+                    <th data-field="marka" data-filter-control="select" data-sortable="true">Marka</th>
+                    <th data-field="models" data-filter-control="input" data-sortable="false">Model</th>
+                    <th data-field="serino" data-filter-control="input" data-sortable="false">SeriNo</th>
+                    <th data-field="tarih" data-filter-control="select" data-sortable="true">Tarih</th>
+                    <th data-field="kaydeden" data-filter-control="select" data-sortable="false">Kaydeden</th>
+                    <th data-field="Şube" data-filter-control="select" data-sortable="false">Şube</th>
+                    <th data-field="Durum" data-filter-control="select" data-sortable="true">Durum</th>
+                    <th data-field="aktiflik" data-filter-control="select" data-sortable="true">Aktiflik</th>
+                    <th data-field="markaid" data-visible="false"></th>
+                    <th data-field="subeid" data-visible="false"></th>
+                    <th data-field="cinsid" data-visible="false"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var envanter in Model.TabloEnvanterList)
+                {
+                    <tr>
+                        <td class="bs-checkbox ">
+                            <input name="btSelectItem" type="checkbox">
+                        </td>
+                        <td>@envanter.Envanter_ID</td>
+                        <td>@envanter.EnvanterCinsAdi</td>
+                        <td>@envanter.EnvanterMarkaAdi</td>
+                        <td>@envanter.EnvanterModel</td>
+                        <td>@envanter.EnvanterSeriNo</td>
+                        <td>@envanter.EnvanterKayitTarih.ToString("dd/MM/yyyy")</td>
+                        <td>@envanter.EnvanterKaydeden</td>
+                        <td>@envanter.EnvanterSube</td>
+                        <td>@envanter.EnvanterDurum</td>
+                        <td>@envanter.EnvanterKayit</td>
+                        <td>@envanter.EnvanterMarka_ID</td>
+                        <td>@envanter.EnvanterSube_ID</td>
+                        <td>@envanter.EnvanterCins_ID</td>
+                    </tr>
 
+                }
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript">
 
+        function selectMe() {
+            //$('#table').bootstrapTable("checkBy", {
+            //    field: 'id',
+            //    values: ["30"]
+            //});
+            var _id = getIdSelections(1)
+            var _cinsid = getIdSelections(2)
+            var _markaid = getIdSelections(3)
+            var _model = getIdSelections(4)
+            var _serino = getIdSelections(5)
+            var _subeid = getIdSelections(6)
 
-    <table id="table"
-           data-toggle="table"
-           data-search="true"
-           data-filter-control="true"
-           data-show-export="true"
-           data-single-select="false"
-           data-click-to-select="true"
-           data-maintain-meta-data="true"
-           data-show-pagination-switch="true"
-           data-pagination="true"
-           data-toolbar="#toolbar"
-           data-show-columns="true"
-           >
+            if (_id.length >= 1) {
+                $('#exampleModal').modal('show');
 
-        <thead>
-            <tr>
-                <th data-field="cekbox" data-checkbox="true">+</th>
-                <th data-field="id" data-filter-control="select" data-sortable="true">ID</th>
-                <th data-field="cinsi" data-filter-control="select" data-sortable="true">Cinsi</th>
-                <th data-field="marka" data-filter-control="select" data-sortable="true">Marka</th>
-                <th data-field="models" data-filter-control="input" data-sortable="false">Model</th>
-                <th data-field="serino" data-filter-control="input" data-sortable="false">SeriNo</th>
-                <th data-field="tarih" data-filter-control="select" data-sortable="true">Tarih</th>
-                <th data-field="kaydeden" data-filter-control="select" data-sortable="false">Kaydeden</th>
-                <th data-field="Şube" data-filter-control="select" data-sortable="false">Şube</th>
-                <th data-field="Durum" data-filter-control="select" data-sortable="true">Durum</th>
-                <th data-field="aktiflik" data-filter-control="select" data-sortable="true">Aktiflik</th>
-                <th data-field="markaid" data-visible="false" ></th>
-                <th data-field="subeid" data-visible="false" ></th>
-                <th data-field="cinsid" data-visible="false" ></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var envanter in Model.TabloEnvanterList)
-            {
-            <tr>
-                <td class="bs-checkbox ">
-                    <input data-index="@envanter.Envanter_ID" name="btSelectItem" type="checkbox">
-                </td>
-                <td>@envanter.Envanter_ID</td>
-                <td>@envanter.EnvanterCinsAdi</td>
-                <td>@envanter.EnvanterMarkaAdi</td>
-                <td>@envanter.EnvanterModel</td>
-                <td>@envanter.EnvanterSeriNo</td>
-                <td>@envanter.EnvanterKayitTarih.ToString("dd/MM/yyyy")</td>
-                <td>@envanter.EnvanterKaydeden</td>
-                <td>@envanter.EnvanterSube</td>
-                <td>@envanter.EnvanterDurum</td>
-                <td>@envanter.EnvanterKayit</td>
-                <td style="display:none;">@envanter.EnvanterMarka_ID</td>
-                <td style="display:none;">@envanter.EnvanterSube_ID</td>
-                <td style="display:none;">@envanter.EnvanterCins_ID</td>
-            </tr>
-
+                $("#Envanter_ID").val(_id[0]);
+                $("#EnvanterCins_ID").val(_cinsid[0]);
+                $("#EnvanterMarka_ID").val(_markaid[0]);
+                $("#EnvanterModel").val(_model[0]);
+                $("#EnvanterSeriNo").val(_serino[0]);
+                $("#EnvanterSube_ID").val(_subeid[0]);
             }
-        </tbody>
-    </table>
-
-
-
-<script type="text/javascript">
-
-    function selectMe() {
-        //$('#table').bootstrapTable("checkBy", {
-        //    field: 'id',
-        //    values: ["30"]
-        //});
-        var _id = getIdSelections(1)
-        var _cinsid = getIdSelections(2)
-        var _markaid = getIdSelections(3)
-        var _model = getIdSelections(4)
-        var _serino = getIdSelections(5)
-        var _subeid = getIdSelections(6)
-        if (_id.length >= 1) {
-            window.location.href = '#popup1';
-
-            $("#Envanter_ID").val(_id[0]);
-            $("#EnvanterCins_ID").val(_cinsid[0]);
-            $("#EnvanterMarka_ID").val(_markaid[0]);
-            $("#EnvanterModel").val(_model[0]);
-            $("#EnvanterSeriNo").val(_serino[0]);
-            $("#EnvanterSube_ID").val(_subeid[0]);
-            
         }
-    }
 
 
-    function getIdSelections(i) { // table seçili checkbox'a göre id
-        switch (i) {
-            case 1:
-                return $.map($table.bootstrapTable('getSelections'), ({ id }) => id);
-                break;
-            case 2:
-                return $.map($table.bootstrapTable('getSelections'), ({ cinsid }) => cinsid);
-                break;
-            case 3:
-                return $.map($table.bootstrapTable('getSelections'), ({ markaid }) => markaid);
-                break;
-            case 4:
-                
-                return $.map($table.bootstrapTable('getSelections'), ({ models }) => models);
-                break;
-            case 5:
-                
-                return $.map($table.bootstrapTable('getSelections'), ({ serino }) => serino);
-                break;
-            case 6:
-            
-                return $.map($table.bootstrapTable('getSelections'), ({ subeid }) => subeid);
-                break;
-        }  
-    }
+        function getIdSelections(i) { // table seçili checkbox'a göre id
+            switch (i) {
+                case 1:
+                    return $.map($table.bootstrapTable('getSelections'), ({ id }) => id);
+                    break;
+                case 2:
+                    return $.map($table.bootstrapTable('getSelections'), ({ cinsid }) => cinsid);
+                    break;
+                case 3:
+                    return $.map($table.bootstrapTable('getSelections'), ({ markaid }) => markaid);
+                    break;
+                case 4:
 
+                    return $.map($table.bootstrapTable('getSelections'), ({ models }) => models);
+                    break;
+                case 5:
 
-</script>
+                    return $.map($table.bootstrapTable('getSelections'), ({ serino }) => serino);
+                    break;
+                case 6:
 
-<script src="~/Content/Table/js/jquery.min.js"></script>
-<script src="~/Content/Table/js/bootstrap.min.js"></script>
-<script src="~/Content/Table/js/bootstrap-table.js"></script>
-<script src="~/Content/Table/js/bootstrap-table-editable.js"></script>
-<script src="~/Content/Table/js/bootstrap-table-export.js"></script>
-<script src="~/Content/Table/js/tableExport.js"></script>
-<script src="~/Content/Table/js/bootstrap-table-filter-control.js"></script>
-<script src="~/Content/Table/js/script.js"></script>
+                    return $.map($table.bootstrapTable('getSelections'), ({ subeid }) => subeid);
+                    break;
+            }
+        }
 
 
 
+    </script>
+
+    <script src="~/Content/Table/javaS/jquery-3.2.1.slim.min.js"></script>
+    <script src="~/Content/Table/javaS/jquery.min.js"></script>
+    <script src="~/Content/Table/javaS/popper.min.js"></script>
+    <script src="~/Content/Table/javaS/bootstrap.min.js"></script>
 
 
 
-
-
-
+    <script src="~/Content/Table/javaS/tableExport.min.js"></script>
+    <script src="~/Content/Table/javaS/jspdf.min.js"></script>
+    <script src="~/Content/Table/javaS/jspdf.plugin.autotable.js"></script>
+    <script src="~/Content/Table/javaS/bootstrap-table.min.js"></script>
+    <script src="~/Content/Table/javaS/bootstrap-table-export.min.js"></script>
+    <script src="~/Content/Table/javaS/seciliExscript.js"></script>
+    <script src="~/Content/Table/javaS/bootstrap-table-filter-control.min.js"></script>
 
 
 
 
+
+
+
+
+
+
+</body>
+
+
+</html>
