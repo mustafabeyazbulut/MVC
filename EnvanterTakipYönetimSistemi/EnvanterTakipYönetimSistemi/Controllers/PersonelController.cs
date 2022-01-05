@@ -62,5 +62,45 @@ namespace EnvanterTakipYönetimSistemi.ViewModels
                 return View(model);
             }
         }
+
+        public string PersonelKayit(PersonelViewModel model)
+        {
+            if (model.PersonelID > 0) // envanter 0 ise yeni kayıttır. 0 dan büyükse düzenleme işlemi vardır
+            { //düzenleme
+                var pGuncelle = db.Tbl_Personel.FirstOrDefault(f => f.Per_ID == model.PersonelID);
+
+                pGuncelle.Per_Ad = model.PersonelAd;
+                pGuncelle.Per_Soyad = model.PersonelSoyad;
+                pGuncelle.Sube_ID = model.PerSubeID;
+                pGuncelle.Per_Eposta = model.PersonelEposta;
+                pGuncelle.Per_Sifre = model.Personel_Sifre;
+                pGuncelle.Per_Rol = model.PersonelRol;
+                db.SaveChanges();
+
+                return "0"; // kayıt güncellendiyse 0 döner
+            }
+            else
+            { // Yeni kayıt
+                Tbl_Personel pYeni = new Tbl_Personel();
+
+                pYeni.Per_Ad = model.PersonelAd;
+                pYeni.Per_Soyad = model.PersonelSoyad;
+                pYeni.Sube_ID = model.PerSubeID;
+                pYeni.Per_Eposta = model.PersonelEposta;
+                pYeni.Per_Sifre = model.Personel_Sifre;
+                pYeni.Per_Rol = model.PersonelRol;
+                pYeni.Per_SonGirisTarihi = DateTime.Now;
+                pYeni.Per_Kayit = true;
+
+                db.Tbl_Personel.Add(pYeni);
+                db.SaveChanges();
+                return "1"; // yeni kayıt oluştuysa 1 döner
+            }
+
+
+        }
+
+
+
     }
 }

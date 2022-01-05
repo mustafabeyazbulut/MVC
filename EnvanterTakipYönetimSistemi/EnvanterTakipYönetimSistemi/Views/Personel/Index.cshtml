@@ -25,19 +25,18 @@
                 </button>
             </div>
             <div class="modal-body">
-                @using (Ajax.BeginForm("PersonelKayit", "Envanter", FormMethod.Post, new AjaxOptions { OnSuccess = "PersonelKayit" }, new { id = "frm-PersonelKayit" }))
+                @using (Ajax.BeginForm("PersonelKayit", "Personel", FormMethod.Post, new AjaxOptions { OnSuccess = "PersonelKayit", OnBegin = "return dogrula();" }, new { id = "frm-PersonelKayit" }))
                 {
+
                     @Html.HiddenFor(m => m.PersonelID)
                     <br />
                     <div>
                         Ad:
-
                         @Html.TextBoxFor(m => m.PersonelAd, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
                     </div>
                     <br />
                     <div>
                         Soyad:
-
                         @Html.TextBoxFor(m => m.PersonelSoyad, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
                     </div>
                     <br />
@@ -50,15 +49,12 @@
                     <div class="editor-field">
                         E-posta:
                         &nbsp;&nbsp;&nbsp;&nbsp; @Html.ValidationMessageFor(m => m.PersonelEposta)
-                        <br />
                         @Html.TextBoxFor(m => m.PersonelEposta, new { @type = "email", style = "height: 30px; width: 300px;position:absolute;left:100px;" })
                         <br />
                     </div>
                     <br />
                     <div>
                         Parola:
-                        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;@Html.ValidationMessageFor(m => m.Personel_Sifre)
-                        <br />
                         @Html.TextBoxFor(m => m.Personel_Sifre, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
                         <br />
                     </div>
@@ -86,6 +82,52 @@
 
 
 <script type="text/javascript">
+    //document.getElementById('submitButton').onclick = function () {
+    function dogrula() {
+        var uyari = "";
+        var kontrol = 0;
+
+        if ($("#PersonelAd").val() == null || $("#PersonelAd").val() == "") {
+            uyari += "Personel Adı alanı boş geçilemez.<br />"
+            kontrol=1
+        }
+        if ($("#PersonelSoyad").val() == null || $("#PersonelSoyad").val() == "") {
+            uyari += "Personel Soyadı alanı boş geçilemez. <br />"
+            kontrol=1
+        }
+        if ($("#PerSubeID").val() == null || $("#PerSubeID").val() == "") {
+            uyari += "Lütfen Şube seçiniz.<br />"
+            kontrol=1
+        }
+        if ($("#PersonelEposta").val() == null || $("#PersonelEposta").val() == "") {
+            uyari += "Eposta alanı boş geçilemez. <br />"
+            kontrol=1
+        }
+        if ($("#Personel_Sifre").val() == null || $("#Personel_Sifre").val() == "") {
+            uyari += "Şifre alanı boş geçilemez. <br />"
+            kontrol=1
+        }
+        if ($("#PersonelRol").val() == null || $("#PersonelRol").val() == "") {
+            uyari += "Personel Rolünü seçiniz."
+            kontrol=1
+        }
+
+        if (kontrol == 1) {
+          
+            Swal.fire({
+                title: 'Hata!',
+                html: uyari,
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })
+            return false;
+           
+        } else {
+            return true;
+        }
+       
+    }
+
 
     function popupclose() {
         $('#exampleModal').modal('hide');
