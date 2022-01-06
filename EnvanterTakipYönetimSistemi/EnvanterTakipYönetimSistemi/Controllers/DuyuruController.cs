@@ -67,5 +67,33 @@ namespace EnvanterTakipYönetimSistemi.Controllers
 
           
         }
+
+
+        [HttpPost]
+        public JsonResult DuyuruSil(List<string> values)
+        {
+            if (values == null) return Json(new { Result = "-1" });
+
+            foreach (string ids in values)
+            {
+
+                int id = Convert.ToInt32(ids);
+
+                var silDuyuru = (from x in db.Tbl_Duyuru
+                              where x.D_ID == id
+                              select x).FirstOrDefault();
+
+                if (silDuyuru.D_Kayit == true ) // daha önce silindiyse herhangi bir işlem yapmasına gerek yok. Zimmetliyse silinemez
+                {
+                    silDuyuru.Per_ID = Convert.ToInt32(Session["Per_ID"]);
+                    silDuyuru.D_Kayit = false;
+                    db.SaveChanges();
+                }
+
+            }
+            return Json(new { Result = "1" });
+        }
+
+
     }
 }

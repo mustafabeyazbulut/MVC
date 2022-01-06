@@ -36,7 +36,7 @@
                 <img src="~/Content/svg/oocheck-square-fill.svg" />
   
             </button>
-            <button id="kontrol" class="btn btn-default" onclick="selectMe()" data-toggle="modal" data-target="#exampleModal">
+            <button id="kontrol" class="btn btn-default" onclick="silmeSelect()">
 
                 <img src="~/Content/svg/oodash-square-fill.svg" />
             </button>
@@ -56,7 +56,8 @@
                data-show-pagination-switch="true"
                data-pagination="true"
                data-show-columns="true"
-               data-show-footer="true">
+               data-show-footer="true"
+                data-unique-id="id">
             <thead class="text-center">
                 <tr >
                     <th data-field="state" data-checkbox="true"></th>
@@ -114,6 +115,69 @@
         }
 
 
+
+        function silmeSelect() {
+
+            var _id = getIdSelections(1)
+            var _aktiflik = getIdSelections(6)
+
+            if (_id.length >= 1) {
+                Swal.fire({
+                    title: 'Seçili kayıtları silmek istediğinizden emin misiniz?',
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    cancelButtonText: 'iptal',
+                    confirmButtonText: 'Sil',
+                    denyButtonText: `Silme`,
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+
+                        var postData = { values: _id };
+
+                        $.ajax({
+                            type: "POST",
+                            url: "/Duyuru/DuyuruSil",
+                            data: postData,
+                            success: function (data) {
+
+                                if (data.Result == "-1") {
+                                    Swal.fire('Bir hata oluştu.', '', 'info')
+                                    return;
+                                } else if (data.Result == "1") {
+
+                                    for (let i = 0; i < _id.length; i++) { // kayıtları tablodan siler data-field:id ye göre
+                                        if (_aktiflik[i] == "True") {
+                                            $table.bootstrapTable('updateByUniqueId', {
+                                                id: _id[i],
+                                                row: {
+                                                    aktiflik: 'False'
+                                                }
+                                            });
+                                        }
+                                    }
+
+                                    Swal.fire('Silme işlemi gerçekleştirildi.', '', 'info')
+                                }
+                            },
+                            dataType: "json",
+                            traditional: true
+                        });
+
+
+                    } else if (result.isDenied) {
+                        Swal.fire('Silme işlemi iptal edildi.', '', 'info')
+                    }
+                })
+            }
+        }
+
+
+
+
+
+
+
         function getIdSelections(i) { // table seçili checkbox'a göre id
             switch (i) {
                 case 1:
@@ -131,6 +195,9 @@
                     break;
                 case 5:
                     return $.map($table.bootstrapTable('getSelections'), ({ yayinlayanSubeid }) => yayinlayanSubeid);
+                    break;
+                case 6:
+                    return $.map($table.bootstrapTable('getSelections'), ({ aktiflik }) => aktiflik);
                     break;
             }
         }
