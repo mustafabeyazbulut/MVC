@@ -79,5 +79,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Zimmet">
+      <EntityTypeMapping TypeName="ENVSERVYSModel.Tbl_Zimmet">
+        <MappingFragment StoreEntitySet="Tbl_Zimmet">
+          <ScalarProperty Name="Zim_Kayit" ColumnName="Zim_Kayit" />
+          <ScalarProperty Name="Zim_Aciklama" ColumnName="Zim_Aciklama" />
+          <ScalarProperty Name="Zim_IadeTarih" ColumnName="Zim_IadeTarih" />
+          <ScalarProperty Name="Zim_Tarih" ColumnName="Zim_Tarih" />
+          <ScalarProperty Name="Zimmetleyen_ID" ColumnName="Zimmetleyen_ID" />
+          <ScalarProperty Name="Env_ID" ColumnName="Env_ID" />
+          <ScalarProperty Name="Kullanan_ID" ColumnName="Kullanan_ID" />
+          <ScalarProperty Name="Zim_ID" ColumnName="Zim_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

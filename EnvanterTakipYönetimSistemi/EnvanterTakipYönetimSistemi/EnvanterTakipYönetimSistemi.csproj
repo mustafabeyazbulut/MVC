@@ -52,6 +52,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -108,11 +109,19 @@
     <Content Include="Content\Login\style.css" />
     <Content Include="Content\popupstyle.css" />
     <Content Include="Content\svg\add.svg" />
+    <Content Include="Content\svg\arrow-return-left.svg" />
+    <Content Include="Content\svg\bag-plus-fill.svg" />
     <Content Include="Content\svg\box-arrow-up.svg" />
     <Content Include="Content\svg\delete.svg" />
     <Content Include="Content\svg\facebook.svg" />
     <Content Include="Content\svg\google.svg" />
     <Content Include="Content\svg\linkedin.svg" />
+    <Content Include="Content\svg\oocheck-square-fill.svg" />
+    <Content Include="Content\svg\oodash-square-fill.svg" />
+    <Content Include="Content\svg\ooplus-square-fill.svg" />
+    <Content Include="Content\svg\person-check-fill.svg" />
+    <Content Include="Content\svg\person-dash-fill.svg" />
+    <Content Include="Content\svg\person-plus-fill.svg" />
     <Content Include="Content\svg\update.svg" />
     <Content Include="Content\Table\css\all.css" />
     <Content Include="Content\Table\css\bootstrap-table.min.css" />
@@ -175,6 +184,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\TaleplerimController.cs" />
+    <Compile Include="Controllers\ZimmetController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -216,12 +226,16 @@
     <Compile Include="Models\Tbl_P_Sube.cs">
       <DependentUpon>EnvanterServisModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Tbl_Zimmet.cs">
+      <DependentUpon>EnvanterServisModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\DuyuruViewModel.cs" />
     <Compile Include="ViewModels\EnvanterViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
     <Compile Include="ViewModels\PersonelViewModel.cs" />
+    <Compile Include="ViewModels\ZimmetViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -247,6 +261,8 @@
     <Content Include="Views\Duyuru\_DuyuruTablo.cshtml" />
     <Content Include="Views\Personel\Index.cshtml" />
     <Content Include="Views\Personel\_PersonelTablo.cshtml" />
+    <Content Include="Views\Zimmet\Index.cshtml" />
+    <Content Include="Views\Zimmet\_ZimmetTablo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

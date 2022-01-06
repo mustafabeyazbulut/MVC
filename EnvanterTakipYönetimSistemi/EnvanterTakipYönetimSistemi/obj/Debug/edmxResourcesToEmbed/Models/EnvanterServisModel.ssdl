@@ -71,6 +71,19 @@
     <Property Name="Per_SonGirisTarihi" Type="smalldatetime" />
     <Property Name="Per_Kayit" Type="bit" />
   </EntityType>
+  <EntityType Name="Tbl_Zimmet">
+    <Key>
+      <PropertyRef Name="Zim_ID" />
+    </Key>
+    <Property Name="Zim_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Kullanan_ID" Type="int" />
+    <Property Name="Env_ID" Type="int" />
+    <Property Name="Zimmetleyen_ID" Type="int" />
+    <Property Name="Zim_Tarih" Type="date" />
+    <Property Name="Zim_IadeTarih" Type="date" />
+    <Property Name="Zim_Aciklama" Type="varchar" MaxLength="50" />
+    <Property Name="Zim_Kayit" Type="bit" />
+  </EntityType>
   <Association Name="FK_Duyuru_Personel">
     <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="0..1" />
     <End Role="Tbl_Duyuru" Type="Self.Tbl_Duyuru" Multiplicity="*" />
@@ -155,6 +168,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Tbl_Zimmet_Tbl_Envanter">
+    <End Role="Tbl_Envanter" Type="Self.Tbl_Envanter" Multiplicity="0..1" />
+    <End Role="Tbl_Zimmet" Type="Self.Tbl_Zimmet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Envanter">
+        <PropertyRef Name="Env_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Zimmet">
+        <PropertyRef Name="Env_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_Zimmet_Tbl_Personel">
+    <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="0..1" />
+    <End Role="Tbl_Zimmet" Type="Self.Tbl_Zimmet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Personel">
+        <PropertyRef Name="Per_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Zimmet">
+        <PropertyRef Name="Kullanan_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_Zimmet_Tbl_Personel1">
+    <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="0..1" />
+    <End Role="Tbl_Zimmet" Type="Self.Tbl_Zimmet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Personel">
+        <PropertyRef Name="Per_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Zimmet">
+        <PropertyRef Name="Zimmetleyen_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="ENVSERVYSModelStoreContainer">
     <EntitySet Name="Tbl_Duyuru" EntityType="Self.Tbl_Duyuru" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_Envanter" EntityType="Self.Tbl_Envanter" Schema="dbo" store:Type="Tables" />
@@ -163,6 +212,7 @@
     <EntitySet Name="Tbl_P_Rol" EntityType="Self.Tbl_P_Rol" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_P_Sube" EntityType="Self.Tbl_P_Sube" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_Personel" EntityType="Self.Tbl_Personel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Zimmet" EntityType="Self.Tbl_Zimmet" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Duyuru_Personel" Association="Self.FK_Duyuru_Personel">
       <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
       <End Role="Tbl_Duyuru" EntitySet="Tbl_Duyuru" />
@@ -190,6 +240,18 @@
     <AssociationSet Name="FK_Tbl_Personel_Tbl_P_Sube" Association="Self.FK_Tbl_Personel_Tbl_P_Sube">
       <End Role="Tbl_P_Sube" EntitySet="Tbl_P_Sube" />
       <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Zimmet_Tbl_Envanter" Association="Self.FK_Tbl_Zimmet_Tbl_Envanter">
+      <End Role="Tbl_Envanter" EntitySet="Tbl_Envanter" />
+      <End Role="Tbl_Zimmet" EntitySet="Tbl_Zimmet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Zimmet_Tbl_Personel" Association="Self.FK_Tbl_Zimmet_Tbl_Personel">
+      <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+      <End Role="Tbl_Zimmet" EntitySet="Tbl_Zimmet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Zimmet_Tbl_Personel1" Association="Self.FK_Tbl_Zimmet_Tbl_Personel1">
+      <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+      <End Role="Tbl_Zimmet" EntitySet="Tbl_Zimmet" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -14,6 +14,12 @@ namespace EnvanterTakipYönetimSistemi.Models
     
     public partial class Tbl_Envanter
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Tbl_Envanter()
+        {
+            this.Tbl_Zimmet = new HashSet<Tbl_Zimmet>();
+        }
+    
         public int Env_ID { get; set; }
         public Nullable<int> EnvCins_ID { get; set; }
         public Nullable<int> EnvMarka_ID { get; set; }
@@ -29,5 +35,7 @@ namespace EnvanterTakipYönetimSistemi.Models
         public virtual Tbl_P_EnvanterMarka Tbl_P_EnvanterMarka { get; set; }
         public virtual Tbl_P_Sube Tbl_P_Sube { get; set; }
         public virtual Tbl_Personel Tbl_Personel { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_Zimmet> Tbl_Zimmet { get; set; }
     }
 }

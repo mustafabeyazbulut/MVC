@@ -7,12 +7,17 @@
 }
 
 <h1>Envanter Listesi</h1>
-<p> Bu alanda şirketinize ait olan envanterlerin listesi bulunmaktadır. Bu listede envanter bilgileri üzerinde düzenlemeler yapabilirsiniz.</a></p>
+<p> Bu alanda şirketinize ait olan envanterlerin listesi bulunmaktadır. Bu listede envanter bilgileri üzerinde düzenlemeler yapabilirsiniz. Zimmetlenmiş ürünleri silemezsiniz.</p>
 
 
 <div id="ajax-main">
     @Html.Partial("_EnvanterTablo", @Model)
 </div>
+
+
+
+
+
 
 
 <!-- Modal -->
@@ -71,10 +76,106 @@
 </div>
 
 
+
+<!-- Modal Zimmet Kayıt -->
+<div class="modal fade" id="zimmetkayitModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Zimmet Ekleme İşlemi</h5>
+                <button type="button" class="close" data-dismiss="modal" onclick="zimmetkayitclose()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                @using (Ajax.BeginForm("E_ZimmetKayit", "Envanter", FormMethod.Post, new AjaxOptions { OnSuccess = "E_ZimmetKayit", OnBegin = "return zimmetkayitKontrol();" }, new { data_show_subtext = "true", id = "frm-E_ZimmetKayit" }))
+                {
+                    @Html.HiddenFor(m => m.EnvanterStrng_ID)
+                    <div style="position:center">
+                        Kullanıcı:
+                        @Html.DropDownListFor(m => m.Zimmetlenen_ID, Model.ZimmetlenenList, new { style = "height: 30px; width: 300px; position:absolute;left:100px;" })
+
+                    </div>
+                    <br />
+                    <br />
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="zimmetkayitclose()">Çıkış</button>
+                        <button type="submit" class="btn btn-primary" value="Kaydet">Kaydet</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script src="~/Content/Table/javaS/jquery.unobtrusive-ajax.js"></script>
 
 
 <script type="text/javascript">
+    function zimmetkayitKontrol() {
+        var uyari = "";
+        var kontrol = 0;
+
+        if ($("#EnvanterStrng_ID").val() == null || $("#EnvanterStrng_ID").val() == "") {
+            uyari += "Envanter seçiminde bir hata oluştu.<br />"
+            kontrol = 1
+        }
+        if ($("#Zimmetlenen_ID").val() == null || $("#Zimmetlenen_ID").val() == "") {
+            uyari += "Lütfen Zimmetlenecek kişiyi seçiniz. <br/>"
+            kontrol = 1
+        }
+        if (kontrol == 1) {
+            Swal.fire({
+                title: 'Hata!',
+                html: uyari,
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
+            return false;
+
+        } else { return true; }
+
+    }
+
+    function zimmetkayitclose() {
+        $('#zimmetkayitModal').modal('hide');
+        $("#frm-E_ZimmetKayit")[0].reset();
+    }
+
+    function E_ZimmetKayit(result) {
+        if (result == "1") {
+
+            $.ajax({
+                url: '/Envanter/Index',
+                type: 'get',
+                dataType: 'html',
+                success: function (data) {
+                    zimmetkayitclose()
+                    $("#ajax-main").html(data);
+
+                    Swal.fire({
+                        title: 'Başarılı!',
+                        text: 'Ürün Zimmetlenmiştir.',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+                }
+            });
+        } else if (result == "-1") {
+
+            Swal.fire({
+                title: 'Hata!',
+                text: 'Zimmet kayıt edilirken bir hata oluştu',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })
+        }
+    }
+
+
+
 
     function dogrula() {
         var uyari = "";
@@ -119,6 +220,9 @@
 
 
 
+
+
+
     function popupclose() {
         $('#exampleModal').modal('hide');
         $("#frm-envanterKayit")[0].reset();
@@ -134,7 +238,7 @@
                 success: function (data) {
                     popupclose()
                     $("#ajax-main").html(data);
-                    
+
 
                     Swal.fire({
                         title: 'Başarılı!',
@@ -153,15 +257,15 @@
                 success: function (data) {
                     popupclose()
                     $("#ajax-main").html(data);
-                   
-                    
+
+
                     Swal.fire({
                         title: 'Başarılı!',
                         text: 'Envanter Güncellenmiştir',
                         icon: 'success',
                         confirmButtonText: 'Cool'
                     })
-                    
+
 
                 }
 
@@ -175,7 +279,7 @@
                 icon: 'error',
                 confirmButtonText: 'Cool'
             })
-           
+
 
         }
 

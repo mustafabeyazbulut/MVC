@@ -30,13 +30,20 @@
             </div>
 
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal">
-                <img src="~/Content/svg/add.svg" />
+
+                <img src="~/Content/svg/ooplus-square-fill.svg" />
             </button>
-            <button id="kontrol" class="btn btn-default" onclick="selectMe()" >
-                <img src="~/Content/svg/update.svg" />
+            <button id="kontrol" class="btn btn-default" onclick="selectUpdate()">
+           
+                <img src="~/Content/svg/oocheck-square-fill.svg" />
             </button>
-            <button id="kontrol" class="btn btn-default" onclick="selectMe()" data-toggle="modal" data-target="#exampleModal">
-                <img src="~/Content/svg/delete.svg" />
+            <button id="kontrol" class="btn btn-default" onclick="silmeSelect()">
+                <img src="~/Content/svg/oodash-square-fill.svg" />
+            </button>
+            <button id="kontrol" class="btn btn-default" onclick="zimmetSelect()">
+
+                <img src="~/Content/svg/bag-plus-fill.svg" />
+
             </button>
         </div>
     </div>
@@ -54,9 +61,10 @@
                data-show-pagination-switch="true"
                data-pagination="true"
                data-show-columns="true"
-               data-show-footer="true">
+               data-show-footer="true"
+                data-unique-id="id">
 
-            <thead>
+            <thead class="text-center">
                 <tr>
                     <th data-field="state" data-checkbox="true"></th>
                     <th data-field="id" data-filter-control="select" data-sortable="true">ID</th>
@@ -68,7 +76,7 @@
                     <th data-field="kaydeden" data-filter-control="select" data-sortable="false">Kaydeden</th>
                     <th data-field="Şube" data-filter-control="select" data-sortable="false">Şube</th>
                     <th data-field="Durum" data-filter-control="select" data-sortable="true">Durum</th>
-                    <th data-field="aktiflik" data-filter-control="select" data-sortable="true">Aktiflik</th>
+                    <th data-field="aktiflik" data-filter-control="select" data-sortable="true" data-filter-default="True">Aktiflik</th>
                     <th data-field="markaid" data-visible="false"></th>
                     <th data-field="subeid" data-visible="false"></th>
                     <th data-field="cinsid" data-visible="false"></th>
@@ -101,8 +109,20 @@
         </table>
     </div>
     <script type="text/javascript">
+        
 
-        function selectMe() {
+        function zimmetSelect() {
+
+            var _id = getIdSelections(1)
+            if (_id.length >= 1) {
+                $('#zimmetkayitModal').modal('show');
+
+                $("#EnvanterStrng_ID").val(_id);
+            }
+        }
+
+
+        function selectUpdate() {
             //$('#table').bootstrapTable("checkBy", {
             //    field: 'id',
             //    values: ["30"]
@@ -127,6 +147,67 @@
         }
 
 
+        function silmeSelect() {
+
+            var _id = getIdSelections(1)
+            var _aktiflik = getIdSelections(7)
+            var _Durum = getIdSelections(8)
+            
+
+            if (_id.length >= 1) {
+                Swal.fire({
+                    title: 'Seçili kayıtları silmek istediğinizden emin misiniz?',
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    cancelButtonText: 'iptal',
+                    confirmButtonText: 'Sil',
+                    denyButtonText: `Silme`,
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+
+                        var postData = { values: _id };
+
+                        $.ajax({
+                            type: "POST",
+                            url: "/Envanter/EnvanterSil",
+                            data: postData,
+                            success: function (data) {
+
+                                if (data.Result == "-1") {
+                                    Swal.fire('Bir hata oluştu.', '', 'info')
+                                    return;
+                                } else if (data.Result == "1"){
+
+                                    for (let i = 0; i < _id.length; i++) { // kayıtları tablodan siler data-field:id ye göre
+                                        if (_aktiflik[i] == "True" && _Durum[i] =="Zimmetlenebilir") {
+                                            $table.bootstrapTable('updateByUniqueId', {
+                                                id: _id[i],
+                                                row: {
+                                                    Durum: 'Silindi',
+                                                    aktiflik: 'False'
+                                                }
+                                            });
+                                        }
+                                    }
+
+                                    Swal.fire('Silme işlemi gerçekleştirildi.', '', 'info')
+                                }
+                            },
+                            dataType: "json",
+                            traditional: true
+                        });
+
+
+                    } else if (result.isDenied) {
+                        Swal.fire('Silme işlemi iptal edildi.', '', 'info')
+                    }
+                })
+            }
+        }
+
+
+
         function getIdSelections(i) { // table seçili checkbox'a göre id
             switch (i) {
                 case 1:
@@ -149,6 +230,14 @@
                 case 6:
 
                     return $.map($table.bootstrapTable('getSelections'), ({ subeid }) => subeid);
+                    break;
+                case 7:
+
+                    return $.map($table.bootstrapTable('getSelections'), ({ aktiflik }) => aktiflik);
+                    break;
+                case 8:
+
+                    return $.map($table.bootstrapTable('getSelections'), ({ Durum }) => Durum);
                     break;
             }
         }

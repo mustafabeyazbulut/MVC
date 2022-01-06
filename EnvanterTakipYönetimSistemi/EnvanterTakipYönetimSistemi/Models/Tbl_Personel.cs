@@ -19,6 +19,8 @@ namespace EnvanterTakipYönetimSistemi.Models
         {
             this.Tbl_Duyuru = new HashSet<Tbl_Duyuru>();
             this.Tbl_Envanter = new HashSet<Tbl_Envanter>();
+            this.Tbl_Zimmet = new HashSet<Tbl_Zimmet>();
+            this.Tbl_Zimmet1 = new HashSet<Tbl_Zimmet>();
         }
     
         public int Per_ID { get; set; }
@@ -37,5 +39,9 @@ namespace EnvanterTakipYönetimSistemi.Models
         public virtual ICollection<Tbl_Envanter> Tbl_Envanter { get; set; }
         public virtual Tbl_P_Rol Tbl_P_Rol { get; set; }
         public virtual Tbl_P_Sube Tbl_P_Sube { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_Zimmet> Tbl_Zimmet { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_Zimmet> Tbl_Zimmet1 { get; set; }
     }
 }

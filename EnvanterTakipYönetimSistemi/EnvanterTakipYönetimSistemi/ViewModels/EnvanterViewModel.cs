@@ -22,9 +22,6 @@ namespace EnvanterTakipYönetimSistemi.ViewModels
         public DateTime EnvanterKayitTarih { get; set; }
         public int EnvanterKaydeden_ID { get; set; }
         public string EnvanterKaydeden { get; set; }
-
-
-
         public string EnvanterSube { get; set; }
         public List<EnvanterViewModel> TabloEnvanterList { get; set; }
 
@@ -38,7 +35,12 @@ namespace EnvanterTakipYönetimSistemi.ViewModels
 
         public int EnvanterSube_ID { get; set; }
         public List<SelectListItem> SubeList { get; set; }
-     
+
+        public int Zimmetlenen_ID { get; set; }
+        public List<SelectListItem> ZimmetlenenList { get; set; }
+
+        public string[] EnvanterStrng_ID { get; set; }
+
     }
 
 }

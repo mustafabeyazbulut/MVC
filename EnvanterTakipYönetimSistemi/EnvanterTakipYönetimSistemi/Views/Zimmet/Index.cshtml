@@ -1,0 +1,224 @@
+﻿@using EnvanterTakipYönetimSistemi.ViewModels
+@model ZimmetViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Zimmet Listesi</h1>
+<p> Bu alanda şirketinizde çalışan personellerin zimmet listesi bulunmaktadır. Bu listede bulunan zimmet bilgileri üzerinde düzenlemeler yapılamaz. Yeni zimmet tanımlama, iade ve silme işlemleri yapabilirsiniz.</p>
+
+
+<div id="ajax-main">
+    @Html.Partial("_ZimmetTablo", @Model)
+</div>
+
+
+<!-- Modal Zimmet Kayıt -->
+<div class="modal fade" id="kayitModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Zimmet Ekleme İşlemi</h5>
+                <button type="button" class="close" data-dismiss="modal" onclick="kayitclose()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                @using (Ajax.BeginForm("ZimmetKayit", "Zimmet", FormMethod.Post, new AjaxOptions { OnSuccess = "ZimmetKayit", OnBegin = "return kayitKontrol();" }, new { data_show_subtext = "true", id = "frm-zimmetKayit" }))
+                {
+
+                    <div style="position:center">
+                        Kullanıcı:
+                        @Html.DropDownListFor(m => m.Kullanacak_ID, Model.KullanacakList, new { style = "height: 30px; width: 300px; position:absolute;left:100px;" })
+
+                    </div>
+                    <br />
+                    <div>
+                        Ürün:
+                        @Html.DropDownListFor(m => m.Urun_ID, Model.UrunList, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+                    </div>
+                    <br />
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="kayitclose()">Çıkış</button>
+                        <button type="submit" class="btn btn-primary" value="Kaydet">Kaydet</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Zimmet iade -->
+<div class="modal fade" id="iadeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Zimmet İade İşlemi</h5>
+                <button type="button" class="close" data-dismiss="modal" onclick="iadeclose()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                @using (Ajax.BeginForm("ZimmetIade", "Zimmet", FormMethod.Post, new AjaxOptions { OnSuccess = "ZimmetIade", OnBegin = "return iadeKontrol();" }, new { data_show_subtext = "true", id = "frm-iade" }))
+                {
+
+                    @Html.HiddenFor(m => m.Zimmet_ID)
+                <div>
+                    İade Açıklaması:
+                    <br />
+                    @Html.TextAreaFor(m => m.ZimmetAciklama, 10, 55, new { style = "height: 100px; width: 300px;position:absolute;left:100px;" })
+                </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="iadeclose()">Çıkış</button>
+                        <button type="submit" class="btn btn-primary" value="Kaydet">Kaydet</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="~/Content/Table/javaS/jquery.unobtrusive-ajax.js"></script>
+
+
+<script type="text/javascript">
+
+    function kayitKontrol() {
+        var uyari = "";
+        var kontrol = 0;
+
+        if ($("#Kullanacak_ID").val() == null || $("#Kullanacak_ID").val() == "") {
+            uyari += "Lütfen Kullanacak Personeli Seçiniz.<br />"
+            kontrol = 1
+        }
+        if ($("#Urun_ID").val() == null || $("#Urun_ID").val() == "") {
+            uyari += "Lütfen Ürün Seçiniz. <br/>"
+            kontrol = 1
+        }
+        if (kontrol == 1) {
+            Swal.fire({
+                title: 'Hata!',
+                html: uyari,
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
+            return false;
+
+        } else { return true; }
+
+    }
+
+    function iadeKontrol() {
+        var uyari = "";
+        var kontrol = 0;
+
+        if ($("#Zimmet_ID").val() == null || $("#Zimmet_ID").val() == "") {
+            uyari += "Kayıt seçerken bir hata oluştu.<br />"
+            kontrol = 1
+        }
+        if ($("#ZimmetAciklama").val() == null || $("#ZimmetAciklama").val() == "") {
+            uyari += "Lütfen Açıklama giriniz. <br/>"
+            kontrol = 1
+        }
+        if (kontrol == 1) {
+            Swal.fire({
+                title: 'Hata!',
+                html: uyari,
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
+            return false;
+
+        } else { return true; }
+
+    }
+
+    function iadeclose() {
+        $('#iadeModal').modal('hide');
+        $("#frm-iade")[0].reset();
+    }
+
+    function kayitclose() {
+        $('#kayitModal').modal('hide');
+        $("#frm-zimmetKayit")[0].reset();
+    }
+
+    function ZimmetKayit(result) {
+        if (result == "1") {
+
+            $.ajax({
+                url: '/Zimmet/Index',
+                type: 'get',
+                dataType: 'html',
+                success: function (data) {
+                    kayitclose()
+                    $("#ajax-main").html(data);
+
+                    Swal.fire({
+                        title: 'Başarılı!',
+                        text: 'Ürün Zimmetlenmiştir.',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+                }
+            });
+        } else if (result == "-1") {
+
+            Swal.fire({
+                title: 'Hata!',
+                text: 'Zimmet kayıt edilirken bir hata oluştu',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })
+        }
+
+    }
+
+
+    function ZimmetIade(result) {
+        if (result == "1") {
+
+            $.ajax({
+                url: '/Zimmet/Index',
+                type: 'get',
+                dataType: 'html',
+                success: function (data) {
+                    iadeclose()
+                    $("#ajax-main").html(data);
+
+                    Swal.fire({
+                        title: 'Başarılı!',
+                        text: 'Ürün iade edilmiştir.',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+                }
+            });
+        } else if (result == "-1") {
+
+            Swal.fire({
+                title: 'Hata!',
+                text: 'Zimmet iade edilirken bir hata oluştu',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })
+        }
+
+    }
+
+
+</script>

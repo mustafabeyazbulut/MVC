@@ -16,7 +16,7 @@ namespace EnvanterTakipYönetimSistemi.Controllers
         [LoginControl]
         public ActionResult Index(EnvanterViewModel model)
         {
-            model.TabloEnvanterList = (from x in db.Tbl_Envanter.Where(f => (f.Env_Kayit == true)).OrderByDescending(f => f.Env_ID)
+            model.TabloEnvanterList = (from x in db.Tbl_Envanter.OrderByDescending(f => f.Env_ID)
                                        select new EnvanterViewModel
                                        {
                                            Envanter_ID = x.Env_ID,
@@ -62,6 +62,18 @@ namespace EnvanterTakipYönetimSistemi.Controllers
                                   Value = x.Sube_ID.ToString()
                               }).ToList();
             model.SubeList.Insert(0, new SelectListItem { Value = "", Text = "Seçiniz", Selected = true });
+
+
+            List<Tbl_Personel> personellist = db.Tbl_Personel.Where(f => f.Per_Kayit == true).OrderBy(f => f.Sube_ID).ToList();
+            model.ZimmetlenenList = (from x in personellist
+                                     select new SelectListItem
+                              {
+                                  Text = x.Per_Ad+" "+x.Per_Soyad,
+                                  Value = x.Per_ID.ToString()
+                              }).ToList();
+            model.ZimmetlenenList.Insert(0, new SelectListItem { Value = "", Text = "Seçiniz", Selected = true });
+
+
 
             if (Request.IsAjaxRequest()) // index sayfası ilk defa açılmadıysa sadece tabloyu günceller
             {
@@ -143,12 +155,69 @@ namespace EnvanterTakipYönetimSistemi.Controllers
                 return "1"; // yeni kayıt oluştuysa 1 döner
             }
         }
-        [HttpPost]
-        public JsonResult EnvanterGetir(int[] id)
-        {
-            EnvanterViewModel model = new EnvanterViewModel();
 
-            return Json(model, JsonRequestBehavior.AllowGet);
+
+        [HttpPost]
+        public JsonResult EnvanterSil(List<string> values)
+        {
+            if (values == null) return Json(new { Result = "-1" });
+
+            foreach (string ids in values)
+            {
+                
+                int id = Convert.ToInt32(ids);
+
+                var silEnv = (from x in db.Tbl_Envanter
+                              where x.Env_ID == id
+                              select x).FirstOrDefault();
+
+                if (silEnv.Env_Kayit == true && silEnv.Env_Durum== "Zimmetlenebilir") // daha önce silindiyse herhangi bir işlem yapmasına gerek yok. Zimmetliyse silinemez
+                {
+                    silEnv.Per_ID = Convert.ToInt32(Session["Per_ID"]);
+                    silEnv.Env_Kayit = false;
+                    silEnv.Env_Durum = "Silindi";
+                    db.SaveChanges();
+                }
+               
+            }
+            return Json(new { Result = "1" });
         }
+
+
+        [HttpPost]
+        public string E_ZimmetKayit(EnvanterViewModel model)
+        {
+            if (model == null) return "-1";
+
+
+            foreach(var stringid in model.EnvanterStrng_ID[0].Split(','))
+            {
+                int id = Convert.ToInt32(stringid);
+                var envanter = (from x in db.Tbl_Envanter.Where(f => (f.Env_ID == id))
+                                select x).FirstOrDefault();
+
+                if(envanter.Env_Durum == "Zimmetlenebilir" && envanter.Env_Kayit==true)
+                {
+                    Tbl_Zimmet yeniZimmet = new Tbl_Zimmet();
+                    yeniZimmet.Kullanan_ID = model.Zimmetlenen_ID;
+                    yeniZimmet.Env_ID = id;
+                    yeniZimmet.Zimmetleyen_ID = Convert.ToInt32(Session["Per_ID"]);
+                    yeniZimmet.Zim_Tarih = DateTime.Now;
+                    yeniZimmet.Zim_IadeTarih = DateTime.Parse("0001-01-01");
+                    yeniZimmet.Zim_Aciklama = "";
+                    yeniZimmet.Zim_Kayit = true;
+                    db.Tbl_Zimmet.Add(yeniZimmet);
+
+                    envanter.Env_Durum = "Zimmetli";
+                }
+            }
+            db.SaveChanges();
+
+            return "1";
+        }
+
+
+
+
     }
 }

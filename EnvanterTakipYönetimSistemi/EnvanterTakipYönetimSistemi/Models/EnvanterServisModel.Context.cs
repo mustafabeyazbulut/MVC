@@ -32,5 +32,6 @@ namespace EnvanterTakipYönetimSistemi.Models
         public virtual DbSet<Tbl_P_Rol> Tbl_P_Rol { get; set; }
         public virtual DbSet<Tbl_P_Sube> Tbl_P_Sube { get; set; }
         public virtual DbSet<Tbl_Personel> Tbl_Personel { get; set; }
+        public virtual DbSet<Tbl_Zimmet> Tbl_Zimmet { get; set; }
     }
 }
