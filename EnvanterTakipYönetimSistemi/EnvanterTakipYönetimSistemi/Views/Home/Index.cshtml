@@ -10,8 +10,8 @@
 <div class="cards">
     <div class="card-single">
         <div>
-            <h1>50</h1>
-            <span>Envanter</span>
+            <h1>@Model.DashboardList[0].Envanterim</h1>
+            <span>Envanterim</span>
         </div>
         <div>
             <span class="fas fa-users"></span>
@@ -19,24 +19,24 @@
     </div>
     <div class="card-single">
         <div>
-            <h1>12</h1>
-            <span>Talep</span>
+            <h1>@Model.DashboardList[0].TalepAdet</h1>
+            <span>Taleplerim</span>
         </div>
         <div>
-            <span class="fas fa-clipboard-list"></span>
+            <span class="fas fa-users"></span>
         </div>
     </div>
     <div class="card-single">
         <div>
-            <h1>15</h1>
-            <span>Servis</span>
+            <h1>@Model.DashboardList[0].ServisAdet</h1>
+            <span>Serviste Bekleyen</span>
         </div>
         <div>
-            <span class="fas fa-shopping-cart"></span>
+            <span class="fas fa-users"></span>
         </div>
     </div>
-    <div class="card-single" >
-        <div id="clock" >
+    <div class="card-single">
+        <div id="clock">
 
             <span class="date">{{ date }}</span>
             <h1 class="time">{{ time }}</h1>
@@ -59,25 +59,36 @@
         </div>
         <div class="card-single">
             <div>
-                <h1>12</h1>
-                <span>Toplam Talep</span>
+                <h1>@Model.DashboardList[0].EnvanterToplamKullanilanAdet</h1>
+                <span>Toplam Kullanılan Envanter</span>
             </div>
             <div>
-                <span class="fas fa-clipboard-list"></span>
+                <span class="fas fa-users"></span>
             </div>
         </div>
         <div class="card-single">
             <div>
-                <h1>15</h1>
-                <span>Toplam Servis</span>
+                <h1>@Model.DashboardList[0].TalepToplamAdet</h1>
+                <span>Toplam Talepler</span>
             </div>
             <div>
-                <span class="fas fa-shopping-cart"></span>
+                <span class="fas fa-users"></span>
             </div>
         </div>
+        <div class="card-single">
+            <div>
+                <h1>@Model.DashboardList[0].ServisToplamAdet</h1>
+                <span>Toplam Serviste Bekleyen</span>
+            </div>
+            <div>
+                <span class="fas fa-users"></span>
+            </div>
+        </div>
+
+
     }
 
-    </div>
+</div>
 <script src="~/Content/Home/vue.min.js"></script>
 <script src="~/Content/Home/script.js"></script>
 

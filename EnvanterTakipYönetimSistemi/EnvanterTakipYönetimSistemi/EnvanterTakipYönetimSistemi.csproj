@@ -112,6 +112,7 @@
     <Content Include="Content\svg\arrow-return-left.svg" />
     <Content Include="Content\svg\bag-plus-fill.svg" />
     <Content Include="Content\svg\box-arrow-up.svg" />
+    <Content Include="Content\svg\cart-dash-fill.svg" />
     <Content Include="Content\svg\delete.svg" />
     <Content Include="Content\svg\facebook.svg" />
     <Content Include="Content\svg\google.svg" />
@@ -122,6 +123,7 @@
     <Content Include="Content\svg\person-check-fill.svg" />
     <Content Include="Content\svg\person-dash-fill.svg" />
     <Content Include="Content\svg\person-plus-fill.svg" />
+    <Content Include="Content\svg\return-box.png" />
     <Content Include="Content\svg\update.svg" />
     <Content Include="Content\Table\css\all.css" />
     <Content Include="Content\Table\css\bootstrap-table.min.css" />

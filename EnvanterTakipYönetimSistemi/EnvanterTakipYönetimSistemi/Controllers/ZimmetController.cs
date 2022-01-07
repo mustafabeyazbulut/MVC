@@ -17,7 +17,7 @@ namespace EnvanterTakipYönetimSistemi.Controllers
         [LoginControl]
         public ActionResult Index(ZimmetViewModel model)
         {
-            model.ZimmetList = (from x in db.Tbl_Zimmet.OrderByDescending(f => f.Env_ID)
+            model.ZimmetList = (from x in db.Tbl_Zimmet.OrderByDescending(f => f.Zim_ID)
                                 select new ZimmetViewModel
                                 {
                                     Zimmet_ID = x.Zim_ID,

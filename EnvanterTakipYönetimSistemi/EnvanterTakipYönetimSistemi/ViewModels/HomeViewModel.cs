@@ -21,13 +21,14 @@ namespace EnvanterTakipYönetimSistemi.ViewModels
     }
     public class DashboardHomeViewModel
     {
-        //public int EnvanterAdet { get; set; }
-        //public int TalepAdet { get; set; }
-        //public int ServisAdet { get; set; }
+        public int Envanterim { get; set; }
+        public int TalepAdet { get; set; }
+        public int ServisAdet { get; set; }
 
         public int EnvanterToplamAdet { get; set; }
-        //public int TalepToplamAdet { get; set; }
-        //public int ServisToplamAdet { get; set; }
+        public int EnvanterToplamKullanilanAdet { get; set; }
+        public int TalepToplamAdet { get; set; }
+        public int ServisToplamAdet { get; set; }
     }
 
 }
