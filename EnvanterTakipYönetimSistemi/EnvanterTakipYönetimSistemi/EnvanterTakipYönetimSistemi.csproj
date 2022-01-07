@@ -183,8 +183,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DuyuruController.cs" />
     <Compile Include="Controllers\EnvanterController.cs" />
+    <Compile Include="Controllers\EnvanterimController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ServislerimController.cs" />
     <Compile Include="Controllers\TaleplerimController.cs" />
     <Compile Include="Controllers\ZimmetController.cs" />
     <Compile Include="Global.asax.cs">
@@ -265,6 +267,8 @@
     <Content Include="Views\Personel\_PersonelTablo.cshtml" />
     <Content Include="Views\Zimmet\Index.cshtml" />
     <Content Include="Views\Zimmet\_ZimmetTablo.cshtml" />
+    <Content Include="Views\Servislerim\Index.cshtml" />
+    <Content Include="Views\Envanterim\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
