@@ -79,3 +79,4 @@ C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakip
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\EntityFramework.SqlServer.dll
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\EntityFramework.xml
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\EntityFramework.SqlServer.xml
+C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\obj\Debug\EnvanterTakipYönetimSistemi.csproj.AssemblyReference.cache

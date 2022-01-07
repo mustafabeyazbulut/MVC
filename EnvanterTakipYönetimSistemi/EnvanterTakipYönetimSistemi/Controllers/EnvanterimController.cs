@@ -18,9 +18,11 @@ namespace EnvanterTakipYönetimSistemi.Controllers
         [LoginControl]
         public ActionResult Index(EnvanterimViewModel model)
         {
+            DateTime iadetarih = DateTime.Parse("0001-01-01");
             int kullaniciID = Convert.ToInt32(Session["Per_ID"]);
-            model.EnvanterimList = (from x in db.Tbl_Zimmet.Where(k=>k.Kullanan_ID==kullaniciID).OrderByDescending(f => f.Zim_ID)
-                                select new EnvanterimViewModel
+            model.EnvanterimList = (from x in db.Tbl_Zimmet.Where(k=>k.Kullanan_ID==kullaniciID && k.Tbl_Envanter.Env_Durum != "Silindi")
+                                    .Where(k => k.Zim_Kayit == false && k.Zim_IadeTarih != iadetarih || k.Zim_Kayit == true).OrderByDescending(f => f.Zim_ID)
+                                    select new EnvanterimViewModel
                                 {
                                     Zimmet_ID = x.Zim_ID,
                                     Z_EnvanterID = (int)x.Env_ID,
