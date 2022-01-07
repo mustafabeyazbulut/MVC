@@ -1,8 +1,120 @@
-﻿
+﻿@using EnvanterTakipYönetimSistemi.ViewModels
+@model EnvanterimViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<h1>Envanter Listesi</h1>
+<p> Bu alanda sizin kullanımınızda olan envanter listesi bulunmaktadır. Bu liste üzerinde bulunan envanterleriniz için destek talebinde bulunabilirsiniz. Listede bir yanlışlık olduğunu düşüyorsanız Sistem Yöneticisi ile irtibata geçiniz.
 
-<h2>Index</h2>
 
+<div id="ajax-main">
+    @Html.Partial("_EnvanterimTablo", @Model)
+</div>
+
+
+<!-- Modal Zimmet iade -->
+<div class="modal fade" id="EnvanterimDestekModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Envanter Destek Talebi</h5>
+                <button type="button" class="close" data-dismiss="modal" onclick="iadeclose()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                @using (Ajax.BeginForm("EnvanterimDestek", "Zimmet", FormMethod.Post, new AjaxOptions { OnSuccess = "EnvanterimDestek", OnBegin = "return destekKontrol();" }, new { data_show_subtext = "true", id = "frm-EnvanterimDestek" }))
+                {
+
+                    @Html.HiddenFor(m => m.Zimmet_ID)
+                    <div>
+                        İade Açıklaması:
+                        <br />
+                        @Html.TextAreaFor(m => m.ZimmetAciklama, 10, 55, new { style = "height: 100px; width: 300px;position:absolute;left:100px;" })
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="iadeclose()">Çıkış</button>
+                        <button type="submit" class="btn btn-primary" value="Kaydet">Kaydet</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Content/Table/javaS/jquery.unobtrusive-ajax.js"></script>
+
+
+<script type="text/javascript">
+
+    function destekKontrol() {
+        var uyari = "";
+        var kontrol = 0;
+
+        if ($("#Zimmet_ID").val() == null || $("#Zimmet_ID").val() == "") {
+            uyari += "Kayıt seçerken bir hata oluştu.<br />"
+            kontrol = 1
+        }
+        if ($("#ZimmetAciklama").val() == null || $("#ZimmetAciklama").val() == "") {
+            uyari += "Lütfen Açıklama giriniz. <br/>"
+            kontrol = 1
+        }
+        if (kontrol == 1) {
+            Swal.fire({
+                title: 'Hata!',
+                html: uyari,
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
+            return false;
+
+        } else { return true; }
+
+    }
+
+    function iadeclose() {
+        $('#EnvanterimDestekModal').modal('hide');
+        $("#frm-EnvanterimDestek")[0].reset();
+    }
+
+    function EnvanterimDestek(result) {
+        if (result == "1") {
+
+            $.ajax({
+                url: '/Envanterim/Index',
+                type: 'get',
+                dataType: 'html',
+                success: function (data) {
+                    iadeclose()
+                    $("#ajax-main").html(data);
+
+                    Swal.fire({
+                        title: 'Başarılı!',
+                        text: 'Ürün iade edilmiştir.',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+                }
+            });
+        } else if (result == "-1") {
+
+            Swal.fire({
+                title: 'Hata!',
+                text: 'Zimmet iade edilirken bir hata oluştu',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })
+        }
+
+    }
+
+
+</script>

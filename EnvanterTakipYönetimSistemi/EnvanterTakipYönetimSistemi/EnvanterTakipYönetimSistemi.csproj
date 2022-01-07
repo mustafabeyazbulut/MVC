@@ -111,6 +111,9 @@
     <Content Include="Content\svg\add.svg" />
     <Content Include="Content\svg\arrow-return-left.svg" />
     <Content Include="Content\svg\bag-plus-fill.svg" />
+    <Content Include="Content\svg\battery-charging.svg" />
+    <Content Include="Content\svg\battery-full.svg" />
+    <Content Include="Content\svg\battery-half.svg" />
     <Content Include="Content\svg\box-arrow-up.svg" />
     <Content Include="Content\svg\cart-dash-fill.svg" />
     <Content Include="Content\svg\delete.svg" />
@@ -235,6 +238,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\DuyuruViewModel.cs" />
+    <Compile Include="ViewModels\EnvanterimViewModel.cs" />
     <Compile Include="ViewModels\EnvanterViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
@@ -269,6 +273,7 @@
     <Content Include="Views\Zimmet\_ZimmetTablo.cshtml" />
     <Content Include="Views\Servislerim\Index.cshtml" />
     <Content Include="Views\Envanterim\Index.cshtml" />
+    <Content Include="Views\Envanterim\_EnvanterimTablo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

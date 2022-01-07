@@ -1,0 +1,179 @@
+﻿@using EnvanterTakipYönetimSistemi.ViewModels
+@model EnvanterimViewModel
+
+<!doctype html>
+<html lang="tr">
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="~/Content/Table/css/bootstrap-table.min.css" rel="stylesheet" />
+    <link href="~/Content/Table/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+</head>
+
+
+<body>
+    <div id="toolbar" class="select">
+        <div class="form-inline" role="form">
+            <div id="toolbar">
+                <select class="form-control">
+                    <option value="all">Tümünü Dışa Aktar</option>
+                    <option value="selected">Seçimi Dışa Aktar</option>
+                </select>
+            </div>
+
+            <button id="kontrol" class="btn btn-default" onclick="destekSelect()">
+
+                <img src="~/Content/svg/battery-half.svg" />
+            </button>
+        </div>
+    </div>
+
+    <div id="wrapper">
+        <table id="table"
+               data-toggle="table"
+               data-toolbar="#toolbar"
+               data-search="true"
+               data-filter-control="true"
+               data-show-export="true"
+               data-single-select="false"
+               data-click-to-select="true"
+               data-maintain-meta-data="false"
+               data-show-pagination-switch="true"
+               data-pagination="true"
+               data-show-columns="true"
+               data-show-footer="true"
+               data-unique-id="id">
+
+            <thead class="text-center">
+                <tr>
+                    <th data-field="state" rowspan="2" data-checkbox="true"></th>
+                    <th data-field="id" rowspan="2" data-filter-control="select" data-sortable="true">ID</th>
+                    <th data-field="envantergroup" colspan="4">Envanter</th>
+                    <th data-field="tarih" rowspan="2" data-filter-control="select" data-sortable="false">Zimmet Tarihi</th>
+                    <th data-field="iadetarih" rowspan="2" data-filter-control="select" data-sortable="false">Zimmet İade Tarihi</th>
+                    <th data-field="aciklama" rowspan="2" data-visible="false" data-sortable="true">Açıklama</th>
+                    <th data-field="aktif" rowspan="2" data-filter-control="select" data-sortable="true" data-filter-default="True">Aktif</th>
+                </tr>
+
+                <tr>
+                    <th data-field="cinsi" data-filter-control="select" data-sortable="true">Cinsi</th>
+                    <th data-field="marka" data-filter-control="select" data-sortable="false">Marka</th>
+                    <th data-field="models" data-filter-control="input" data-sortable="false">Model</th>
+                    <th data-field="serino" data-filter-control="input" data-sortable="false">SeriNo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var zimmet in Model.EnvanterimList)
+                {
+                    <tr>
+                        <td class="bs-checkbox ">
+                            <input name="btSelectItem" type="checkbox">
+                        </td>
+                        <td>@zimmet.Zimmet_ID </td>
+                        <td>@zimmet.Z_EnvanterCinsAdi</td>
+                        <td>@zimmet.Z_EnvanterMarkaAdi</td>
+                        <td>@zimmet.Z_EnvanterModel</td>
+                        <td>@zimmet.Z_EnvanterSeriNo</td>
+                        <td>@zimmet.ZimmetTarih.ToString("dd/MM/yyyy")</td>
+                        <td>@zimmet.ZimmetIadeTarih.ToString("dd/MM/yyyy")</td>
+                        <td>@zimmet.ZimmetAciklama</td>
+                        <td>@zimmet.ZimmetKayit</td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript">
+
+        function destekSelect() {
+
+            var _id = getIdSelections(1)
+            var _aciklama = getIdSelections(10)
+
+            if (_id.length >= 1) {
+                $('#EnvanterimDestekModal').modal('show');
+
+                $("#Zimmet_ID").val(_id[0]);
+                $("#ZimmetAciklama").val(_aciklama[0]);
+            }
+        }
+
+        function removeIDSelections(i) {
+            return $.map($table.bootstrapTable('remove'), ({ id }) => id);
+        }
+
+
+
+        function getIdSelections(i) { // table seçili checkbox'a göre id
+            switch (i) {
+                case 1:
+                    return $.map($table.bootstrapTable('getSelections'), ({ id }) => id);
+                    break;
+                case 2:
+                    return $.map($table.bootstrapTable('getSelections'), ({ cinsi }) => cinsi);
+                    break;
+                case 3:
+                    return $.map($table.bootstrapTable('getSelections'), ({ marka }) => marka);
+                    break;
+                case 4:
+
+                    return $.map($table.bootstrapTable('getSelections'), ({ models }) => models);
+                    break;
+                case 5:
+
+                    return $.map($table.bootstrapTable('getSelections'), ({ serino }) => serino);
+                    break;
+                case 6:
+
+                    return $.map($table.bootstrapTable('getSelections'), ({ tarih }) => tarih);
+                    break;
+                case 7:
+                    return $.map($table.bootstrapTable('getSelections'), ({ iadetarih }) => iadetarih);
+                    break;
+                case 8:
+                    return $.map($table.bootstrapTable('getSelections'), ({ aciklama }) => aciklama);
+                    break;
+                case 9:
+                    return $.map($table.bootstrapTable('getSelections'), ({ aktif }) => aktif);
+                    break;
+            }
+        }
+
+
+
+    </script>
+
+    <script src="~/Content/Table/javaS/jquery-3.2.1.slim.min.js"></script>
+    <script src="~/Content/Table/javaS/jquery.min.js"></script>
+    <script src="~/Content/Table/javaS/popper.min.js"></script>
+    <script src="~/Content/Table/javaS/bootstrap.min.js"></script>
+
+
+
+    <script src="~/Content/Table/javaS/tableExport.min.js"></script>
+    <script src="~/Content/Table/javaS/jspdf.min.js"></script>
+    <script src="~/Content/Table/javaS/jspdf.plugin.autotable.js"></script>
+    <script src="~/Content/Table/javaS/bootstrap-table.min.js"></script>
+    <script src="~/Content/Table/javaS/bootstrap-table-export.min.js"></script>
+    <script src="~/Content/Table/javaS/seciliExscript.js"></script>
+    <script src="~/Content/Table/javaS/bootstrap-table-filter-control.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+
+</html>

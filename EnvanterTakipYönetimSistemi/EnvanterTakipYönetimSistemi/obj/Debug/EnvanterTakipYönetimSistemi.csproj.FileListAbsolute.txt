@@ -71,7 +71,6 @@ C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakip
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\tr\System.Web.Webpages.Razor.resources.dll
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\tr\System.Web.Helpers.resources.dll
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\tr\System.Web.Mvc.resources.dll
-C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\obj\Debug\EnvanterTakipYönetimSistemi.csproj.AssemblyReference.cache
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\obj\Debug\EnvanterTakipYönetimSistemi.csproj.CoreCompileInputs.cache
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\obj\Debug\EnvanterTakipYönetimSistemi.csproj.CopyComplete
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\obj\Debug\EnvanterTakipYönetimSistemi.dll
