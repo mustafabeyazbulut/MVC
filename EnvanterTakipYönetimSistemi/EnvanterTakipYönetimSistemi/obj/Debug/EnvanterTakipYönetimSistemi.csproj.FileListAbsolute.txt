@@ -50,6 +50,8 @@ C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakip
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\roslyn\vbc.rsp
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\roslyn\VBCSCompiler.exe
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\EntityFramework.dll
+C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\EntityFramework.SqlServer.dll
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\System.Web.Helpers.dll
@@ -58,6 +60,8 @@ C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakip
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\System.Web.Webpages.Deployment.dll
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\System.Web.Webpages.dll
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\System.Web.Webpages.Razor.dll
+C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\EntityFramework.xml
+C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\EntityFramework.SqlServer.xml
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\System.Web.Razor.xml
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\System.Web.Webpages.xml
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\System.Web.Webpages.Deployment.xml
@@ -75,8 +79,4 @@ C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakip
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\obj\Debug\EnvanterTakipYönetimSistemi.csproj.CopyComplete
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\obj\Debug\EnvanterTakipYönetimSistemi.dll
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\obj\Debug\EnvanterTakipYönetimSistemi.pdb
-C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\EntityFramework.dll
-C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\EntityFramework.SqlServer.dll
-C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\EntityFramework.xml
-C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\bin\EntityFramework.SqlServer.xml
 C:\Users\mustafa\Documents\GitHub\MVC\EnvanterTakipYönetimSistemi\EnvanterTakipYönetimSistemi\obj\Debug\EnvanterTakipYönetimSistemi.csproj.AssemblyReference.cache

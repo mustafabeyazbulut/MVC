@@ -110,6 +110,7 @@
     <Content Include="Content\popupstyle.css" />
     <Content Include="Content\svg\add.svg" />
     <Content Include="Content\svg\arrow-return-left.svg" />
+    <Content Include="Content\svg\arrow-up-left-square-fill.svg" />
     <Content Include="Content\svg\bag-plus-fill.svg" />
     <Content Include="Content\svg\battery-charging.svg" />
     <Content Include="Content\svg\battery-full.svg" />
@@ -126,6 +127,7 @@
     <Content Include="Content\svg\person-check-fill.svg" />
     <Content Include="Content\svg\person-dash-fill.svg" />
     <Content Include="Content\svg\person-plus-fill.svg" />
+    <Content Include="Content\svg\question-square-fill.svg" />
     <Content Include="Content\svg\return-box.png" />
     <Content Include="Content\svg\update.svg" />
     <Content Include="Content\Table\css\all.css" />
