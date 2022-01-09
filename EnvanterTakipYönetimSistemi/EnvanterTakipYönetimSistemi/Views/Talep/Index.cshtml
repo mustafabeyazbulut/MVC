@@ -8,8 +8,8 @@
 <!--Taleplerim Sayfası    -->
 
 
-<h1>Taleplerim</h1>
-<p> Bu alanda oluşturmuş olduğunuz Talep destekleriniz bulunmaktadır. Bu listede bulunan talep açıklama alanını güncelleyebilir , talep silebilir ve yeni talep oluşturabilirsiniz.</p>
+<h1>Talep Listesi</h1>
+<p> Bu alanda şirket personelleri tarafından oluşturulan Talep destekleri bulunmaktadır. Bu listede bulunan talep açıklama alanını güncelleyebilir , talep silebilir ve yeni talep oluşturabilirsiniz.</p>
 
 
 <div id="ajax-main">
@@ -20,8 +20,8 @@
 <div class="modal fade" id="kayitModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Talep oluşturma İşlemi</h5>
+            <div  class="modal-header">
+                <h5 class="modal-title"  id="exampleModalLabel">Talep oluşturma İşlemi</h5>
                 <button type="button" class="close" data-dismiss="modal" onclick="talepclose()" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -31,10 +31,12 @@
                 @using (Ajax.BeginForm("TalepKayit", "Talep", FormMethod.Post, new AjaxOptions { OnSuccess = "TalepKayit", OnBegin = "return kayitKontrol();" }, new { data_show_subtext = "true", id = "frm-TalepKayit" }))
                 {
 
-                    <div>
-                        Ürün:
-                        @Html.DropDownListFor(m => m.Urun_ID, Model.UrunList, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
-                    </div>
+                <div>
+                    Ürün Ara :<input type="text" id="userInput" style="height: 30px; width: 100px;position:absolute;left:100px;" onkeyup="Func()">
+                    <br />
+                    <br />
+                    Ürün Seç: @Html.DropDownListFor(m => m.Urun_ID, Model.UrunList, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+                </div>
                     <br />
                     <br />
                     <div>
@@ -48,7 +50,7 @@
                     <br />
                     <br />
                     <br />
-                    <br />
+  
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="talepclose()">Çıkış</button>
                         <button type="submit" class="btn btn-primary" value="Kaydet">Kaydet</button>
@@ -235,6 +237,31 @@
             })
 
 
+        }
+    }
+
+    function Func() {
+        var input, filter, a;
+
+        // take user input
+        input = document.getElementById("userInput");
+
+        // convert the input to upper case letter for easy comparison
+        filter = input.value.toUpperCase();
+
+        div = document.getElementById("Urun_ID");
+
+        // get all the options as a list
+        a = div.getElementsByTagName("option");
+
+        // iterate through the entire list and output relevant results if found
+        for (var i = 0; i < a.length; i++) {
+            txtValue = a[i].textContent || a[i].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                a[i].style.display = "";
+            } else {
+                a[i].style.display = "none";
+            }
         }
     }
 </script>

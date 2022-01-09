@@ -53,6 +53,16 @@
     <Property Name="EnvMarka_Adi" Type="nvarchar" MaxLength="50" />
     <Property Name="EnvMarka_Kayit" Type="bit" />
   </EntityType>
+  <EntityType Name="Tbl_P_Firma">
+    <Key>
+      <PropertyRef Name="FirmaID" />
+    </Key>
+    <Property Name="FirmaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirmaAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="FirmaAdres" Type="nvarchar" MaxLength="50" />
+    <Property Name="FirmaTelefon" Type="nvarchar" MaxLength="50" />
+    <Property Name="FirmaKayit" Type="bit" />
+  </EntityType>
   <EntityType Name="Tbl_P_Rol">
     <Key>
       <PropertyRef Name="Rol_Value" />
@@ -82,6 +92,21 @@
     <Property Name="Per_Rol" Type="char" MaxLength="1" />
     <Property Name="Per_SonGirisTarihi" Type="smalldatetime" />
     <Property Name="Per_Kayit" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ENVSERVYS.dbo.Tbl_Servis' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Tbl_Servis">
+    <Key>
+      <PropertyRef Name="Serv_ID" />
+    </Key>
+    <Property Name="Serv_ID" Type="int" Nullable="false" />
+    <Property Name="Serv_FirmaID" Type="int" />
+    <Property Name="Serv_Bilgi" Type="varchar" MaxLength="50" />
+    <Property Name="Serv_GondTarih" Type="date" />
+    <Property Name="Serv_GelmeTarih" Type="date" />
+    <Property Name="Env_ID" Type="int" />
+    <Property Name="Per_ID" Type="int" />
+    <Property Name="Serv_Kayit" Type="int" />
   </EntityType>
   <EntityType Name="Tbl_Zimmet">
     <Key>
@@ -204,6 +229,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Tbl_Servis_Tbl_Envanter">
+    <End Role="Tbl_Envanter" Type="Self.Tbl_Envanter" Multiplicity="0..1" />
+    <End Role="Tbl_Servis" Type="Self.Tbl_Servis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Envanter">
+        <PropertyRef Name="Env_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Servis">
+        <PropertyRef Name="Env_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_Servis_Tbl_P_Firma">
+    <End Role="Tbl_P_Firma" Type="Self.Tbl_P_Firma" Multiplicity="0..1" />
+    <End Role="Tbl_Servis" Type="Self.Tbl_Servis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_P_Firma">
+        <PropertyRef Name="FirmaID" />
+      </Principal>
+      <Dependent Role="Tbl_Servis">
+        <PropertyRef Name="Serv_FirmaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_Servis_Tbl_Personel">
+    <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="0..1" />
+    <End Role="Tbl_Servis" Type="Self.Tbl_Servis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Personel">
+        <PropertyRef Name="Per_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Servis">
+        <PropertyRef Name="Per_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Tbl_Zimmet_Tbl_Envanter">
     <End Role="Tbl_Envanter" Type="Self.Tbl_Envanter" Multiplicity="0..1" />
     <End Role="Tbl_Zimmet" Type="Self.Tbl_Zimmet" Multiplicity="*" />
@@ -246,10 +307,23 @@
     <EntitySet Name="Tbl_Envanter" EntityType="Self.Tbl_Envanter" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_P_EnvanterCinsi" EntityType="Self.Tbl_P_EnvanterCinsi" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_P_EnvanterMarka" EntityType="Self.Tbl_P_EnvanterMarka" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_P_Firma" EntityType="Self.Tbl_P_Firma" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_P_Rol" EntityType="Self.Tbl_P_Rol" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_P_Sube" EntityType="Self.Tbl_P_Sube" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_Personel" EntityType="Self.Tbl_Personel" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_Zimmet" EntityType="Self.Tbl_Zimmet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Servis" EntityType="Self.Tbl_Servis" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Tbl_Servis].[Serv_ID] AS [Serv_ID], 
+    [Tbl_Servis].[Serv_FirmaID] AS [Serv_FirmaID], 
+    [Tbl_Servis].[Serv_Bilgi] AS [Serv_Bilgi], 
+    [Tbl_Servis].[Serv_GondTarih] AS [Serv_GondTarih], 
+    [Tbl_Servis].[Serv_GelmeTarih] AS [Serv_GelmeTarih], 
+    [Tbl_Servis].[Env_ID] AS [Env_ID], 
+    [Tbl_Servis].[Per_ID] AS [Per_ID], 
+    [Tbl_Servis].[Serv_Kayit] AS [Serv_Kayit]
+    FROM [dbo].[Tbl_Servis] AS [Tbl_Servis]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_Duyuru_Personel" Association="Self.FK_Duyuru_Personel">
       <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
       <End Role="Tbl_Duyuru" EntitySet="Tbl_Duyuru" />
@@ -285,6 +359,18 @@
     <AssociationSet Name="FK_Tbl_Personel_Tbl_P_Sube" Association="Self.FK_Tbl_Personel_Tbl_P_Sube">
       <End Role="Tbl_P_Sube" EntitySet="Tbl_P_Sube" />
       <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Servis_Tbl_Envanter" Association="Self.FK_Tbl_Servis_Tbl_Envanter">
+      <End Role="Tbl_Envanter" EntitySet="Tbl_Envanter" />
+      <End Role="Tbl_Servis" EntitySet="Tbl_Servis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Servis_Tbl_P_Firma" Association="Self.FK_Tbl_Servis_Tbl_P_Firma">
+      <End Role="Tbl_P_Firma" EntitySet="Tbl_P_Firma" />
+      <End Role="Tbl_Servis" EntitySet="Tbl_Servis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Servis_Tbl_Personel" Association="Self.FK_Tbl_Servis_Tbl_Personel">
+      <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+      <End Role="Tbl_Servis" EntitySet="Tbl_Servis" />
     </AssociationSet>
     <AssociationSet Name="FK_Tbl_Zimmet_Tbl_Envanter" Association="Self.FK_Tbl_Zimmet_Tbl_Envanter">
       <End Role="Tbl_Envanter" EntitySet="Tbl_Envanter" />

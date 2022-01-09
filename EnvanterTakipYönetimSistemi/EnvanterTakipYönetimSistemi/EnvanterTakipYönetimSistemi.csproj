@@ -235,10 +235,16 @@
     <Compile Include="Models\Tbl_P_EnvanterMarka.cs">
       <DependentUpon>EnvanterServisModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Tbl_P_Firma.cs">
+      <DependentUpon>EnvanterServisModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tbl_P_Rol.cs">
       <DependentUpon>EnvanterServisModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_P_Sube.cs">
+      <DependentUpon>EnvanterServisModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_Servis.cs">
       <DependentUpon>EnvanterServisModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_Zimmet.cs">
@@ -289,6 +295,9 @@
     <Content Include="Views\Talep\Index.cshtml" />
     <Content Include="Views\Talep\_TalepTablo.cshtml" />
     <Content Include="Views\Taleplerim\_TaleplerimTablo.cshtml" />
+    <Content Include="Views\Servis\Index.cshtml" />
+    <Content Include="Views\Servis\_ServisTablo.cshtml" />
+    <Content Include="Views\Servislerim\_ServislerimTablo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -298,7 +307,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Servis\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

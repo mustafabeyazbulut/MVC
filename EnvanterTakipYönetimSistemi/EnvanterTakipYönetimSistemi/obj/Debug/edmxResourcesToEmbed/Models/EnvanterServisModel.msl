@@ -59,6 +59,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_P_Firma">
+      <EntityTypeMapping TypeName="ENVSERVYSModel.Tbl_P_Firma">
+        <MappingFragment StoreEntitySet="Tbl_P_Firma">
+          <ScalarProperty Name="FirmaKayit" ColumnName="FirmaKayit" />
+          <ScalarProperty Name="FirmaTelefon" ColumnName="FirmaTelefon" />
+          <ScalarProperty Name="FirmaAdres" ColumnName="FirmaAdres" />
+          <ScalarProperty Name="FirmaAdi" ColumnName="FirmaAdi" />
+          <ScalarProperty Name="FirmaID" ColumnName="FirmaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Tbl_P_Rol">
       <EntityTypeMapping TypeName="ENVSERVYSModel.Tbl_P_Rol">
         <MappingFragment StoreEntitySet="Tbl_P_Rol">
@@ -103,6 +114,20 @@
           <ScalarProperty Name="Env_ID" ColumnName="Env_ID" />
           <ScalarProperty Name="Kullanan_ID" ColumnName="Kullanan_ID" />
           <ScalarProperty Name="Zim_ID" ColumnName="Zim_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Servis">
+      <EntityTypeMapping TypeName="ENVSERVYSModel.Tbl_Servis">
+        <MappingFragment StoreEntitySet="Tbl_Servis">
+          <ScalarProperty Name="Serv_Kayit" ColumnName="Serv_Kayit" />
+          <ScalarProperty Name="Per_ID" ColumnName="Per_ID" />
+          <ScalarProperty Name="Env_ID" ColumnName="Env_ID" />
+          <ScalarProperty Name="Serv_GelmeTarih" ColumnName="Serv_GelmeTarih" />
+          <ScalarProperty Name="Serv_GondTarih" ColumnName="Serv_GondTarih" />
+          <ScalarProperty Name="Serv_Bilgi" ColumnName="Serv_Bilgi" />
+          <ScalarProperty Name="Serv_FirmaID" ColumnName="Serv_FirmaID" />
+          <ScalarProperty Name="Serv_ID" ColumnName="Serv_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

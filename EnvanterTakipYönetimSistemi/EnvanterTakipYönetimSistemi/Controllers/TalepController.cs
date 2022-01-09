@@ -36,7 +36,7 @@ namespace EnvanterTakipYönetimSistemi.Controllers
                                         TalepKayit = (bool)x.Arz_Kayit
                                     }).ToList();
 
-            List<Tbl_Zimmet> urunlist = db.Tbl_Zimmet.Where(f => f.Zim_Kayit == true).Where(f => f.Kullanan_ID == kullaniciID).OrderBy(f => f.Env_ID).ToList();
+            List<Tbl_Zimmet> urunlist = db.Tbl_Zimmet.Where(f => f.Zim_Kayit == true).OrderBy(f => f.Env_ID).ToList();
             model.UrunList = (from x in urunlist
                               select new SelectListItem
                               {
@@ -62,6 +62,10 @@ namespace EnvanterTakipYönetimSistemi.Controllers
             {
                 int kullaniciID = Convert.ToInt32(Session["Per_ID"]);
 
+                var zimmet= (from x in db.Tbl_Zimmet
+                             where x.Zim_Kayit == true && x.Env_ID == model.Urun_ID
+                             select x).FirstOrDefault(); // personel id için hangi kullanıcıya zimmetli ona bakıyoruz
+
 
                 var Ariza = (from x in db.Tbl_Ariza
                              where x.Arz_Kayit == true && x.Env_ID == model.Urun_ID
@@ -73,7 +77,7 @@ namespace EnvanterTakipYönetimSistemi.Controllers
                 arizaYeni.Arz_Bilgi = model.TalepBilgiYeni;
                 arizaYeni.Env_ID = model.Urun_ID;
                 arizaYeni.Arz_Durum = "Talep";
-                arizaYeni.Per_ID = kullaniciID;
+                arizaYeni.Per_ID = zimmet.Kullanan_ID;
                 arizaYeni.Arz_Tarih = DateTime.Now;
                 arizaYeni.Arz_Kayit = true;
                 db.Tbl_Ariza.Add(arizaYeni);
