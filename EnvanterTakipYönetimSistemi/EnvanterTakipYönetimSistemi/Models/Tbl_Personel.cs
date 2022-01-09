@@ -17,6 +17,7 @@ namespace EnvanterTakipYönetimSistemi.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tbl_Personel()
         {
+            this.Tbl_Ariza = new HashSet<Tbl_Ariza>();
             this.Tbl_Duyuru = new HashSet<Tbl_Duyuru>();
             this.Tbl_Envanter = new HashSet<Tbl_Envanter>();
             this.Tbl_Zimmet = new HashSet<Tbl_Zimmet>();
@@ -33,6 +34,8 @@ namespace EnvanterTakipYönetimSistemi.Models
         public Nullable<System.DateTime> Per_SonGirisTarihi { get; set; }
         public Nullable<bool> Per_Kayit { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_Ariza> Tbl_Ariza { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_Duyuru> Tbl_Duyuru { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

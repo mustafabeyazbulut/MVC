@@ -20,6 +20,9 @@ namespace EnvanterTakipYönetimSistemi.ViewModels
         public string ZimmetAciklama { get; set; }
         public bool ZimmetKayit { get; set; }
 
+
+        public string ArizaBilgi { get; set; }
+
         public List<EnvanterimViewModel> EnvanterimList { get; set; }
 
     }

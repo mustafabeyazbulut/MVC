@@ -25,6 +25,7 @@ namespace EnvanterTakipYönetimSistemi.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Tbl_Ariza> Tbl_Ariza { get; set; }
         public virtual DbSet<Tbl_Duyuru> Tbl_Duyuru { get; set; }
         public virtual DbSet<Tbl_Envanter> Tbl_Envanter { get; set; }
         public virtual DbSet<Tbl_P_EnvanterCinsi> Tbl_P_EnvanterCinsi { get; set; }

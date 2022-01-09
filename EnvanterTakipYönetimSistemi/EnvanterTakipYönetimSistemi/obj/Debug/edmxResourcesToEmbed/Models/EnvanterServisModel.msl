@@ -1,6 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ENVSERVYSModelStoreContainer" CdmEntityContainer="EnvanterServisEntities">
+    <EntitySetMapping Name="Tbl_Ariza">
+      <EntityTypeMapping TypeName="ENVSERVYSModel.Tbl_Ariza">
+        <MappingFragment StoreEntitySet="Tbl_Ariza">
+          <ScalarProperty Name="Arz_Kayit" ColumnName="Arz_Kayit" />
+          <ScalarProperty Name="Env_ID" ColumnName="Env_ID" />
+          <ScalarProperty Name="Per_ID" ColumnName="Per_ID" />
+          <ScalarProperty Name="Arz_Tarih" ColumnName="Arz_Tarih" />
+          <ScalarProperty Name="Arz_Durum" ColumnName="Arz_Durum" />
+          <ScalarProperty Name="Arz_Bilgi" ColumnName="Arz_Bilgi" />
+          <ScalarProperty Name="Arz_ID" ColumnName="Arz_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Tbl_Duyuru">
       <EntityTypeMapping TypeName="ENVSERVYSModel.Tbl_Duyuru">
         <MappingFragment StoreEntitySet="Tbl_Duyuru">

@@ -5,6 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ENVSERVYSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Tbl_Ariza">
+          <Key>
+            <PropertyRef Name="Arz_ID" />
+          </Key>
+          <Property Name="Arz_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Arz_Bilgi" Type="varchar" MaxLength="50" />
+          <Property Name="Arz_Durum" Type="varchar" MaxLength="50" />
+          <Property Name="Arz_Tarih" Type="date" />
+          <Property Name="Per_ID" Type="int" />
+          <Property Name="Env_ID" Type="int" />
+          <Property Name="Arz_Kayit" Type="bit" />
+        </EntityType>
         <EntityType Name="Tbl_Duyuru">
           <Key>
             <PropertyRef Name="D_ID" />
@@ -97,6 +109,30 @@
               <PropertyRef Name="Per_ID" />
             </Principal>
             <Dependent Role="Tbl_Duyuru">
+              <PropertyRef Name="Per_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Ariza_Tbl_Envanter">
+          <End Role="Tbl_Envanter" Type="Self.Tbl_Envanter" Multiplicity="0..1" />
+          <End Role="Tbl_Ariza" Type="Self.Tbl_Ariza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Envanter">
+              <PropertyRef Name="Env_ID" />
+            </Principal>
+            <Dependent Role="Tbl_Ariza">
+              <PropertyRef Name="Env_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Ariza_Tbl_Personel">
+          <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="0..1" />
+          <End Role="Tbl_Ariza" Type="Self.Tbl_Ariza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Personel">
+              <PropertyRef Name="Per_ID" />
+            </Principal>
+            <Dependent Role="Tbl_Ariza">
               <PropertyRef Name="Per_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -210,6 +246,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ENVSERVYSModelStoreContainer">
+          <EntitySet Name="Tbl_Ariza" EntityType="Self.Tbl_Ariza" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Duyuru" EntityType="Self.Tbl_Duyuru" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Envanter" EntityType="Self.Tbl_Envanter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_P_EnvanterCinsi" EntityType="Self.Tbl_P_EnvanterCinsi" Schema="dbo" store:Type="Tables" />
@@ -221,6 +258,14 @@
           <AssociationSet Name="FK_Duyuru_Personel" Association="Self.FK_Duyuru_Personel">
             <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
             <End Role="Tbl_Duyuru" EntitySet="Tbl_Duyuru" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Ariza_Tbl_Envanter" Association="Self.FK_Tbl_Ariza_Tbl_Envanter">
+            <End Role="Tbl_Envanter" EntitySet="Tbl_Envanter" />
+            <End Role="Tbl_Ariza" EntitySet="Tbl_Ariza" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Ariza_Tbl_Personel" Association="Self.FK_Tbl_Ariza_Tbl_Personel">
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+            <End Role="Tbl_Ariza" EntitySet="Tbl_Ariza" />
           </AssociationSet>
           <AssociationSet Name="FK_Tbl_Envanter_Tbl_P_EnvanterCinsi" Association="Self.FK_Tbl_Envanter_Tbl_P_EnvanterCinsi">
             <End Role="Tbl_P_EnvanterCinsi" EntitySet="Tbl_P_EnvanterCinsi" />
@@ -264,6 +309,7 @@
     <edmx:ConceptualModels>
       <Schema Namespace="ENVSERVYSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="EnvanterServisEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Tbl_Ariza" EntityType="ENVSERVYSModel.Tbl_Ariza" />
           <EntitySet Name="Tbl_Duyuru" EntityType="ENVSERVYSModel.Tbl_Duyuru" />
           <EntitySet Name="Tbl_Envanter" EntityType="ENVSERVYSModel.Tbl_Envanter" />
           <EntitySet Name="Tbl_P_EnvanterCinsi" EntityType="ENVSERVYSModel.Tbl_P_EnvanterCinsi" />
@@ -272,6 +318,14 @@
           <EntitySet Name="Tbl_P_Sube" EntityType="ENVSERVYSModel.Tbl_P_Sube" />
           <EntitySet Name="Tbl_Personel" EntityType="ENVSERVYSModel.Tbl_Personel" />
           <EntitySet Name="Tbl_Zimmet" EntityType="ENVSERVYSModel.Tbl_Zimmet" />
+          <AssociationSet Name="FK_Tbl_Ariza_Tbl_Envanter" Association="ENVSERVYSModel.FK_Tbl_Ariza_Tbl_Envanter">
+            <End Role="Tbl_Envanter" EntitySet="Tbl_Envanter" />
+            <End Role="Tbl_Ariza" EntitySet="Tbl_Ariza" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Ariza_Tbl_Personel" Association="ENVSERVYSModel.FK_Tbl_Ariza_Tbl_Personel">
+            <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+            <End Role="Tbl_Ariza" EntitySet="Tbl_Ariza" />
+          </AssociationSet>
           <AssociationSet Name="FK_Duyuru_Personel" Association="ENVSERVYSModel.FK_Duyuru_Personel">
             <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
             <End Role="Tbl_Duyuru" EntitySet="Tbl_Duyuru" />
@@ -313,6 +367,20 @@
             <End Role="Tbl_Zimmet" EntitySet="Tbl_Zimmet" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Tbl_Ariza">
+          <Key>
+            <PropertyRef Name="Arz_ID" />
+          </Key>
+          <Property Name="Arz_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Arz_Bilgi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Arz_Durum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Arz_Tarih" Type="DateTime" Precision="0" />
+          <Property Name="Per_ID" Type="Int32" />
+          <Property Name="Env_ID" Type="Int32" />
+          <Property Name="Arz_Kayit" Type="Boolean" />
+          <NavigationProperty Name="Tbl_Envanter" Relationship="ENVSERVYSModel.FK_Tbl_Ariza_Tbl_Envanter" FromRole="Tbl_Ariza" ToRole="Tbl_Envanter" />
+          <NavigationProperty Name="Tbl_Personel" Relationship="ENVSERVYSModel.FK_Tbl_Ariza_Tbl_Personel" FromRole="Tbl_Ariza" ToRole="Tbl_Personel" />
+        </EntityType>
         <EntityType Name="Tbl_Duyuru">
           <Key>
             <PropertyRef Name="D_ID" />
@@ -338,6 +406,7 @@
           <Property Name="Env_Tarih" Type="DateTime" Precision="0" />
           <Property Name="Per_ID" Type="Int32" />
           <Property Name="Sube_ID" Type="Int32" />
+          <NavigationProperty Name="Tbl_Ariza" Relationship="ENVSERVYSModel.FK_Tbl_Ariza_Tbl_Envanter" FromRole="Tbl_Envanter" ToRole="Tbl_Ariza" />
           <NavigationProperty Name="Tbl_P_EnvanterCinsi" Relationship="ENVSERVYSModel.FK_Tbl_Envanter_Tbl_P_EnvanterCinsi" FromRole="Tbl_Envanter" ToRole="Tbl_P_EnvanterCinsi" />
           <NavigationProperty Name="Tbl_P_EnvanterMarka" Relationship="ENVSERVYSModel.FK_Tbl_Envanter_Tbl_P_EnvanterMarka" FromRole="Tbl_Envanter" ToRole="Tbl_P_EnvanterMarka" />
           <NavigationProperty Name="Tbl_P_Sube" Relationship="ENVSERVYSModel.FK_Tbl_Envanter_Tbl_P_Sube" FromRole="Tbl_Envanter" ToRole="Tbl_P_Sube" />
@@ -394,6 +463,7 @@
           <Property Name="Per_Rol" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="Per_SonGirisTarihi" Type="DateTime" Precision="0" />
           <Property Name="Per_Kayit" Type="Boolean" />
+          <NavigationProperty Name="Tbl_Ariza" Relationship="ENVSERVYSModel.FK_Tbl_Ariza_Tbl_Personel" FromRole="Tbl_Personel" ToRole="Tbl_Ariza" />
           <NavigationProperty Name="Tbl_Duyuru" Relationship="ENVSERVYSModel.FK_Duyuru_Personel" FromRole="Tbl_Personel" ToRole="Tbl_Duyuru" />
           <NavigationProperty Name="Tbl_Envanter" Relationship="ENVSERVYSModel.FK_Tbl_Envanter_Tbl_Personel" FromRole="Tbl_Personel" ToRole="Tbl_Envanter" />
           <NavigationProperty Name="Tbl_P_Rol" Relationship="ENVSERVYSModel.FK_Tbl_Personel_Tbl_P_Rol" FromRole="Tbl_Personel" ToRole="Tbl_P_Rol" />
@@ -417,6 +487,30 @@
           <NavigationProperty Name="Tbl_Personel" Relationship="ENVSERVYSModel.FK_Tbl_Zimmet_Tbl_Personel" FromRole="Tbl_Zimmet" ToRole="Tbl_Personel" />
           <NavigationProperty Name="Tbl_Personel1" Relationship="ENVSERVYSModel.FK_Tbl_Zimmet_Tbl_Personel1" FromRole="Tbl_Zimmet" ToRole="Tbl_Personel" />
         </EntityType>
+        <Association Name="FK_Tbl_Ariza_Tbl_Envanter">
+          <End Type="ENVSERVYSModel.Tbl_Envanter" Role="Tbl_Envanter" Multiplicity="0..1" />
+          <End Type="ENVSERVYSModel.Tbl_Ariza" Role="Tbl_Ariza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Envanter">
+              <PropertyRef Name="Env_ID" />
+            </Principal>
+            <Dependent Role="Tbl_Ariza">
+              <PropertyRef Name="Env_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Ariza_Tbl_Personel">
+          <End Type="ENVSERVYSModel.Tbl_Personel" Role="Tbl_Personel" Multiplicity="0..1" />
+          <End Type="ENVSERVYSModel.Tbl_Ariza" Role="Tbl_Ariza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Personel">
+              <PropertyRef Name="Per_ID" />
+            </Principal>
+            <Dependent Role="Tbl_Ariza">
+              <PropertyRef Name="Per_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Duyuru_Personel">
           <End Type="ENVSERVYSModel.Tbl_Personel" Role="Tbl_Personel" Multiplicity="0..1" />
           <End Type="ENVSERVYSModel.Tbl_Duyuru" Role="Tbl_Duyuru" Multiplicity="*" />
@@ -543,6 +637,19 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ENVSERVYSModelStoreContainer" CdmEntityContainer="EnvanterServisEntities">
+          <EntitySetMapping Name="Tbl_Ariza">
+            <EntityTypeMapping TypeName="ENVSERVYSModel.Tbl_Ariza">
+              <MappingFragment StoreEntitySet="Tbl_Ariza">
+                <ScalarProperty Name="Arz_Kayit" ColumnName="Arz_Kayit" />
+                <ScalarProperty Name="Env_ID" ColumnName="Env_ID" />
+                <ScalarProperty Name="Per_ID" ColumnName="Per_ID" />
+                <ScalarProperty Name="Arz_Tarih" ColumnName="Arz_Tarih" />
+                <ScalarProperty Name="Arz_Durum" ColumnName="Arz_Durum" />
+                <ScalarProperty Name="Arz_Bilgi" ColumnName="Arz_Bilgi" />
+                <ScalarProperty Name="Arz_ID" ColumnName="Arz_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Tbl_Duyuru">
             <EntityTypeMapping TypeName="ENVSERVYSModel.Tbl_Duyuru">
               <MappingFragment StoreEntitySet="Tbl_Duyuru">

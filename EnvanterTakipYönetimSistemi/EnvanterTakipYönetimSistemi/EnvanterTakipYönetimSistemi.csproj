@@ -118,6 +118,7 @@
     <Content Include="Content\svg\box-arrow-up.svg" />
     <Content Include="Content\svg\cart-dash-fill.svg" />
     <Content Include="Content\svg\delete.svg" />
+    <Content Include="Content\svg\exclamation-diamond-fill.svg" />
     <Content Include="Content\svg\facebook.svg" />
     <Content Include="Content\svg\google.svg" />
     <Content Include="Content\svg\linkedin.svg" />
@@ -191,7 +192,9 @@
     <Compile Include="Controllers\EnvanterimController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ServisController.cs" />
     <Compile Include="Controllers\ServislerimController.cs" />
+    <Compile Include="Controllers\TalepController.cs" />
     <Compile Include="Controllers\TaleplerimController.cs" />
     <Compile Include="Controllers\ZimmetController.cs" />
     <Compile Include="Global.asax.cs">
@@ -213,6 +216,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EnvanterServisModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_Ariza.cs">
+      <DependentUpon>EnvanterServisModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_Duyuru.cs">
       <DependentUpon>EnvanterServisModel.tt</DependentUpon>
@@ -245,6 +251,10 @@
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
     <Compile Include="ViewModels\PersonelViewModel.cs" />
+    <Compile Include="ViewModels\ServislerimViewModel.cs" />
+    <Compile Include="ViewModels\ServisViewModel.cs" />
+    <Compile Include="ViewModels\TaleplerimViewModel.cs" />
+    <Compile Include="ViewModels\TalepViewModel.cs" />
     <Compile Include="ViewModels\ZimmetViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -276,6 +286,9 @@
     <Content Include="Views\Servislerim\Index.cshtml" />
     <Content Include="Views\Envanterim\Index.cshtml" />
     <Content Include="Views\Envanterim\_EnvanterimTablo.cshtml" />
+    <Content Include="Views\Talep\Index.cshtml" />
+    <Content Include="Views\Talep\_TalepTablo.cshtml" />
+    <Content Include="Views\Taleplerim\_TaleplerimTablo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -285,6 +298,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Servis\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

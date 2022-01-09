@@ -17,6 +17,7 @@ namespace EnvanterTakipYönetimSistemi.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tbl_Envanter()
         {
+            this.Tbl_Ariza = new HashSet<Tbl_Ariza>();
             this.Tbl_Zimmet = new HashSet<Tbl_Zimmet>();
         }
     
@@ -31,6 +32,8 @@ namespace EnvanterTakipYönetimSistemi.Models
         public Nullable<int> Per_ID { get; set; }
         public Nullable<int> Sube_ID { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_Ariza> Tbl_Ariza { get; set; }
         public virtual Tbl_P_EnvanterCinsi Tbl_P_EnvanterCinsi { get; set; }
         public virtual Tbl_P_EnvanterMarka Tbl_P_EnvanterMarka { get; set; }
         public virtual Tbl_P_Sube Tbl_P_Sube { get; set; }

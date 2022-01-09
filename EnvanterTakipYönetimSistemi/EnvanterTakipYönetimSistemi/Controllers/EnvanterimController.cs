@@ -48,9 +48,37 @@ namespace EnvanterTakipYönetimSistemi.Controllers
         }
 
         [HttpPost]
-        public string EnvanterimDestek()
+        public string EnvanterimDestek(EnvanterimViewModel model)
         {
-            return "1";
+            try
+            {
+                int kullaniciID = Convert.ToInt32(Session["Per_ID"]);
+                var env = (from x in db.Tbl_Envanter
+                           where x.Env_Kayit == true && x.Env_SeriNo == model.Z_EnvanterSeriNo
+                           select x).FirstOrDefault();
+                
+                var Ariza = (from x in db.Tbl_Ariza
+                             where x.Arz_Kayit == true && x.Env_ID == env.Env_ID
+                             select x).FirstOrDefault();
+
+                if (Ariza != null) return "-1"; // daha önce kayıt oluşturulduysa işleme izin vermeyecek
+
+                Tbl_Ariza arizaYeni = new Tbl_Ariza();
+                arizaYeni.Arz_Bilgi = model.ArizaBilgi;
+                arizaYeni.Env_ID = env.Env_ID;
+                arizaYeni.Arz_Durum = "Talep";
+                arizaYeni.Per_ID = kullaniciID;
+                arizaYeni.Arz_Tarih = DateTime.Now;
+                arizaYeni.Arz_Kayit = true;
+                db.Tbl_Ariza.Add(arizaYeni);
+                db.SaveChanges();
+
+                return "1";
+            }
+            catch 
+            {
+                return "-1";
+            }
         }
     }
 }

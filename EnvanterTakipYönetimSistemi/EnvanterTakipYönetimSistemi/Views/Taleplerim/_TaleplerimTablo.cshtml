@@ -1,5 +1,5 @@
 ﻿@using EnvanterTakipYönetimSistemi.ViewModels
-@model EnvanterimViewModel
+@model TaleplerimViewModel
 
 <!doctype html>
 <html lang="tr">
@@ -17,6 +17,8 @@
 
 
 <body>
+
+
     <div id="toolbar" class="select">
         <div class="form-inline" role="form">
             <div id="toolbar">
@@ -26,9 +28,15 @@
                 </select>
             </div>
 
-            <button id="kontrol" class="btn btn-default" onclick="destekSelect()">
-                <img src="~/Content/svg/exclamation-diamond-fill.svg" />
-                
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#kayitModal">
+
+                <img src="~/Content/svg/ooplus-square-fill.svg" />
+            </button>
+            <button id="kontrol" class="btn btn-default" onclick="talepGuncelle()">
+                <img src="~/Content/svg/oocheck-square-fill.svg" />
+            </button>
+            <button id="kontrol" class="btn btn-default" onclick="talepSil()">
+                <img src="~/Content/svg/oodash-square-fill.svg" />
             </button>
         </div>
     </div>
@@ -46,20 +54,19 @@
                data-show-pagination-switch="true"
                data-pagination="true"
                data-show-columns="true"
-               data-show-footer="true"
-               data-unique-id="id">
+               data-show-footer="true">
 
             <thead class="text-center">
                 <tr>
-                    <th data-field="state" rowspan="2" data-checkbox="true"></th>
-                    <th data-field="id" rowspan="2" data-filter-control="select" data-sortable="true">ID</th>
-                    <th data-field="envantergroup" colspan="4">Envanter</th>
-                    <th data-field="tarih" rowspan="2" data-filter-control="select" data-sortable="false">Zimmet Tarihi</th>
-                    <th data-field="iadetarih" rowspan="2" data-filter-control="select" data-sortable="false">Zimmet İade Tarihi</th>
-                    <th data-field="aciklama" rowspan="2" data-visible="false" data-sortable="true">Açıklama</th>
-                    <th data-field="aktif" rowspan="2" data-filter-control="select" data-sortable="true" data-filter-default="True">Aktif</th>
-                </tr>
 
+                    <th data-field="state" rowspan="2" data-checkbox="true"></th>
+                    <th data-field="id" rowspan="2" data-filter-control="input" data-sortable="true">ID</th>
+                    <th data-field="envantergroup" colspan="4">Envanter</th>
+                    <th data-field="talepbilgi" rowspan="2" data-filter-control="input" data-sortable="false">Talep Açıklama</th>
+                    <th data-field="durum" rowspan="2" data-filter-control="select" data-sortable="false">Durum</th>
+                    <th data-field="taleptarih" rowspan="2" data-filter-control="select" data-sortable="false">Talep Tarihi</th>
+                    <th data-field="kayit" rowspan="2" data-filter-control="select" data-sortable="true" data-filter-default="True">Kayıt</th>
+                </tr>
                 <tr>
                     <th data-field="cinsi" data-filter-control="select" data-sortable="true">Cinsi</th>
                     <th data-field="marka" data-filter-control="select" data-sortable="false">Marka</th>
@@ -68,21 +75,21 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var zimmet in Model.EnvanterimList)
+                @foreach (var talep in Model.TaleplerimList)
                 {
                     <tr>
                         <td class="bs-checkbox ">
                             <input name="btSelectItem" type="checkbox">
                         </td>
-                        <td>@zimmet.Zimmet_ID </td>
-                        <td>@zimmet.Z_EnvanterCinsAdi</td>
-                        <td>@zimmet.Z_EnvanterMarkaAdi</td>
-                        <td>@zimmet.Z_EnvanterModel</td>
-                        <td>@zimmet.Z_EnvanterSeriNo</td>
-                        <td>@zimmet.ZimmetTarih.ToString("dd/MM/yyyy")</td>
-                        <td>@zimmet.ZimmetIadeTarih.ToString("dd/MM/yyyy")</td>
-                        <td>@zimmet.ZimmetAciklama</td>
-                        <td>@zimmet.ZimmetKayit</td>
+                        <td>@talep.TalepID</td>
+                        <td>@talep.T_EnvanterCinsAdi</td>
+                        <td>@talep.T_EnvanterMarkaAdi</td>
+                        <td>@talep.T_EnvanterModel</td>
+                        <td>@talep.T_EnvanterSeriNo</td>
+                        <td>@talep.TalepBilgi</td>
+                        <td>@talep.TalepDurum</td>
+                        <td>@talep.TalepTarih.ToString("dd/MM/yyyy")</td>
+                        <td>@talep.TalepKayit</td>
                     </tr>
 
                 }
@@ -91,29 +98,32 @@
     </div>
     <script type="text/javascript">
 
-        function destekSelect() {
-
+        function talepGuncelle() {
             var _id = getIdSelections(1)
-            var _serino = getIdSelections(5)
+            var _talepbilgi = getIdSelections(2)
+            var _serino = getIdSelections(3)
 
             if (_id.length >= 1 && _id.length < 2) {
-                $('#EnvanterimDestekModal').modal('show');
+                $('#guncellemeModal').modal('show');
 
-                $("#Z_EnvanterSeriNo").val(_serino [0]);
+                $("#TalepIDGuncelle").val(_id[0]);
+                $("#TalepBilgiGuncelle").val(_talepbilgi[0])
             } else {
                 Swal.fire({
                     title: 'Hata!',
-                    text: 'Sadece bir tane personel seçmelisiniz.',
+                    text: 'Sadece bir tane talep seçmelisiniz.',
                     icon: 'error',
                     confirmButtonText: 'Cool'
                 })
             }
         }
 
-        function removeIDSelections(i) {
-            return $.map($table.bootstrapTable('remove'), ({ id }) => id);
-        }
+        function talepSil() {
+            var _id = getIdSelections(1)
 
+            if (_id.length >= 1) {
+            }
+        }
 
 
         function getIdSelections(i) { // table seçili checkbox'a göre id
@@ -122,31 +132,10 @@
                     return $.map($table.bootstrapTable('getSelections'), ({ id }) => id);
                     break;
                 case 2:
-                    return $.map($table.bootstrapTable('getSelections'), ({ cinsi }) => cinsi);
+                    return $.map($table.bootstrapTable('getSelections'), ({ talepbilgi }) => talepbilgi);
                     break;
                 case 3:
-                    return $.map($table.bootstrapTable('getSelections'), ({ marka }) => marka);
-                    break;
-                case 4:
-
-                    return $.map($table.bootstrapTable('getSelections'), ({ models }) => models);
-                    break;
-                case 5:
-
                     return $.map($table.bootstrapTable('getSelections'), ({ serino }) => serino);
-                    break;
-                case 6:
-
-                    return $.map($table.bootstrapTable('getSelections'), ({ tarih }) => tarih);
-                    break;
-                case 7:
-                    return $.map($table.bootstrapTable('getSelections'), ({ iadetarih }) => iadetarih);
-                    break;
-                case 8:
-                    return $.map($table.bootstrapTable('getSelections'), ({ aciklama }) => aciklama);
-                    break;
-                case 9:
-                    return $.map($table.bootstrapTable('getSelections'), ({ aktif }) => aktif);
                     break;
             }
         }

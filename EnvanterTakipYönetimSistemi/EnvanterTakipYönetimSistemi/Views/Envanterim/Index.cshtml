@@ -19,28 +19,29 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Envanter Destek Talebi</h5>
-                <button type="button" class="close" data-dismiss="modal" onclick="iadeclose()" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" onclick="talepclose()" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
             <div class="modal-body">
-                @using (Ajax.BeginForm("EnvanterimDestek", "Zimmet", FormMethod.Post, new AjaxOptions { OnSuccess = "EnvanterimDestek", OnBegin = "return destekKontrol();" }, new { data_show_subtext = "true", id = "frm-EnvanterimDestek" }))
+                @using (Ajax.BeginForm("EnvanterimDestek", "Envanterim", FormMethod.Post, new AjaxOptions { OnSuccess = "EnvanterimDestek", OnBegin = "return talepKontrol();" }, new { data_show_subtext = "true", id = "frm-EnvanterimDestek" }))
                 {
 
-                    @Html.HiddenFor(m => m.Zimmet_ID)
-                    <div>
-                        İade Açıklaması:
-                        <br />
-                        @Html.TextAreaFor(m => m.ZimmetAciklama, 10, 55, new { style = "height: 100px; width: 300px;position:absolute;left:100px;" })
-                    </div>
+                <div>
+                    @Html.HiddenFor(m => m.Z_EnvanterSeriNo)
+                    Destek talebinizi belirtiniz?
+                    <br />
+                    <br />
+                    @Html.TextAreaFor(m => m.ArizaBilgi, 10, 55, new { style = "height: 100px; width: 300px;position:absolute;left:100px;" })
+                </div>
                     <br />
                     <br />
                     <br />
                     <br />
                     <br />
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="iadeclose()">Çıkış</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="talepclose()">Çıkış</button>
                         <button type="submit" class="btn btn-primary" value="Kaydet">Kaydet</button>
                     </div>
                 }
@@ -55,15 +56,11 @@
 
 <script type="text/javascript">
 
-    function destekKontrol() {
+    function talepKontrol() {
         var uyari = "";
         var kontrol = 0;
 
-        if ($("#Zimmet_ID").val() == null || $("#Zimmet_ID").val() == "") {
-            uyari += "Kayıt seçerken bir hata oluştu.<br />"
-            kontrol = 1
-        }
-        if ($("#ZimmetAciklama").val() == null || $("#ZimmetAciklama").val() == "") {
+        if ($("#ArizaBilgi").val() == null || $("#ArizaBilgi").val() == "") {
             uyari += "Lütfen Açıklama giriniz. <br/>"
             kontrol = 1
         }
@@ -80,7 +77,7 @@
 
     }
 
-    function iadeclose() {
+    function talepclose() {
         $('#EnvanterimDestekModal').modal('hide');
         $("#frm-EnvanterimDestek")[0].reset();
     }
@@ -88,27 +85,19 @@
     function EnvanterimDestek(result) {
         if (result == "1") {
 
-            $.ajax({
-                url: '/Envanterim/Index',
-                type: 'get',
-                dataType: 'html',
-                success: function (data) {
-                    iadeclose()
-                    $("#ajax-main").html(data);
-
-                    Swal.fire({
-                        title: 'Başarılı!',
-                        text: 'Ürün iade edilmiştir.',
-                        icon: 'success',
-                        confirmButtonText: 'Cool'
-                    })
-                }
-            });
+            iadeclose()
+            Swal.fire({
+                title: 'Başarılı!',
+                text: 'Talep oluşturulmuştur.',
+                icon: 'success',
+                confirmButtonText: 'Cool'
+            })
+            
         } else if (result == "-1") {
 
             Swal.fire({
                 title: 'Hata!',
-                text: 'Zimmet iade edilirken bir hata oluştu',
+                text: 'Bekleyen talebiniz bulunmaktadır.',
                 icon: 'error',
                 confirmButtonText: 'Cool'
             })
