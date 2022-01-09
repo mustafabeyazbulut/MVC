@@ -38,11 +38,17 @@ namespace EnvanterTakipYönetimSistemi.Controllers
             var zimmet = (from k in db.Tbl_Zimmet
                             where k.Zim_Kayit == true
                             select k).ToList();
+
+            var talep = (from k in db.Tbl_Ariza
+                          where k.Arz_Kayit == true && k.Arz_Durum == "Talep"
+                         select k).ToList();
+
             int perid = Convert.ToInt32(Session["Per_ID"]);
             int envanterim = zimmet.Where(k => k.Kullanan_ID == perid).ToList().Count;
+            int taleplerim = talep.Where(k => k.Per_ID == perid ).ToList().Count;
 
             List<DashboardHomeViewModel> dlist = new List<DashboardHomeViewModel>();
-            dlist.Insert(0, new DashboardHomeViewModel { EnvanterToplamAdet = envanter.Count, TalepAdet=0, ServisAdet=0, Envanterim = envanterim, EnvanterToplamKullanilanAdet=zimmet.Count, TalepToplamAdet=0, ServisToplamAdet=0 });
+            dlist.Insert(0, new DashboardHomeViewModel { EnvanterToplamAdet = envanter.Count, TalepAdet= taleplerim, ServisAdet=0, Envanterim = envanterim, EnvanterToplamKullanilanAdet=zimmet.Count, TalepToplamAdet=talep.Count, ServisToplamAdet=0 });
 
             model.DashboardList = dlist;
 

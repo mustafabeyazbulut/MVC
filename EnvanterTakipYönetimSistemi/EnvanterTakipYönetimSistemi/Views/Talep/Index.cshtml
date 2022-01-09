@@ -1,8 +1,240 @@
-﻿
+﻿@using EnvanterTakipYönetimSistemi.ViewModels
+@model TaleplerimViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<!--Taleplerim Sayfası    -->
 
+
+<h1>Taleplerim</h1>
+<p> Bu alanda oluşturmuş olduğunuz Talep destekleriniz bulunmaktadır. Bu listede bulunan talep açıklama alanını güncelleyebilir , talep silebilir ve yeni talep oluşturabilirsiniz.</p>
+
+
+<div id="ajax-main">
+    @Html.Partial("_TaleplerimTablo", @Model)
+</div>
+
+<!-- Talep Kayıt -->
+<div class="modal fade" id="kayitModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Talep oluşturma İşlemi</h5>
+                <button type="button" class="close" data-dismiss="modal" onclick="talepclose()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                @using (Ajax.BeginForm("TalepKayit", "Taleplerim", FormMethod.Post, new AjaxOptions { OnSuccess = "TalepKayit", OnBegin = "return kayitKontrol();" }, new { data_show_subtext = "true", id = "frm-TalepKayit" }))
+                {
+
+                    <div>
+                        Ürün:
+                        @Html.DropDownListFor(m => m.Urun_ID, Model.UrunList, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+                    </div>
+                    <br />
+                    <br />
+                    <div>
+                        Talep açıklamasını giriniz :
+                        <br />
+                        <br />
+                        @Html.TextAreaFor(m => m.TalepBilgiYeni, 10, 55, new { style = "height: 100px; width: 300px;position:absolute;left:100px;" })
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="talepclose()">Çıkış</button>
+                        <button type="submit" class="btn btn-primary" value="Kaydet">Kaydet</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Guncelleme Modal -->
+<div class="modal fade" id="guncellemeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Talep güncelleme </h5>
+                <button type="button" class="close" data-dismiss="modal" onclick="guncellemeclose()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @using (Ajax.BeginForm("TalepGuncelleme", "Taleplerim", FormMethod.Post, new AjaxOptions { OnSuccess = "TalepGuncelleme", OnBegin = "return guncelleKontrol();" }, new { id = "frm-TalepGuncelleme" }))
+                {
+                    @Html.HiddenFor(m => m.TalepIDGuncelle)
+                    <br />
+                    <div>
+                        Talep açıklamasını giriniz :
+                        <br />
+                        <br />
+                        @Html.TextAreaFor(m => m.TalepBilgiGuncelle, 10, 55, new { style = "height: 100px; width: 300px;position:absolute;left:100px;" })
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="guncellemeclose()">Çıkış</button>
+                        <button type="submit" class="btn btn-primary" value="Kaydet">Kaydet</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Content/Table/javaS/jquery.unobtrusive-ajax.js"></script>
+
+
+<script type="text/javascript">
+    //document.getElementById('submitButton').onclick = function () {
+    function guncelleKontrol() {
+        var uyari = "";
+        var kontrol = 0;
+        if ($("#TalepIDGuncelle").val() == null || $("#TalepIDGuncelle").val() == "") {
+            uyari += "Talep seçiminde hata oluştu.<br />"
+            kontrol = 1
+        }
+        if ($("#TalepBilgiGuncelle").val() == null || $("#TalepBilgiGuncelle").val() == "") {
+            uyari += "Talep açıklamasını giriniz.<br />"
+            kontrol = 1
+        }
+
+        if (kontrol == 1) {
+
+            Swal.fire({
+                title: 'Hata!',
+                html: uyari,
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
+            return false;
+
+        } else {
+            return true;
+        }
+
+    }
+
+    function kayitKontrol() {
+        var uyari = "";
+        var kontrol = 0;
+
+        if ($("#Urun_ID").val() == null || $("#Urun_ID").val() == "") {
+            uyari += "Lütfen ürün seçiniz.<br />"
+            kontrol = 1
+        }
+        if ($("#TalepBilgiYeni").val() == null || $("#TalepBilgiYeni").val() == "") {
+            uyari += "Lütfen talep açıklaması giriniz.<br />"
+            kontrol = 1
+        }
+
+        if (kontrol == 1) {
+
+            Swal.fire({
+                title: 'Hata!',
+                html: uyari,
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
+            return false;
+
+        } else {
+            return true;
+        }
+
+    }
+    function talepclose() {
+        $('#kayitModal').modal('hide');
+        $("#frm-TalepKayit")[0].reset();
+    }
+
+    function guncellemeclose() {
+        $('#guncellemeModal').modal('hide');
+        $("#frm-TalepGuncelleme")[0].reset();
+    }
+
+
+
+    function TalepKayit(result) {
+        if (result == "1") {
+
+            $.ajax({
+                url: '/Taleplerim/Index',
+                type: 'get',
+                dataType: 'html',
+                success: function (data) {
+                    talepclose()
+                    $("#ajax-main").html(data);
+
+                    Swal.fire({
+                        title: 'Başarılı!',
+                        text: 'Ürün Zimmetlenmiştir.',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+                }
+            });
+
+        } else if (result == "-1") {
+
+            Swal.fire({
+                title: 'Hata!',
+                text: 'Bekleyen talebiniz bulunmaktadır.',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })
+        }
+
+    }
+
+    function TalepGuncelleme(result) {
+        if (result == "1") {
+            $.ajax({
+                url: '/Taleplerim/Index',
+                type: 'get',
+                dataType: 'html',
+                success: function (data) {
+                    guncellemeclose()
+                    $("#ajax-main").html(data);
+                    Swal.fire({
+                        title: 'Başarılı!',
+                        text: 'Talebiniz başarılı bir şekilde güncellenmiştir',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+
+                }
+            });
+
+
+        }
+        else if (result == "-1") {
+
+            Swal.fire({
+                title: 'Hata!',
+                text: 'Talep güncelleme başarısız.',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })
+
+
+        }
+    }
+</script>
