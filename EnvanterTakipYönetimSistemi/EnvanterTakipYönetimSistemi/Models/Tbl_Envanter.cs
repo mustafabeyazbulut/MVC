@@ -18,7 +18,6 @@ namespace EnvanterTakipYönetimSistemi.Models
         public Tbl_Envanter()
         {
             this.Tbl_Ariza = new HashSet<Tbl_Ariza>();
-            this.Tbl_Servis = new HashSet<Tbl_Servis>();
             this.Tbl_Zimmet = new HashSet<Tbl_Zimmet>();
         }
     
@@ -39,8 +38,6 @@ namespace EnvanterTakipYönetimSistemi.Models
         public virtual Tbl_P_EnvanterMarka Tbl_P_EnvanterMarka { get; set; }
         public virtual Tbl_P_Sube Tbl_P_Sube { get; set; }
         public virtual Tbl_Personel Tbl_Personel { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tbl_Servis> Tbl_Servis { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_Zimmet> Tbl_Zimmet { get; set; }
     }

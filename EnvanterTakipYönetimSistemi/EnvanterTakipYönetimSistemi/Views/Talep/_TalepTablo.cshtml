@@ -123,9 +123,64 @@
         }
 
         function talepSil() {
+
             var _id = getIdSelections(1)
 
-            if (_id.length >= 1) {
+
+            if (_id.length >= 1 && _id.length < 2) {
+                Swal.fire({
+                    title: 'Seçili kaydı silmek istediğinizden emin misiniz?',
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    cancelButtonText: 'iptal',
+                    confirmButtonText: 'Sil',
+                    denyButtonText: `Silme`,
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+
+                        var postData = { values: _id };
+
+                        $.ajax({ // post başlangıç
+                            type: "POST",
+                            url: "/Talep/TalepSil",
+                            data: postData,
+                            success: function (data) {
+
+                                if (data.Result == "-1") {
+                                    Swal.fire('Bir hata oluştu.', '', 'info')
+                                    return;
+                                } else if (data.Result == "-2") {
+                                    Swal.fire('Serviste olan ürün silinemez.', '', 'info')
+                                    return;
+                                }
+                                else if (data.Result == "1") {
+
+                                    $.ajax({ // get ile güncel verileri çekme başlangıç
+                                        url: '/Taleplerim/Index',
+                                        type: 'get',
+                                        dataType: 'html',
+                                        success: function (data) {
+                                            talepclose()
+                                            $("#ajax-main").html(data);
+
+                                            Swal.fire('Silme işlemi gerçekleştirildi.', '', 'info')
+                                        }
+                                    });// get ile güncel verileri çekme sonu
+
+
+
+                                }
+                            },
+                            dataType: "json",
+                            traditional: true
+                        }); // post içi
+
+
+                    } else if (result.isDenied) {
+                        Swal.fire('Silme işlemi iptal edildi.', '', 'info')
+                    }
+                })
             }
         }
 

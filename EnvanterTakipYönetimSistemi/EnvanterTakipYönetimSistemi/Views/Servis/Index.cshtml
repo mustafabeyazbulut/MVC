@@ -1,8 +1,25 @@
-﻿
+﻿@using EnvanterTakipYönetimSistemi.ViewModels
+@model ServisViewModel
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h1>Serviste Bekleyen Envanteriniz</h1>
+<p> Bu alanda servise yönlendirilmiş envanter listeniz bulunmaktadır. Bu listeyi sadece görüntüleyebilirsiniz. Herhangi bir işlem yapamazsınız..</p>
 
+
+<div id="ajax-main">
+    @Html.Partial("_ServisTablo", @Model)
+</div>
+
+
+<script src="~/Content/Table/javaS/jquery.unobtrusive-ajax.js"></script>
+
+
+<script type="text/javascript">
+
+
+
+</script>

@@ -19,7 +19,6 @@ namespace EnvanterTakipYönetimSistemi.Controllers
         {
             int kullaniciID = Convert.ToInt32(Session["Per_ID"]);
             model.TalepList = (from x in db.Tbl_Ariza
-                                    where x.Arz_Kayit == true 
                                     select new TalepViewModel
                                     {
                                         TalepID = x.Arz_ID,
@@ -113,6 +112,40 @@ namespace EnvanterTakipYönetimSistemi.Controllers
                 return "-1";
             }
         }
+        [HttpPost]
+        public JsonResult TalepSil(List<string> values)
+        {
+            if (values == null) return Json(new { Result = "-1" });
+
+            foreach (string ids in values)
+            {
+
+                int id = Convert.ToInt32(ids);
+
+                var talepKontrol = (from x in db.Tbl_Servis
+                                    where x.Arz_ID == id
+                                    select x).FirstOrDefault();
+
+                if (talepKontrol == null)
+                {
+
+                    var silTalep = (from x in db.Tbl_Ariza
+                                    where x.Arz_ID == id
+                                    select x).FirstOrDefault();
+
+                    if (silTalep.Arz_Kayit == true && silTalep.Arz_Durum == "Talep") // daha önce silindiyse herhangi bir işlem yapmasına gerek yok. Zimmetliyse silinemez
+                    {
+                        silTalep.Arz_Kayit = false;
+                        silTalep.Arz_Durum = "Silindi";
+                        db.SaveChanges();
+                    }
+                }
+                else return Json(new { Result = "-2" });
+
+            }
+            return Json(new { Result = "1" });
+        }
+
 
 
 

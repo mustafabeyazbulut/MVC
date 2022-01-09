@@ -14,6 +14,12 @@ namespace EnvanterTakipYönetimSistemi.Models
     
     public partial class Tbl_Ariza
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Tbl_Ariza()
+        {
+            this.Tbl_Servis = new HashSet<Tbl_Servis>();
+        }
+    
         public int Arz_ID { get; set; }
         public string Arz_Bilgi { get; set; }
         public string Arz_Durum { get; set; }
@@ -24,5 +30,7 @@ namespace EnvanterTakipYönetimSistemi.Models
     
         public virtual Tbl_Envanter Tbl_Envanter { get; set; }
         public virtual Tbl_Personel Tbl_Personel { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_Servis> Tbl_Servis { get; set; }
     }
 }

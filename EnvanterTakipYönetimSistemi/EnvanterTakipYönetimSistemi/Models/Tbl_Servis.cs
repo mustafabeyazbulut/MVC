@@ -19,11 +19,11 @@ namespace EnvanterTakipYönetimSistemi.Models
         public string Serv_Bilgi { get; set; }
         public Nullable<System.DateTime> Serv_GondTarih { get; set; }
         public Nullable<System.DateTime> Serv_GelmeTarih { get; set; }
-        public Nullable<int> Env_ID { get; set; }
+        public Nullable<int> Arz_ID { get; set; }
         public Nullable<int> Per_ID { get; set; }
-        public Nullable<int> Serv_Kayit { get; set; }
+        public Nullable<bool> Serv_Kayit { get; set; }
     
-        public virtual Tbl_Envanter Tbl_Envanter { get; set; }
+        public virtual Tbl_Ariza Tbl_Ariza { get; set; }
         public virtual Tbl_P_Firma Tbl_P_Firma { get; set; }
         public virtual Tbl_Personel Tbl_Personel { get; set; }
     }
