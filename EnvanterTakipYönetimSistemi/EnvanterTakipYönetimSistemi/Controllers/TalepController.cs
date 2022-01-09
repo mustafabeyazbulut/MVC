@@ -1,4 +1,5 @@
-﻿using EnvanterTakipYönetimSistemi.Models;
+﻿using EnvanterTakipYönetimSistemi.Login;
+using EnvanterTakipYönetimSistemi.Models;
 using EnvanterTakipYönetimSistemi.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,13 @@ namespace EnvanterTakipYönetimSistemi.Controllers
     {
         private EnvanterServisEntities db = new Models.EnvanterServisEntities();
         // GET: Talep
+
+        [LoginControl]
         public ActionResult Index(TalepViewModel model)
         {
             int kullaniciID = Convert.ToInt32(Session["Per_ID"]);
             model.TalepList = (from x in db.Tbl_Ariza
-                                    where x.Arz_Kayit == true && x.Tbl_Personel.Per_ID == kullaniciID
+                                    where x.Arz_Kayit == true 
                                     select new TalepViewModel
                                     {
                                         TalepID = x.Arz_ID,

@@ -1,5 +1,5 @@
 ﻿@using EnvanterTakipYönetimSistemi.ViewModels
-@model TaleplerimViewModel
+@model TalepViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,7 +13,7 @@
 
 
 <div id="ajax-main">
-    @Html.Partial("_TaleplerimTablo", @Model)
+    @Html.Partial("_TalepTablo", @Model)
 </div>
 
 <!-- Talep Kayıt -->
@@ -28,7 +28,7 @@
             </div>
 
             <div class="modal-body">
-                @using (Ajax.BeginForm("TalepKayit", "Taleplerim", FormMethod.Post, new AjaxOptions { OnSuccess = "TalepKayit", OnBegin = "return kayitKontrol();" }, new { data_show_subtext = "true", id = "frm-TalepKayit" }))
+                @using (Ajax.BeginForm("TalepKayit", "Talep", FormMethod.Post, new AjaxOptions { OnSuccess = "TalepKayit", OnBegin = "return kayitKontrol();" }, new { data_show_subtext = "true", id = "frm-TalepKayit" }))
                 {
 
                     <div>
@@ -72,7 +72,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                @using (Ajax.BeginForm("TalepGuncelleme", "Taleplerim", FormMethod.Post, new AjaxOptions { OnSuccess = "TalepGuncelleme", OnBegin = "return guncelleKontrol();" }, new { id = "frm-TalepGuncelleme" }))
+                @using (Ajax.BeginForm("TalepGuncelleme", "Talep", FormMethod.Post, new AjaxOptions { OnSuccess = "TalepGuncelleme", OnBegin = "return guncelleKontrol();" }, new { id = "frm-TalepGuncelleme" }))
                 {
                     @Html.HiddenFor(m => m.TalepIDGuncelle)
                     <br />
@@ -176,7 +176,7 @@
         if (result == "1") {
 
             $.ajax({
-                url: '/Taleplerim/Index',
+                url: '/Talep/Index',
                 type: 'get',
                 dataType: 'html',
                 success: function (data) {
@@ -207,7 +207,7 @@
     function TalepGuncelleme(result) {
         if (result == "1") {
             $.ajax({
-                url: '/Taleplerim/Index',
+                url: '/Talep/Index',
                 type: 'get',
                 dataType: 'html',
                 success: function (data) {
