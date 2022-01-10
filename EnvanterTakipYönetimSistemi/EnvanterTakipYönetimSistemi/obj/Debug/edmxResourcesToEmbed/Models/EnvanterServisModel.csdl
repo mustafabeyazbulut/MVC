@@ -194,7 +194,7 @@
     <Key>
       <PropertyRef Name="Serv_ID" />
     </Key>
-    <Property Name="Serv_ID" Type="Int32" Nullable="false" />
+    <Property Name="Serv_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Serv_FirmaID" Type="Int32" />
     <Property Name="Serv_Bilgi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Serv_GondTarih" Type="DateTime" Precision="0" />

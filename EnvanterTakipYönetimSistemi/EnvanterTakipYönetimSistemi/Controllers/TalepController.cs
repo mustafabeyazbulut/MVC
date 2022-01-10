@@ -44,6 +44,16 @@ namespace EnvanterTakipYönetimSistemi.Controllers
                               }).ToList();
             model.UrunList.Insert(0, new SelectListItem { Value = "", Text = "Seçiniz", Selected = true });
 
+
+            List<Tbl_P_Firma> firmalist = db.Tbl_P_Firma.Where(f => f.FirmaKayit == true).OrderBy(f => f.FirmaID).ToList();
+            model.FirmaList = (from x in firmalist
+                              select new SelectListItem
+                              {
+                                  Text = x.FirmaAdi +" -" +x.FirmaAdres,
+                                  Value = x.FirmaID.ToString()
+                              }).ToList();
+            model.FirmaList.Insert(0, new SelectListItem { Value = "", Text = "Seçiniz", Selected = true });
+
             if (Request.IsAjaxRequest()) // index sayfası ilk defa açılmadıysa sadece tabloyu günceller
             {
                 return PartialView("_TalepTablo", model);
@@ -145,7 +155,48 @@ namespace EnvanterTakipYönetimSistemi.Controllers
             }
             return Json(new { Result = "1" });
         }
+        [HttpPost]
+        public string ServiseGonder(TalepViewModel model)
+        {
+            int kullaniciID = Convert.ToInt32(Session["Per_ID"]);
+            var servis = (from x in db.Tbl_Servis
+                          where x.Serv_Kayit == true && x.Arz_ID == model.Talepid1
+                          select x).FirstOrDefault();
 
+            if (servis != null) return "-1";
+
+            Tbl_Servis yeniservis = new Tbl_Servis();
+
+            yeniservis.Serv_FirmaID = model.Firma_ID;
+            yeniservis.Serv_Bilgi = model.servisAciklama;
+            yeniservis.Serv_GondTarih = DateTime.Now;
+            yeniservis.Serv_GelmeTarih = DateTime.Parse("0001-01-01");
+            yeniservis.Serv_Kayit = true;
+            var talep = (from x in db.Tbl_Ariza
+                         where x.Arz_ID == model.Talepid1
+                         select x).FirstOrDefault();
+            if (model.islem)
+            {
+                yeniservis.Serv_GelmeTarih = DateTime.Now;
+                yeniservis.Serv_Kayit = false;
+
+                if (talep != null) talep.Arz_Durum = "Sonuç";
+  
+            }
+            else talep.Arz_Durum = "Servis";
+
+            yeniservis.Arz_ID = model.Talepid1;
+
+            yeniservis.Per_ID = kullaniciID;
+
+            db.Tbl_Servis.Add(yeniservis);
+
+            db.SaveChanges();
+
+            return "1";
+
+
+        }
 
 
 

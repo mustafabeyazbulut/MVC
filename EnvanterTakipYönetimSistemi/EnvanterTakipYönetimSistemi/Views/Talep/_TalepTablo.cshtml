@@ -38,8 +38,8 @@
             <button id="kontrol" class="btn btn-default" onclick="talepSil()">
                 <img src="~/Content/svg/oodash-square-fill.svg" />
             </button>
-            <button id="kontrol" class="btn btn-default" onclick="talepSil()">
-          
+            <button id="kontrol" class="btn btn-default" onclick="ServisSelect()">
+
                 <img src="~/Content/svg/exclamation-diamond-fill.svg" />
             </button>
         </div>
@@ -183,6 +183,25 @@
                 })
             }
         }
+
+        function ServisSelect() {
+            var _id = getIdSelections(1)
+          
+
+            if (_id.length >= 1 && _id.length < 2) {
+                $('#servisModal').modal('show');
+
+                $("#Talepid1").val(_id[0]);
+            } else {
+                Swal.fire({
+                    title: 'Hata!',
+                    text: 'Sadece bir tane talep seçmelisiniz.',
+                    icon: 'error',
+                    confirmButtonText: 'Cool'
+                })
+            }
+        }
+    
 
 
         function getIdSelections(i) { // table seçili checkbox'a göre id

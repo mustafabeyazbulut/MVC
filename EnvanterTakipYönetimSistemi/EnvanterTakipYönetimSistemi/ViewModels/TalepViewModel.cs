@@ -26,6 +26,12 @@ namespace EnvanterTakipYönetimSistemi.ViewModels
         public string TalepBilgiGuncelle { get; set; }
         public int TalepIDGuncelle { get; set; }
 
+        public int Talepid1 { get; set; }
+        public int Firma_ID { get; set; }
+        public bool islem { get; set; }
+        public string servisAciklama { get; set; }
+        public List<SelectListItem> FirmaList { get; set; }
+
         public int Urun_ID { get; set; }
         public List<SelectListItem> UrunList { get; set; }
     }

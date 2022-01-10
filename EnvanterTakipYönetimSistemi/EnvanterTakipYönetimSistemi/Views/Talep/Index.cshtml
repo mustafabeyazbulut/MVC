@@ -20,8 +20,8 @@
 <div class="modal fade" id="kayitModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div  class="modal-header">
-                <h5 class="modal-title"  id="exampleModalLabel">Talep oluşturma İşlemi</h5>
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Talep oluşturma İşlemi</h5>
                 <button type="button" class="close" data-dismiss="modal" onclick="talepclose()" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -31,12 +31,12 @@
                 @using (Ajax.BeginForm("TalepKayit", "Talep", FormMethod.Post, new AjaxOptions { OnSuccess = "TalepKayit", OnBegin = "return kayitKontrol();" }, new { data_show_subtext = "true", id = "frm-TalepKayit" }))
                 {
 
-                <div>
-                    Ürün Ara :<input type="text" id="userInput" style="height: 30px; width: 100px;position:absolute;left:100px;" onkeyup="Func()">
-                    <br />
-                    <br />
-                    Ürün Seç: @Html.DropDownListFor(m => m.Urun_ID, Model.UrunList, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
-                </div>
+                    <div>
+                        Ürün Ara :<input type="text" id="userInput" style="height: 30px; width: 100px;position:absolute;left:100px;" onkeyup="Func()">
+                        <br />
+                        <br />
+                        Ürün Seç: @Html.DropDownListFor(m => m.Urun_ID, Model.UrunList, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+                    </div>
                     <br />
                     <br />
                     <div>
@@ -50,7 +50,7 @@
                     <br />
                     <br />
                     <br />
-  
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="talepclose()">Çıkış</button>
                         <button type="submit" class="btn btn-primary" value="Kaydet">Kaydet</button>
@@ -101,11 +101,126 @@
 </div>
 
 
+<!-- Guncelleme Modal -->
+<div class="modal fade" id="servisModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Servise Yönlendirme-Sonlandırma İşlemi </h5>
+                <button type="button" class="close" data-dismiss="modal" onclick="servisclose()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @using (Ajax.BeginForm("ServiseGonder", "Talep", FormMethod.Post, new AjaxOptions { OnSuccess = "ServiseGonder", OnBegin = "return serviskontrol();" }, new { id = "frm-ServiseGonder" }))
+                {
+                    @Html.HiddenFor(m => m.Talepid1)
+                    <div>
+                        Firma Ara :<input type="text" id="userInput1" style="height: 30px; width: 100px;position:absolute;left:100px;" onkeyup="FuncFirma()">
+                        <br />
+                        <br />
+                        Firma Seç: @Html.DropDownListFor(m => m.Firma_ID, Model.FirmaList, new { style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+                    </div>
+                    <br />
+                    <br />
+                    <div>
+                        Talep Sonlandırılacak mı?:
+                        @Html.CheckBoxFor(m => m.islem)
+
+                    </div>
+                    <div>
+                        Açıklama:
+                        <br />
+                        @Html.TextAreaFor(m => m.servisAciklama, 10, 55, new { style = "height: 100px; width: 300px;position:absolute;left:100px;" })
+                    </div>
+
+
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="servisclose()">Çıkış</button>
+                        <button type="submit" class="btn btn-primary" value="Kaydet">Kaydet</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script src="~/Content/Table/javaS/jquery.unobtrusive-ajax.js"></script>
 
 
 <script type="text/javascript">
     //document.getElementById('submitButton').onclick = function () {
+
+
+
+    function serviskontrol() {
+        var uyari = "";
+        var kontrol = 0;
+        if ($("#Firma_ID").val() == null || $("#Firma_ID").val() == "") {
+            uyari += "Lütfen Firma Seçiniz.<br />"
+            kontrol = 1
+        }
+        var remember = document.getElementById('islem');
+        if (remember.checked && $("#servisAciklama").val() == null || remember.checked && $("#servisAciklama").val() == "") {
+            uyari += "Serviste Yapılan işlemi giriniz.<br />"
+            kontrol = 1
+        } else if (remember.checked!=true) $("#servisAciklama").val("")
+
+        if (kontrol == 1) {
+
+            Swal.fire({
+                title: 'Hata!',
+                html: uyari,
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
+            return false;
+
+        } else {
+            return true;
+        }
+
+    }
+    function ServiseGonder(result) {
+        if (result == "1") {
+            $.ajax({
+                url: '/Talep/Index',
+                type: 'get',
+                dataType: 'html',
+                success: function (data) {
+                    servisclose()
+                    $("#ajax-main").html(data);
+                    Swal.fire({
+                        title: 'Başarılı!',
+                        text: 'Servis yönlendirme işlemi başarılıdır',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+
+                }
+            });
+
+
+        }
+        else if (result == "-1") {
+
+            Swal.fire({
+                title: 'Hata!',
+                text: 'Servis Yönlendirme başarısız.',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })
+
+
+        }
+    }
+
     function guncelleKontrol() {
         var uyari = "";
         var kontrol = 0;
@@ -170,6 +285,10 @@
     function guncellemeclose() {
         $('#guncellemeModal').modal('hide');
         $("#frm-TalepGuncelleme")[0].reset();
+    }
+    function servisclose() {
+        $('#servisModal').modal('hide');
+        $("#frm-ServiseGonder")[0].reset();
     }
 
 
@@ -240,6 +359,8 @@
         }
     }
 
+  
+
     function Func() {
         var input, filter, a;
 
@@ -250,6 +371,30 @@
         filter = input.value.toUpperCase();
 
         div = document.getElementById("Urun_ID");
+
+        // get all the options as a list
+        a = div.getElementsByTagName("option");
+
+        // iterate through the entire list and output relevant results if found
+        for (var i = 0; i < a.length; i++) {
+            txtValue = a[i].textContent || a[i].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                a[i].style.display = "";
+            } else {
+                a[i].style.display = "none";
+            }
+        }
+    }
+    function FuncFirma() {
+        var input, filter, a;
+
+        // take user input
+        input = document.getElementById("userInput1");
+
+        // convert the input to upper case letter for easy comparison
+        filter = input.value.toUpperCase();
+
+        div = document.getElementById("Firma_ID");
 
         // get all the options as a list
         a = div.getElementsByTagName("option");

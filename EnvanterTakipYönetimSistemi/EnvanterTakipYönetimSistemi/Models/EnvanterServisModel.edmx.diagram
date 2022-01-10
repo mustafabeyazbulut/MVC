@@ -8,8 +8,8 @@
         <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Ariza" Width="1.5" PointX="10.5" PointY="6" />
         <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Duyuru" Width="1.5" PointX="5.25" PointY="10.375" />
         <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Envanter" Width="1.5" PointX="5.25" PointY="5.375" />
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_EnvanterCinsi" Width="1.5" PointX="3" PointY="10.5" />
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_EnvanterMarka" Width="1.5" PointX="3" PointY="2" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_EnvanterCinsi" Width="1.5" PointX="3" PointY="2" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_EnvanterMarka" Width="1.5" PointX="3" PointY="10.5" />
         <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_Firma" Width="1.5" PointX="10.5" PointY="2.375" />
         <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_Rol" Width="1.5" PointX="0.75" PointY="3.5" />
         <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_Sube" Width="1.5" PointX="0.75" PointY="6.5" />
