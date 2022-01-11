@@ -14,6 +14,12 @@ namespace EnvanterTakipYönetimSistemi.Models
     
     public partial class Tbl_Zimmet
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Tbl_Zimmet()
+        {
+            this.Tbl_Ariza = new HashSet<Tbl_Ariza>();
+        }
+    
         public int Zim_ID { get; set; }
         public Nullable<int> Kullanan_ID { get; set; }
         public Nullable<int> Env_ID { get; set; }
@@ -23,6 +29,8 @@ namespace EnvanterTakipYönetimSistemi.Models
         public string Zim_Aciklama { get; set; }
         public Nullable<bool> Zim_Kayit { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tbl_Ariza> Tbl_Ariza { get; set; }
         public virtual Tbl_Envanter Tbl_Envanter { get; set; }
         public virtual Tbl_Personel Tbl_Personel { get; set; }
         public virtual Tbl_Personel Tbl_Personel1 { get; set; }

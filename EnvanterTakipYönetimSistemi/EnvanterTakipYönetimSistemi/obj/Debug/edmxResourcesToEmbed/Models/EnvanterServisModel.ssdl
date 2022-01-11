@@ -9,7 +9,7 @@
     <Property Name="Arz_Durum" Type="varchar" MaxLength="50" />
     <Property Name="Arz_Tarih" Type="date" />
     <Property Name="Per_ID" Type="int" />
-    <Property Name="Env_ID" Type="int" />
+    <Property Name="Zim_ID" Type="int" />
     <Property Name="Arz_Kayit" Type="bit" />
   </EntityType>
   <EntityType Name="Tbl_Duyuru">
@@ -119,30 +119,6 @@
     <Property Name="Zim_Aciklama" Type="varchar" MaxLength="50" />
     <Property Name="Zim_Kayit" Type="bit" />
   </EntityType>
-  <Association Name="FK_Duyuru_Personel">
-    <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="0..1" />
-    <End Role="Tbl_Duyuru" Type="Self.Tbl_Duyuru" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Tbl_Personel">
-        <PropertyRef Name="Per_ID" />
-      </Principal>
-      <Dependent Role="Tbl_Duyuru">
-        <PropertyRef Name="Per_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Tbl_Ariza_Tbl_Envanter">
-    <End Role="Tbl_Envanter" Type="Self.Tbl_Envanter" Multiplicity="0..1" />
-    <End Role="Tbl_Ariza" Type="Self.Tbl_Ariza" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Tbl_Envanter">
-        <PropertyRef Name="Env_ID" />
-      </Principal>
-      <Dependent Role="Tbl_Ariza">
-        <PropertyRef Name="Env_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Tbl_Ariza_Tbl_Personel">
     <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="0..1" />
     <End Role="Tbl_Ariza" Type="Self.Tbl_Ariza" Multiplicity="*" />
@@ -151,6 +127,30 @@
         <PropertyRef Name="Per_ID" />
       </Principal>
       <Dependent Role="Tbl_Ariza">
+        <PropertyRef Name="Per_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_Ariza_Tbl_Zimmet">
+    <End Role="Tbl_Zimmet" Type="Self.Tbl_Zimmet" Multiplicity="0..1" />
+    <End Role="Tbl_Ariza" Type="Self.Tbl_Ariza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Zimmet">
+        <PropertyRef Name="Zim_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Ariza">
+        <PropertyRef Name="Zim_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_Duyuru_Tbl_Personel">
+    <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="0..1" />
+    <End Role="Tbl_Duyuru" Type="Self.Tbl_Duyuru" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Personel">
+        <PropertyRef Name="Per_ID" />
+      </Principal>
+      <Dependent Role="Tbl_Duyuru">
         <PropertyRef Name="Per_ID" />
       </Dependent>
     </ReferentialConstraint>
@@ -204,7 +204,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Tbl_Personel_Tbl_P_Rol">
-    <End Role="Tbl_P_Rol" Type="Self.Tbl_P_Rol" Multiplicity="0..1" />
+    <End Role="Tbl_P_Rol" Type="Self.Tbl_P_Rol" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Tbl_P_Rol">
@@ -216,7 +218,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Tbl_Personel_Tbl_P_Sube">
-    <End Role="Tbl_P_Sube" Type="Self.Tbl_P_Sube" Multiplicity="0..1" />
+    <End Role="Tbl_P_Sube" Type="Self.Tbl_P_Sube" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Tbl_P_Sube">
@@ -227,7 +231,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Tbl_Servis_Tbl_Ariza">
+  <Association Name="FK_Tbl_Servis_Tbl_Ariza1">
     <End Role="Tbl_Ariza" Type="Self.Tbl_Ariza" Multiplicity="0..1" />
     <End Role="Tbl_Servis" Type="Self.Tbl_Servis" Multiplicity="*" />
     <ReferentialConstraint>
@@ -275,7 +279,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Tbl_Zimmet_Tbl_Personel">
+  <Association Name="FK_Tbl_Zimmet_Tbl_Personel1">
     <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="0..1" />
     <End Role="Tbl_Zimmet" Type="Self.Tbl_Zimmet" Multiplicity="*" />
     <ReferentialConstraint>
@@ -287,7 +291,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Tbl_Zimmet_Tbl_Personel1">
+  <Association Name="FK_Tbl_Zimmet_Tbl_Personel2">
     <End Role="Tbl_Personel" Type="Self.Tbl_Personel" Multiplicity="0..1" />
     <End Role="Tbl_Zimmet" Type="Self.Tbl_Zimmet" Multiplicity="*" />
     <ReferentialConstraint>
@@ -311,17 +315,17 @@
     <EntitySet Name="Tbl_Personel" EntityType="Self.Tbl_Personel" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_Servis" EntityType="Self.Tbl_Servis" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_Zimmet" EntityType="Self.Tbl_Zimmet" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_Duyuru_Personel" Association="Self.FK_Duyuru_Personel">
-      <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
-      <End Role="Tbl_Duyuru" EntitySet="Tbl_Duyuru" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Tbl_Ariza_Tbl_Envanter" Association="Self.FK_Tbl_Ariza_Tbl_Envanter">
-      <End Role="Tbl_Envanter" EntitySet="Tbl_Envanter" />
-      <End Role="Tbl_Ariza" EntitySet="Tbl_Ariza" />
-    </AssociationSet>
     <AssociationSet Name="FK_Tbl_Ariza_Tbl_Personel" Association="Self.FK_Tbl_Ariza_Tbl_Personel">
       <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
       <End Role="Tbl_Ariza" EntitySet="Tbl_Ariza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Ariza_Tbl_Zimmet" Association="Self.FK_Tbl_Ariza_Tbl_Zimmet">
+      <End Role="Tbl_Zimmet" EntitySet="Tbl_Zimmet" />
+      <End Role="Tbl_Ariza" EntitySet="Tbl_Ariza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Duyuru_Tbl_Personel" Association="Self.FK_Tbl_Duyuru_Tbl_Personel">
+      <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
+      <End Role="Tbl_Duyuru" EntitySet="Tbl_Duyuru" />
     </AssociationSet>
     <AssociationSet Name="FK_Tbl_Envanter_Tbl_P_EnvanterCinsi" Association="Self.FK_Tbl_Envanter_Tbl_P_EnvanterCinsi">
       <End Role="Tbl_P_EnvanterCinsi" EntitySet="Tbl_P_EnvanterCinsi" />
@@ -347,7 +351,7 @@
       <End Role="Tbl_P_Sube" EntitySet="Tbl_P_Sube" />
       <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
     </AssociationSet>
-    <AssociationSet Name="FK_Tbl_Servis_Tbl_Ariza" Association="Self.FK_Tbl_Servis_Tbl_Ariza">
+    <AssociationSet Name="FK_Tbl_Servis_Tbl_Ariza1" Association="Self.FK_Tbl_Servis_Tbl_Ariza1">
       <End Role="Tbl_Ariza" EntitySet="Tbl_Ariza" />
       <End Role="Tbl_Servis" EntitySet="Tbl_Servis" />
     </AssociationSet>
@@ -363,11 +367,11 @@
       <End Role="Tbl_Envanter" EntitySet="Tbl_Envanter" />
       <End Role="Tbl_Zimmet" EntitySet="Tbl_Zimmet" />
     </AssociationSet>
-    <AssociationSet Name="FK_Tbl_Zimmet_Tbl_Personel" Association="Self.FK_Tbl_Zimmet_Tbl_Personel">
+    <AssociationSet Name="FK_Tbl_Zimmet_Tbl_Personel1" Association="Self.FK_Tbl_Zimmet_Tbl_Personel1">
       <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
       <End Role="Tbl_Zimmet" EntitySet="Tbl_Zimmet" />
     </AssociationSet>
-    <AssociationSet Name="FK_Tbl_Zimmet_Tbl_Personel1" Association="Self.FK_Tbl_Zimmet_Tbl_Personel1">
+    <AssociationSet Name="FK_Tbl_Zimmet_Tbl_Personel2" Association="Self.FK_Tbl_Zimmet_Tbl_Personel2">
       <End Role="Tbl_Personel" EntitySet="Tbl_Personel" />
       <End Role="Tbl_Zimmet" EntitySet="Tbl_Zimmet" />
     </AssociationSet>

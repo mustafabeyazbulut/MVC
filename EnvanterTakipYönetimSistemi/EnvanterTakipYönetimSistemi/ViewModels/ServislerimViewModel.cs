@@ -15,6 +15,7 @@ namespace EnvanterTakipYönetimSistemi.ViewModels
         public DateTime ServisGelmeTarih { get; set; }
         public int TalepID { get; set; }
         public string TalepAciklama { get; set; }
+        public string ServisAciklama { get; set; }
         public string T_EnvanterCinsAdi { get; set; }
         public string T_EnvanterMarkaAdi { get; set; }
         public string T_EnvanterModel { get; set; }

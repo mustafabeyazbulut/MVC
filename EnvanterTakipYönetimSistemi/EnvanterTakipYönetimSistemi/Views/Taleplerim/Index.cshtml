@@ -185,7 +185,7 @@
 
                     Swal.fire({
                         title: 'Başarılı!',
-                        text: 'Ürün Zimmetlenmiştir.',
+                        text: 'Talep IT Departmanına iletildi.',
                         icon: 'success',
                         confirmButtonText: 'Cool'
                     })
@@ -193,6 +193,14 @@
             });
 
         } else if (result == "-1") {
+
+            Swal.fire({
+                title: 'Hata!',
+                text: 'Talep oluştururken Beklenmedik Hata oluştu.',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })
+        } else if (result == "-2") {
 
             Swal.fire({
                 title: 'Hata!',

@@ -63,8 +63,8 @@
                     <th data-field="id" rowspan="2" data-filter-control="input" data-sortable="true">ID</th>
                     <th data-field="envantergroup" colspan="4">Envanter</th>
                     <th data-field="talepbilgi" rowspan="2" data-filter-control="input" data-sortable="false">Talep Açıklama</th>
-                    <th data-field="durum" rowspan="2" data-filter-control="select" data-sortable="false">Durum</th>
                     <th data-field="taleptarih" rowspan="2" data-filter-control="select" data-sortable="false">Talep Tarihi</th>
+                    <th data-field="durum" rowspan="2" data-filter-control="select" data-sortable="false">Durum</th>
                     <th data-field="kayit" rowspan="2" data-filter-control="select" data-sortable="true" data-filter-default="True">Kayıt</th>
                 </tr>
                 <tr>
@@ -77,20 +77,20 @@
             <tbody>
                 @foreach (var talep in Model.TaleplerimList)
                 {
-                    <tr>
-                        <td class="bs-checkbox ">
-                            <input name="btSelectItem" type="checkbox">
-                        </td>
-                        <td>@talep.TalepID</td>
-                        <td>@talep.T_EnvanterCinsAdi</td>
-                        <td>@talep.T_EnvanterMarkaAdi</td>
-                        <td>@talep.T_EnvanterModel</td>
-                        <td>@talep.T_EnvanterSeriNo</td>
-                        <td>@talep.TalepBilgi</td>
-                        <td>@talep.TalepDurum</td>
-                        <td>@talep.TalepTarih.ToString("dd/MM/yyyy")</td>
-                        <td>@talep.TalepKayit</td>
-                    </tr>
+                <tr>
+                    <td class="bs-checkbox ">
+                        <input name="btSelectItem" type="checkbox">
+                    </td>
+                    <td>@talep.TalepID</td>
+                    <td>@talep.T_EnvanterCinsAdi</td>
+                    <td>@talep.T_EnvanterMarkaAdi</td>
+                    <td>@talep.T_EnvanterModel</td>
+                    <td>@talep.T_EnvanterSeriNo</td>
+                    <td>@talep.TalepBilgi</td>
+                    <td>@talep.TalepTarih.ToString("dd/MM/yyyy")</td>
+                    <td>@talep.TalepDurum</td>
+                    <td>@talep.TalepKayit</td>
+                </tr>
 
                 }
             </tbody>
@@ -108,24 +108,6 @@
 
                 $("#TalepIDGuncelle").val(_id[0]);
                 $("#TalepBilgiGuncelle").val(_talepbilgi[0])
-            } else {
-                Swal.fire({
-                    title: 'Hata!',
-                    text: 'Sadece bir tane talep seçmelisiniz.',
-                    icon: 'error',
-                    confirmButtonText: 'Cool'
-                })
-            }
-        }
-
-        function talepSil() {
-            var _id = getIdSelections(1)
-
-            if (_id.length >= 1 && _id.length < 2) {
-                
-
-                //$("#TalepIDGuncelle").val(_id[0]);
-                //$("#TalepBilgiGuncelle").val(_talepbilgi[0])
             } else {
                 Swal.fire({
                     title: 'Hata!',
@@ -194,6 +176,13 @@
                     } else if (result.isDenied) {
                         Swal.fire('Silme işlemi iptal edildi.', '', 'info')
                     }
+                })
+            } else {
+                Swal.fire({
+                    title: 'Hata!',
+                    text: 'Sadece bir tane talep seçmelisiniz.',
+                    icon: 'error',
+                    confirmButtonText: 'Cool'
                 })
             }
         }

@@ -200,7 +200,7 @@
                         title: 'Başarılı!',
                         text: 'Servis yönlendirme işlemi başarılıdır',
                         icon: 'success',
-                        confirmButtonText: 'Cool'
+                        confirmButtonText: 'OK'
                     })
 
                 }
@@ -214,7 +214,7 @@
                 title: 'Hata!',
                 text: 'Servis Yönlendirme başarısız.',
                 icon: 'error',
-                confirmButtonText: 'Cool'
+                confirmButtonText: 'Ok'
             })
 
 
@@ -306,7 +306,7 @@
 
                     Swal.fire({
                         title: 'Başarılı!',
-                        text: 'Ürün Zimmetlenmiştir.',
+                        text: 'Talep IT Deparmanına gönderilmiştir.',
                         icon: 'success',
                         confirmButtonText: 'Cool'
                     })
@@ -314,6 +314,14 @@
             });
 
         } else if (result == "-1") {
+
+            Swal.fire({
+                title: 'Hata!',
+                text: 'Talep oluştururken Beklenmedik Hata oluştu.',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })
+        } else if (result == "-2") {
 
             Swal.fire({
                 title: 'Hata!',
@@ -352,7 +360,7 @@
                 title: 'Hata!',
                 text: 'Talep güncelleme başarısız.',
                 icon: 'error',
-                confirmButtonText: 'Cool'
+                confirmButtonText: 'Ok'
             })
 
 

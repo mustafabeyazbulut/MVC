@@ -5,7 +5,7 @@
       <EntityTypeMapping TypeName="ENVSERVYSModel.Tbl_Ariza">
         <MappingFragment StoreEntitySet="Tbl_Ariza">
           <ScalarProperty Name="Arz_Kayit" ColumnName="Arz_Kayit" />
-          <ScalarProperty Name="Env_ID" ColumnName="Env_ID" />
+          <ScalarProperty Name="Zim_ID" ColumnName="Zim_ID" />
           <ScalarProperty Name="Per_ID" ColumnName="Per_ID" />
           <ScalarProperty Name="Arz_Tarih" ColumnName="Arz_Tarih" />
           <ScalarProperty Name="Arz_Durum" ColumnName="Arz_Durum" />

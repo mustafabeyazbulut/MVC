@@ -27,11 +27,11 @@ namespace EnvanterTakipYönetimSistemi.Controllers
                                         TalepTarih = (DateTime)x.Arz_Tarih,
                                         Per_ID = (int)x.Per_ID,
                                         PerAd = x.Tbl_Personel.Per_Ad + " " + x.Tbl_Personel.Per_Soyad,
-                                        Env_ID = (int)x.Env_ID,
-                                        T_EnvanterCinsAdi = x.Tbl_Envanter.Tbl_P_EnvanterCinsi.EnvCins_Adi,
-                                        T_EnvanterMarkaAdi = x.Tbl_Envanter.Tbl_P_EnvanterMarka.EnvMarka_Adi,
-                                        T_EnvanterModel = x.Tbl_Envanter.Env_Model,
-                                        T_EnvanterSeriNo = x.Tbl_Envanter.Env_SeriNo,
+                                        Env_ID = (int)x.Tbl_Zimmet.Env_ID,
+                                        T_EnvanterCinsAdi = x.Tbl_Zimmet.Tbl_Envanter.Tbl_P_EnvanterCinsi.EnvCins_Adi,
+                                        T_EnvanterMarkaAdi = x.Tbl_Zimmet.Tbl_Envanter.Tbl_P_EnvanterMarka.EnvMarka_Adi,
+                                        T_EnvanterModel = x.Tbl_Zimmet.Tbl_Envanter.Env_Model,
+                                        T_EnvanterSeriNo = x.Tbl_Zimmet.Tbl_Envanter.Env_SeriNo,
                                         TalepKayit = (bool)x.Arz_Kayit
                                     }).ToList();
 
@@ -77,14 +77,16 @@ namespace EnvanterTakipYönetimSistemi.Controllers
 
 
                 var Ariza = (from x in db.Tbl_Ariza
-                             where x.Arz_Kayit == true && x.Env_ID == model.Urun_ID
+                             where x.Arz_Kayit == true && x.Tbl_Zimmet.Env_ID == model.Urun_ID
                              select x).FirstOrDefault();
 
-                if (Ariza != null) return "-1"; // daha önce kayıt oluşturulduysa işleme izin vermeyecek
+                if (Ariza != null) return "-2"; // daha önce kayıt oluşturulduysa işleme izin vermeyecek
+
+
 
                 Tbl_Ariza arizaYeni = new Tbl_Ariza();
                 arizaYeni.Arz_Bilgi = model.TalepBilgiYeni;
-                arizaYeni.Env_ID = model.Urun_ID;
+                arizaYeni.Zim_ID =zimmet.Zim_ID;//
                 arizaYeni.Arz_Durum = "Talep";
                 arizaYeni.Per_ID = zimmet.Kullanan_ID;
                 arizaYeni.Arz_Tarih = DateTime.Now;

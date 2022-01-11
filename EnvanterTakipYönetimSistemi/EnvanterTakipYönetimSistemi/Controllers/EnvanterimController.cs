@@ -58,14 +58,14 @@ namespace EnvanterTakipYönetimSistemi.Controllers
                            select x).FirstOrDefault();
                 
                 var Ariza = (from x in db.Tbl_Ariza
-                             where x.Arz_Kayit == true && x.Env_ID == env.Env_ID
+                             where x.Arz_Kayit == true && x.Tbl_Zimmet.Env_ID == env.Env_ID
                              select x).FirstOrDefault();
 
-                if (Ariza != null) return "-1"; // daha önce kayıt oluşturulduysa işleme izin vermeyecek
+                if (Ariza != null) return "-2"; // daha önce kayıt oluşturulduysa işleme izin vermeyecek
 
                 Tbl_Ariza arizaYeni = new Tbl_Ariza();
                 arizaYeni.Arz_Bilgi = model.ArizaBilgi;
-                arizaYeni.Env_ID = env.Env_ID;
+                arizaYeni.Per_ID = env.Env_ID; // düzeltme gelsin
                 arizaYeni.Arz_Durum = "Talep";
                 arizaYeni.Per_ID = kullaniciID;
                 arizaYeni.Arz_Tarih = DateTime.Now;

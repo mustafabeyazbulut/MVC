@@ -5,21 +5,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="92619430d22348408b2b480737d24400" Name="Diagram1">
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Ariza" Width="1.5" PointX="10.5" PointY="6" />
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Duyuru" Width="1.5" PointX="5.25" PointY="10.375" />
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Envanter" Width="1.5" PointX="5.25" PointY="5.375" />
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_EnvanterCinsi" Width="1.5" PointX="3" PointY="2" />
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_EnvanterMarka" Width="1.5" PointX="3" PointY="10.5" />
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_Firma" Width="1.5" PointX="10.5" PointY="2.375" />
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_Rol" Width="1.5" PointX="0.75" PointY="3.5" />
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_Sube" Width="1.5" PointX="0.75" PointY="6.5" />
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Personel" Width="1.5" PointX="3" PointY="5.25" />
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Servis" Width="1.5" PointX="12.75" PointY="5.875" />
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Zimmet" Width="1.5" PointX="7.5" PointY="5.875" />
-        <AssociationConnector Association="ENVSERVYSModel.FK_Tbl_Ariza_Tbl_Envanter" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Ariza" Width="1.5" PointX="9.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Duyuru" Width="1.5" PointX="5.25" PointY="9.125" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Envanter" Width="1.5" PointX="5.25" PointY="4.25" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_EnvanterCinsi" Width="1.5" PointX="3" PointY="9.25" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_EnvanterMarka" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_Firma" Width="1.5" PointX="9.75" PointY="1.125" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_Rol" Width="1.5" PointX="0.75" PointY="2.25" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_Sube" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Personel" Width="1.5" PointX="3" PointY="4" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Servis" Width="1.5" PointX="12" PointY="4.625" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Zimmet" Width="1.5" PointX="7.5" PointY="4.5" />
         <AssociationConnector Association="ENVSERVYSModel.FK_Tbl_Ariza_Tbl_Personel" />
-        <AssociationConnector Association="ENVSERVYSModel.FK_Tbl_Servis_Tbl_Ariza" />
-        <AssociationConnector Association="ENVSERVYSModel.FK_Duyuru_Personel" />
+        <AssociationConnector Association="ENVSERVYSModel.FK_Tbl_Ariza_Tbl_Zimmet" />
+        <AssociationConnector Association="ENVSERVYSModel.FK_Tbl_Servis_Tbl_Ariza1" />
+        <AssociationConnector Association="ENVSERVYSModel.FK_Tbl_Duyuru_Tbl_Personel" />
         <AssociationConnector Association="ENVSERVYSModel.FK_Tbl_Envanter_Tbl_P_EnvanterCinsi" />
         <AssociationConnector Association="ENVSERVYSModel.FK_Tbl_Envanter_Tbl_P_EnvanterMarka" />
         <AssociationConnector Association="ENVSERVYSModel.FK_Tbl_Envanter_Tbl_P_Sube" />
@@ -29,8 +29,8 @@
         <AssociationConnector Association="ENVSERVYSModel.FK_Tbl_Personel_Tbl_P_Rol" />
         <AssociationConnector Association="ENVSERVYSModel.FK_Tbl_Personel_Tbl_P_Sube" />
         <AssociationConnector Association="ENVSERVYSModel.FK_Tbl_Servis_Tbl_Personel" />
-        <AssociationConnector Association="ENVSERVYSModel.FK_Tbl_Zimmet_Tbl_Personel" />
         <AssociationConnector Association="ENVSERVYSModel.FK_Tbl_Zimmet_Tbl_Personel1" />
+        <AssociationConnector Association="ENVSERVYSModel.FK_Tbl_Zimmet_Tbl_Personel2" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

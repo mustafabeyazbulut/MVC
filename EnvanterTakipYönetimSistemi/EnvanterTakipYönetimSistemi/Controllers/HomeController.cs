@@ -47,8 +47,8 @@ namespace EnvanterTakipYönetimSistemi.Controllers
 
             int perid = Convert.ToInt32(Session["Per_ID"]);
             int envanterim = zimmet.Where(k => k.Kullanan_ID == perid).ToList().Count;
-            int taleplerim = talep.Where(k => k.Per_ID == perid ).ToList().Count;
-            int servislerim = servis.Where(k => k.Per_ID == perid).ToList().Count;
+            int taleplerim = talep.Where(k => k.Tbl_Zimmet.Kullanan_ID == perid ).ToList().Count;
+            int servislerim = servis.Where(k => k.Tbl_Ariza.Per_ID == perid).ToList().Count;
 
             List<DashboardHomeViewModel> dlist = new List<DashboardHomeViewModel>();
             dlist.Insert(0, new DashboardHomeViewModel { EnvanterToplamAdet = envanter.Count, TalepAdet= taleplerim, ServisAdet=servislerim, Envanterim = envanterim, EnvanterToplamKullanilanAdet=zimmet.Count, TalepToplamAdet=talep.Count, ServisToplamAdet=servis.Count });

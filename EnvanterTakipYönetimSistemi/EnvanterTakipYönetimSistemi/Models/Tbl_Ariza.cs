@@ -25,11 +25,11 @@ namespace EnvanterTakipYönetimSistemi.Models
         public string Arz_Durum { get; set; }
         public Nullable<System.DateTime> Arz_Tarih { get; set; }
         public Nullable<int> Per_ID { get; set; }
-        public Nullable<int> Env_ID { get; set; }
+        public Nullable<int> Zim_ID { get; set; }
         public Nullable<bool> Arz_Kayit { get; set; }
     
-        public virtual Tbl_Envanter Tbl_Envanter { get; set; }
         public virtual Tbl_Personel Tbl_Personel { get; set; }
+        public virtual Tbl_Zimmet Tbl_Zimmet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_Servis> Tbl_Servis { get; set; }
     }

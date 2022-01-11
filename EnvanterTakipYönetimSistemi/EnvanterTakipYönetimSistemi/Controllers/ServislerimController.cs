@@ -17,7 +17,7 @@ namespace EnvanterTakipYönetimSistemi.Controllers
         public ActionResult Index(ServislerimViewModel model)
         {
             int kullaniciID = Convert.ToInt32(Session["Per_ID"]);
-            model.ServislerimList = (from x in db.Tbl_Servis.Where(k => k.Serv_Kayit == true && k.Per_ID==kullaniciID ).OrderByDescending(f => f.Serv_ID)
+            model.ServislerimList = (from x in db.Tbl_Servis.Where(k => k.Tbl_Ariza.Per_ID==kullaniciID ).OrderByDescending(f => f.Serv_ID)
                                     select new ServislerimViewModel
                                     {
                                         servisID=x.Serv_ID,
@@ -27,10 +27,11 @@ namespace EnvanterTakipYönetimSistemi.Controllers
                                         ServisGelmeTarih= (DateTime)x.Serv_GelmeTarih,
                                         TalepID= (int)x.Arz_ID,
                                         TalepAciklama=x.Tbl_Ariza.Arz_Bilgi,
-                                        T_EnvanterCinsAdi = x.Tbl_Ariza.Tbl_Envanter.Tbl_P_EnvanterCinsi.EnvCins_Adi,
-                                        T_EnvanterMarkaAdi = x.Tbl_Ariza.Tbl_Envanter.Tbl_P_EnvanterMarka.EnvMarka_Adi,
-                                        T_EnvanterModel = x.Tbl_Ariza.Tbl_Envanter.Env_Model,
-                                        T_EnvanterSeriNo = x.Tbl_Ariza.Tbl_Envanter.Env_SeriNo,
+                                        ServisAciklama = x.Serv_Bilgi,
+                                        T_EnvanterCinsAdi = x.Tbl_Ariza.Tbl_Zimmet.Tbl_Envanter.Tbl_P_EnvanterCinsi.EnvCins_Adi,
+                                        T_EnvanterMarkaAdi = x.Tbl_Ariza.Tbl_Zimmet.Tbl_Envanter.Tbl_P_EnvanterMarka.EnvMarka_Adi,
+                                        T_EnvanterModel = x.Tbl_Ariza.Tbl_Zimmet.Tbl_Envanter.Env_Model,
+                                        T_EnvanterSeriNo = x.Tbl_Ariza.Tbl_Zimmet.Tbl_Envanter.Env_SeriNo,
                                         perID= (int)x.Per_ID,
                                         perAd=x.Tbl_Personel.Per_Ad+" "+x.Tbl_Personel.Per_Soyad,
                                         servisKayit = (bool)x.Serv_Kayit
