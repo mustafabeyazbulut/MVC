@@ -1,0 +1,58 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doua Cosmetic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/w3.css" rel="stylesheet" />
+
+    <link href="~/Content/popup.css" rel="stylesheet" />
+    <script src="~/Content/popup.js"></script>
+
+
+
+    <script src="~/Scripts/jquery-1.8.0.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
+        <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
+        <a href="/Product/Index" class="w3-bar-item w3-button">Ürün Tanımlama</a>
+        <a href="/Customer/Index" class="w3-bar-item w3-button">Müşteri Tanımlama</a>
+        <a href="/Order/Index" class="w3-bar-item w3-button">Sipariş Oluşturma</a>
+    </div>
+
+    <!-- Page Content -->
+    <div class="w3-teal">
+        
+        <div class="w3-container">
+            <h1>
+                <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
+                Doua Cosmetic Shopping
+            </h1>
+        </div>
+    </div>
+
+    <div class="w3-container">
+        @RenderBody()
+    </div>
+
+    <script>
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+    </script>
+
+</body>
+</html> 

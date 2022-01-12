@@ -1,0 +1,102 @@
+﻿@using DouaCosmeticShopping.Models
+@model OrderViewModel
+
+
+<div class="shopping-cart">
+
+
+    <div class="shopping-cart-head">
+        <span class="product-quantity">@Model.productCount</span> Product(s) in Cart
+    </div>
+
+    <div class="shopping-cart-list">
+
+        @if (Model.OrderProductList != null)
+        {
+
+            foreach (var product in Model.OrderProductList)
+            {
+                <p>@product.OP_Quantity - @product.P_Name - $@product.P_Price      </p>
+            }
+
+            <p>
+                <button data-id="@Model.oID" class="w3-btn w3-red emptyCard">Empty</button>
+                <button data-id="@Model.oID" class="w3-button w3-blue checkoutCard">Checkout</button>
+            </p>
+        }
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+    $(".emptyCard").click(function () {
+
+        var _id = $(this).attr("data-id");
+     
+ 
+        $.ajax({
+            url: '/Order/EmptyCard',
+            type: 'post',
+            dataType: 'json',
+            data: { "id": _id },
+
+            success: function (data) {
+                if (data == "1") {
+  
+                    $.ajax({ // get ile güncel verileri çekme başlangıç
+                        url: '/Order/Index',
+                        type: 'get',
+                        dataType: 'html',
+                        success: function (data) {
+
+                            $("#tabletwo").html(data);
+                        }
+                    });// get ile güncel verileri çekme sonu
+                }
+                //  $("#tabletwo").html(data);
+
+            }//success
+        });//post ajax
+
+    }); //click
+
+
+</script>
+
+<script type="text/javascript">
+    $(".checkoutCard").click(function () {
+
+        var _id = $(this).attr("data-id");
+
+
+        $.ajax({
+            url: '/Order/CheckOut',
+            type: 'post',
+            dataType: 'json',
+            data: { "id": _id },
+
+            success: function (data) {
+                if (data == "1") {
+
+                    $.ajax({ // get ile güncel verileri çekme başlangıç
+                        url: '/Order/Index',
+                        type: 'get',
+                        dataType: 'html',
+                        success: function (data) {
+
+                            $("#tabletwo").html(data);
+
+                            alert("your order request has been received");
+                        }
+                    });// get ile güncel verileri çekme sonu
+                }
+                //  $("#tabletwo").html(data);
+
+            }//success
+        });//post ajax
+
+    }); //click
+
+
+</script>

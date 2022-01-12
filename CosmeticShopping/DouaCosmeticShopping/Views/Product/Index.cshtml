@@ -1,0 +1,140 @@
+﻿@using DouaCosmeticShopping.Models
+@model ProductViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Product Creation Page</h2>
+<br />
+
+
+
+<div id="toolbar" class="select">
+    <div class="form-inline" role="form">
+
+
+        <button class="w3-button w3-circle w3-red" onclick="openSearch()">+</button>
+
+    </div>
+</div>
+
+<br />
+<div id="ajax-main">
+    @Html.Partial("_Table", @Model)
+
+</div>
+
+<div id="myOverlay" class="overlay">
+    <span class="closebtn" onclick="popupclose()" title="Close Overlay">×</span>
+    <div class="overlay-content">
+        <h2> Product Creation</h2>
+
+        @using (Ajax.BeginForm("AddProduct", "Product", FormMethod.Post, new AjaxOptions { OnSuccess = "AddProduct", OnBegin = "return AddControl();" }, new { id = "FormAddProduct" }))
+        {
+            @Html.HiddenFor(m => m.P_ID2)
+            <div>
+                Name:
+                @Html.TextBoxFor(m => m.P_Name, new { @class = "openBtn", style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+            </div>
+            <br />
+            <div>
+                Quantity:
+                @Html.TextBoxFor(m => m.P_Quantity, new { @class = "openBtn", style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+
+            </div>
+            <br />
+            <div>
+                Price:
+                @Html.TextBoxFor(m => m.P_Price, new { @class = "openBtn", style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+            </div>
+            <br />
+            <div>
+                Description:
+                @Html.TextBoxFor(m => m.P_Description, new { @class = "openBtn", style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+            </div>
+            <br />
+
+
+            <div class="test">
+                <button type="button" class="w3-button w3-white w3-border w3-border-blue" data-dismiss="modal" onclick="popupclose()">Close</button>
+                &nbsp;&nbsp;
+                <button type="submit" class="w3-button w3-white w3-border w3-border-blue" value="add">&nbsp;Ok&nbsp;</button>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    function AddControl() {
+        var uyari = "";
+        var kontrol = 0;
+
+        if ($("#P_Name").val() == null || $("#P_Name").val() == "") {
+            uyari += "Name cannot be empty \n"
+            kontrol = 1
+        }
+        if ($("#P_Quantity").val() == null || $("#P_Quantity").val() == "") {
+            uyari += "Quantity cannot be empty \n"
+            kontrol = 1
+        }
+        if ($("#P_Price").val() == null || $("#P_Price").val() == "") {
+            uyari += "Price cannot be empty\n"
+            kontrol = 1
+        }
+
+        if ($("#P_Description").val() == null || $("#P_Description").val() == "") {
+            uyari += "Description cannot be empty \n"
+            kontrol = 1
+        }
+
+        if (kontrol == 1) {
+            alert(uyari);
+            return false;
+
+        } else { return true; }
+    }
+
+    function popupclose() {
+        $("#FormAddProduct")[0].reset();
+        closeSearch()
+        
+    }
+
+    function AddProduct(result) {
+        if (result == "1") {
+
+            $.ajax({
+                url: '/Product/Index',
+                type: 'get',
+                dataType: 'html',
+                success: function (data) {
+                    popupclose()
+                    $("#ajax-main").html(data);
+                    alert("New product added");
+                }
+            });
+        } else if (result == "2") {
+            $.ajax({
+                url: '/Product/Index',
+                type: 'get',
+                dataType: 'html',
+                success: function (data) {
+                    popupclose()
+                    $("#ajax-main").html(data);
+                    alert("The product has been updated");
+                }
+            });
+
+        }
+        else if (result == "-1") {
+            alert("Could not add new product");
+
+        }
+    }
+
+
+</script>

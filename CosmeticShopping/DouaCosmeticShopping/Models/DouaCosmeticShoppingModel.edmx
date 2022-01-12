@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DouaCosmeticShoppingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Table_Customer">
+          <Key>
+            <PropertyRef Name="C_ID" />
+          </Key>
+          <Property Name="C_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="C_Email" Type="nvarchar" MaxLength="320" />
+          <Property Name="C_FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="C_LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="C_PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="C_Adress" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Table_Order">
+          <Key>
+            <PropertyRef Name="O_ID" />
+          </Key>
+          <Property Name="O_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="C_ID" Type="int" />
+          <Property Name="O_Created_at" Type="date" />
+          <Property Name="O_Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Table_OrderProduct">
+          <Key>
+            <PropertyRef Name="OP_ID" />
+          </Key>
+          <Property Name="OP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OP_Quantity" Type="int" />
+          <Property Name="O_ID" Type="int" />
+          <Property Name="P_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Table_Product">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="P_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="P_Quantity" Type="int" />
+          <Property Name="P_Price" Type="float" />
+          <Property Name="P_Description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Table_Order_Table_Customer">
+          <End Role="Table_Customer" Type="Self.Table_Customer" Multiplicity="0..1" />
+          <End Role="Table_Order" Type="Self.Table_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Customer">
+              <PropertyRef Name="C_ID" />
+            </Principal>
+            <Dependent Role="Table_Order">
+              <PropertyRef Name="C_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_OrderProduct_Table_Order">
+          <End Role="Table_Order" Type="Self.Table_Order" Multiplicity="0..1" />
+          <End Role="Table_OrderProduct" Type="Self.Table_OrderProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Order">
+              <PropertyRef Name="O_ID" />
+            </Principal>
+            <Dependent Role="Table_OrderProduct">
+              <PropertyRef Name="O_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_OrderProduct_Table_Product">
+          <End Role="Table_Product" Type="Self.Table_Product" Multiplicity="0..1" />
+          <End Role="Table_OrderProduct" Type="Self.Table_OrderProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Product">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="Table_OrderProduct">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DouaCosmeticShoppingModelStoreContainer">
+          <EntitySet Name="Table_Customer" EntityType="Self.Table_Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Order" EntityType="Self.Table_Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_OrderProduct" EntityType="Self.Table_OrderProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Product" EntityType="Self.Table_Product" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Table_Order_Table_Customer" Association="Self.FK_Table_Order_Table_Customer">
+            <End Role="Table_Customer" EntitySet="Table_Customer" />
+            <End Role="Table_Order" EntitySet="Table_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_OrderProduct_Table_Order" Association="Self.FK_Table_OrderProduct_Table_Order">
+            <End Role="Table_Order" EntitySet="Table_Order" />
+            <End Role="Table_OrderProduct" EntitySet="Table_OrderProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_OrderProduct_Table_Product" Association="Self.FK_Table_OrderProduct_Table_Product">
+            <End Role="Table_Product" EntitySet="Table_Product" />
+            <End Role="Table_OrderProduct" EntitySet="Table_OrderProduct" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DouaCosmeticShoppingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DouaCosmeticShoppingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Table_Customer" EntityType="DouaCosmeticShoppingModel.Table_Customer" />
+          <EntitySet Name="Table_Order" EntityType="DouaCosmeticShoppingModel.Table_Order" />
+          <EntitySet Name="Table_OrderProduct" EntityType="DouaCosmeticShoppingModel.Table_OrderProduct" />
+          <EntitySet Name="Table_Product" EntityType="DouaCosmeticShoppingModel.Table_Product" />
+          <AssociationSet Name="FK_Table_Order_Table_Customer" Association="DouaCosmeticShoppingModel.FK_Table_Order_Table_Customer">
+            <End Role="Table_Customer" EntitySet="Table_Customer" />
+            <End Role="Table_Order" EntitySet="Table_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_OrderProduct_Table_Order" Association="DouaCosmeticShoppingModel.FK_Table_OrderProduct_Table_Order">
+            <End Role="Table_Order" EntitySet="Table_Order" />
+            <End Role="Table_OrderProduct" EntitySet="Table_OrderProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_OrderProduct_Table_Product" Association="DouaCosmeticShoppingModel.FK_Table_OrderProduct_Table_Product">
+            <End Role="Table_Product" EntitySet="Table_Product" />
+            <End Role="Table_OrderProduct" EntitySet="Table_OrderProduct" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Table_Customer">
+          <Key>
+            <PropertyRef Name="C_ID" />
+          </Key>
+          <Property Name="C_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C_Email" Type="String" MaxLength="320" FixedLength="false" Unicode="true" />
+          <Property Name="C_FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="C_LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="C_PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="C_Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Table_Order" Relationship="DouaCosmeticShoppingModel.FK_Table_Order_Table_Customer" FromRole="Table_Customer" ToRole="Table_Order" />
+        </EntityType>
+        <EntityType Name="Table_Order">
+          <Key>
+            <PropertyRef Name="O_ID" />
+          </Key>
+          <Property Name="O_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C_ID" Type="Int32" />
+          <Property Name="O_Created_at" Type="DateTime" Precision="0" />
+          <Property Name="O_Status" Type="Boolean" />
+          <NavigationProperty Name="Table_Customer" Relationship="DouaCosmeticShoppingModel.FK_Table_Order_Table_Customer" FromRole="Table_Order" ToRole="Table_Customer" />
+          <NavigationProperty Name="Table_OrderProduct" Relationship="DouaCosmeticShoppingModel.FK_Table_OrderProduct_Table_Order" FromRole="Table_Order" ToRole="Table_OrderProduct" />
+        </EntityType>
+        <EntityType Name="Table_OrderProduct">
+          <Key>
+            <PropertyRef Name="OP_ID" />
+          </Key>
+          <Property Name="OP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OP_Quantity" Type="Int32" />
+          <Property Name="O_ID" Type="Int32" />
+          <Property Name="P_ID" Type="Int32" />
+          <NavigationProperty Name="Table_Order" Relationship="DouaCosmeticShoppingModel.FK_Table_OrderProduct_Table_Order" FromRole="Table_OrderProduct" ToRole="Table_Order" />
+          <NavigationProperty Name="Table_Product" Relationship="DouaCosmeticShoppingModel.FK_Table_OrderProduct_Table_Product" FromRole="Table_OrderProduct" ToRole="Table_Product" />
+        </EntityType>
+        <EntityType Name="Table_Product">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="P_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="P_Quantity" Type="Int32" />
+          <Property Name="P_Price" Type="Double" />
+          <Property Name="P_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Table_OrderProduct" Relationship="DouaCosmeticShoppingModel.FK_Table_OrderProduct_Table_Product" FromRole="Table_Product" ToRole="Table_OrderProduct" />
+        </EntityType>
+        <Association Name="FK_Table_Order_Table_Customer">
+          <End Type="DouaCosmeticShoppingModel.Table_Customer" Role="Table_Customer" Multiplicity="0..1" />
+          <End Type="DouaCosmeticShoppingModel.Table_Order" Role="Table_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Customer">
+              <PropertyRef Name="C_ID" />
+            </Principal>
+            <Dependent Role="Table_Order">
+              <PropertyRef Name="C_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_OrderProduct_Table_Order">
+          <End Type="DouaCosmeticShoppingModel.Table_Order" Role="Table_Order" Multiplicity="0..1" />
+          <End Type="DouaCosmeticShoppingModel.Table_OrderProduct" Role="Table_OrderProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Order">
+              <PropertyRef Name="O_ID" />
+            </Principal>
+            <Dependent Role="Table_OrderProduct">
+              <PropertyRef Name="O_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_OrderProduct_Table_Product">
+          <End Type="DouaCosmeticShoppingModel.Table_Product" Role="Table_Product" Multiplicity="0..1" />
+          <End Type="DouaCosmeticShoppingModel.Table_OrderProduct" Role="Table_OrderProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Product">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="Table_OrderProduct">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DouaCosmeticShoppingModelStoreContainer" CdmEntityContainer="DouaCosmeticShoppingEntities">
+          <EntitySetMapping Name="Table_Customer">
+            <EntityTypeMapping TypeName="DouaCosmeticShoppingModel.Table_Customer">
+              <MappingFragment StoreEntitySet="Table_Customer">
+                <ScalarProperty Name="C_Adress" ColumnName="C_Adress" />
+                <ScalarProperty Name="C_PhoneNumber" ColumnName="C_PhoneNumber" />
+                <ScalarProperty Name="C_LastName" ColumnName="C_LastName" />
+                <ScalarProperty Name="C_FirstName" ColumnName="C_FirstName" />
+                <ScalarProperty Name="C_Email" ColumnName="C_Email" />
+                <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Order">
+            <EntityTypeMapping TypeName="DouaCosmeticShoppingModel.Table_Order">
+              <MappingFragment StoreEntitySet="Table_Order">
+                <ScalarProperty Name="O_Status" ColumnName="O_Status" />
+                <ScalarProperty Name="O_Created_at" ColumnName="O_Created_at" />
+                <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+                <ScalarProperty Name="O_ID" ColumnName="O_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_OrderProduct">
+            <EntityTypeMapping TypeName="DouaCosmeticShoppingModel.Table_OrderProduct">
+              <MappingFragment StoreEntitySet="Table_OrderProduct">
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+                <ScalarProperty Name="O_ID" ColumnName="O_ID" />
+                <ScalarProperty Name="OP_Quantity" ColumnName="OP_Quantity" />
+                <ScalarProperty Name="OP_ID" ColumnName="OP_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Product">
+            <EntityTypeMapping TypeName="DouaCosmeticShoppingModel.Table_Product">
+              <MappingFragment StoreEntitySet="Table_Product">
+                <ScalarProperty Name="P_Description" ColumnName="P_Description" />
+                <ScalarProperty Name="P_Price" ColumnName="P_Price" />
+                <ScalarProperty Name="P_Quantity" ColumnName="P_Quantity" />
+                <ScalarProperty Name="P_Name" ColumnName="P_Name" />
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

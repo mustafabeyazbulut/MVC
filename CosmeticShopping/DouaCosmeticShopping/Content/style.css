@@ -1,0 +1,38 @@
+
+
+.shopping-cart {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+
+  margin-right: 20px;
+  margin-top: 10px;
+  padding: 20px;
+  background: wheat;
+}
+
+.shopping-cart-head {
+  background: steelblue;
+  color: white;
+  padding: 5px;
+}
+
+.shopping-cart,
+.shopping-cart-head {
+  border-radius: 5px;
+}
+
+.empty-cart-btn,
+.cart-checkout {
+  display: none;
+  
+}
+
+.empty-cart-btn {
+  margin-bottom: 5px;
+}
+
+.cart-checkout {
+  background: limegreen;
+}

@@ -1,0 +1,107 @@
+﻿@using DouaCosmeticShopping.Models
+@model CustomerViewModel
+
+<table class="w3-table w3-striped">
+    <tr class="w3-green">
+        <th>Customer ID</th>
+        <th>Customer Email</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone Number</th>
+        <th>Adress</th>
+        <th style="width:10%"></th>
+    </tr>
+    @foreach (var customer in Model.CustomerList)
+    {
+        <tr>
+
+            <td>@customer.C_ID</td>
+            <td>@customer.C_Email</td>
+            <td>@customer.C_FirstName</td>
+            <td>@customer.C_LastName</td>
+            <td>@customer.C_PhoneNumber</td>
+            <td>@customer.C_Adress</td>
+            <td>
+                <button class="w3-button w3-circle w3-red edit" data-id="@customer.C_ID">Edit</button>
+                <button class="w3-button w3-circle w3-red delete" data-id="@customer.C_ID">Delete</button>
+            </td>
+
+        </tr>
+    }
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".edit").click(function () {
+            openSearch()
+
+            var id = $(this).attr("data-id");
+            $.ajax({
+                url: '/Customer/GetCustomer',
+                type: 'post',
+                dataType: 'json',
+                data: { "id": id },
+
+                success: function (data) {
+                    $("#C_ID").val(data.C_ID);
+                    $("#C_Email").val(data.C_Email);
+                    $("#C_FirstName").val(data.C_FirstName);
+                    $("#C_LastName").val(data.C_LastName);
+                    $("#C_PhoneNumber").val(data.C_PhoneNumber);
+                    $("#C_Adress").val(data.C_Adress);
+                }
+            });
+
+
+
+        });
+     });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".delete").click(function () {
+
+
+            var id = $(this).attr("data-id");
+            $.ajax({
+                url: '/Customer/DeleteCustomer',
+                type: 'post',
+                dataType: 'json',
+                data: { "id": id },
+
+                success: function (data) {
+
+
+
+                    if (data == "1") {
+                        $.ajax({
+                            url: '/Customer/Index',
+                            type: 'get',
+                            dataType: 'html',
+                            success: function (data) {
+                                popupclose()
+                                $("#ajax-main").html(data);
+
+
+                                alert("The customer has been deleted");
+                            }
+                        });
+
+
+                    } else if (data == "-1") {
+
+                        alert("The product could not be deleted");
+                    } else if (data == "2") {
+                 
+                        alert("The customer has an existing order. Make sure you delete the order before deleting the customer");
+                    }
+
+                }
+            });
+
+
+
+        });
+    });
+</script>

@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DouaCosmeticShoppingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Table_Customer">
+    <Key>
+      <PropertyRef Name="C_ID" />
+    </Key>
+    <Property Name="C_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="C_Email" Type="nvarchar" MaxLength="320" />
+    <Property Name="C_FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="C_LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="C_PhoneNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="C_Adress" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Table_Order">
+    <Key>
+      <PropertyRef Name="O_ID" />
+    </Key>
+    <Property Name="O_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="C_ID" Type="int" />
+    <Property Name="O_Created_at" Type="date" />
+    <Property Name="O_Status" Type="bit" />
+  </EntityType>
+  <EntityType Name="Table_OrderProduct">
+    <Key>
+      <PropertyRef Name="OP_ID" />
+    </Key>
+    <Property Name="OP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OP_Quantity" Type="int" />
+    <Property Name="O_ID" Type="int" />
+    <Property Name="P_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Table_Product">
+    <Key>
+      <PropertyRef Name="P_ID" />
+    </Key>
+    <Property Name="P_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="P_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="P_Quantity" Type="int" />
+    <Property Name="P_Price" Type="float" />
+    <Property Name="P_Description" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Table_Order_Table_Customer">
+    <End Role="Table_Customer" Type="Self.Table_Customer" Multiplicity="0..1" />
+    <End Role="Table_Order" Type="Self.Table_Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Table_Customer">
+        <PropertyRef Name="C_ID" />
+      </Principal>
+      <Dependent Role="Table_Order">
+        <PropertyRef Name="C_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Table_OrderProduct_Table_Order">
+    <End Role="Table_Order" Type="Self.Table_Order" Multiplicity="0..1" />
+    <End Role="Table_OrderProduct" Type="Self.Table_OrderProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Table_Order">
+        <PropertyRef Name="O_ID" />
+      </Principal>
+      <Dependent Role="Table_OrderProduct">
+        <PropertyRef Name="O_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Table_OrderProduct_Table_Product">
+    <End Role="Table_Product" Type="Self.Table_Product" Multiplicity="0..1" />
+    <End Role="Table_OrderProduct" Type="Self.Table_OrderProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Table_Product">
+        <PropertyRef Name="P_ID" />
+      </Principal>
+      <Dependent Role="Table_OrderProduct">
+        <PropertyRef Name="P_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DouaCosmeticShoppingModelStoreContainer">
+    <EntitySet Name="Table_Customer" EntityType="Self.Table_Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Table_Order" EntityType="Self.Table_Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Table_OrderProduct" EntityType="Self.Table_OrderProduct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Table_Product" EntityType="Self.Table_Product" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Table_Order_Table_Customer" Association="Self.FK_Table_Order_Table_Customer">
+      <End Role="Table_Customer" EntitySet="Table_Customer" />
+      <End Role="Table_Order" EntitySet="Table_Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Table_OrderProduct_Table_Order" Association="Self.FK_Table_OrderProduct_Table_Order">
+      <End Role="Table_Order" EntitySet="Table_Order" />
+      <End Role="Table_OrderProduct" EntitySet="Table_OrderProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Table_OrderProduct_Table_Product" Association="Self.FK_Table_OrderProduct_Table_Product">
+      <End Role="Table_Product" EntitySet="Table_Product" />
+      <End Role="Table_OrderProduct" EntitySet="Table_OrderProduct" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

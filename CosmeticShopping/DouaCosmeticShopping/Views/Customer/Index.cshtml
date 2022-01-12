@@ -1,0 +1,152 @@
+﻿@using DouaCosmeticShopping.Models
+@model CustomerViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customer Creation Page</h2>
+<br />
+
+
+
+<div id="toolbar" class="select">
+    <div class="form-inline" role="form">
+
+
+        <button class="w3-button w3-circle w3-red" onclick="openSearch()">+</button>
+
+    </div>
+</div>
+
+<br />
+<div id="ajax-main">
+    @Html.Partial("_Table", @Model)
+
+</div>
+
+<div id="myOverlay" class="overlay">
+    <span class="closebtn" onclick="popupclose()" title="Close Overlay">×</span>
+    <div class="overlay-content">
+        <h2> Customer Creation</h2>
+
+        @using (Ajax.BeginForm("AddCustomer", "Customer", FormMethod.Post, new AjaxOptions { OnSuccess = "AddCustomer", OnBegin = "return AddControl();" }, new { id = "FormAddCustomer" }))
+        {
+            @Html.HiddenFor(m => m.C_ID)
+            <div>
+                Email:
+                @Html.TextBoxFor(m => m.C_Email, new { @class = "openBtn", style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+            </div>
+            <br />
+            <div>
+                FirstName:
+                @Html.TextBoxFor(m => m.C_FirstName, new { @class = "openBtn", style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+
+            </div>
+            <br />
+            <div>
+                LastName:
+                @Html.TextBoxFor(m => m.C_LastName, new { @class = "openBtn", style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+            </div>
+            <br />
+            <div>
+                PhoneNumber:
+                @Html.TextBoxFor(m => m.C_PhoneNumber, new { @class = "openBtn", style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+            </div>
+            <br />
+            <div>
+                Adress:
+                @Html.TextBoxFor(m => m.C_Adress, new { @class = "openBtn", style = "height: 30px; width: 300px;position:absolute;left:100px;" })
+            </div>
+            <br />
+
+            <div class="test">
+                <button type="button" class="w3-button w3-white w3-border w3-border-blue" data-dismiss="modal" onclick="popupclose()">Close</button>
+                &nbsp;&nbsp;
+                <button type="submit" class="w3-button w3-white w3-border w3-border-blue" value="add">&nbsp;Ok&nbsp;</button>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    function AddControl() {
+        var uyari = "";
+        var kontrol = 0;
+
+
+        if ($("#C_Email").val() == null || $("#C_Email").val() == "") {
+            uyari += "E-mail cannot be empty \n"
+            kontrol = 1
+        }
+        if ($("#C_FirstName").val() == null || $("#C_FirstName").val() == "") {
+            uyari += "First Name cannot be empty\n"
+            kontrol = 1
+        }
+
+        if ($("#C_LastName").val() == null || $("#C_LastName").val() == "") {
+            uyari += "Last Name cannot be empty \n"
+            kontrol = 1
+        }
+        if ($("#C_PhoneNumber").val() == null || $("#C_PhoneNumber").val() == "") {
+            uyari += "Phone Number cannot be empty \n"
+            kontrol = 1
+        }
+        if ($("#C_Adress").val() == null || $("#C_Adress").val() == "") {
+            uyari += "Adress cannot be empty \n"
+            kontrol = 1
+        }
+        if (kontrol == 1) {
+            alert(uyari);
+            return false;
+
+        } else { return true; }
+    }
+
+    function popupclose() {
+        $("#FormAddCustomer")[0].reset();
+        closeSearch()
+
+    }
+
+    function AddCustomer(result) {
+        if (result == "1") {
+
+            $.ajax({
+                url: '/Customer/Index',
+                type: 'get',
+                dataType: 'html',
+                success: function (data) {
+                    popupclose()
+                    $("#ajax-main").html(data);
+
+
+                    alert("New Customer added");
+                }
+            });
+        } else if (result == "2") {
+            $.ajax({
+                url: '/Customer/Index',
+                type: 'get',
+                dataType: 'html',
+                success: function (data) {
+                    popupclose()
+                    $("#ajax-main").html(data);
+
+
+                    alert("The customer has been updated");
+                }
+            });
+
+        }
+        else if (result == "-1") {
+            alert("Could not add new customer");
+
+        }
+    }
+
+
+</script>

@@ -1,0 +1,56 @@
+﻿@using DouaCosmeticShopping.Models
+@model OrderViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/style.css" rel="stylesheet" />
+<div id="tableone">
+    @Html.Partial("_TableOne", @Model)
+
+</div>
+
+<div id="tabletwo">
+    @Html.Partial("_TableTwo", @Model)
+
+</div>
+
+
+<script type="text/javascript">
+    $(".addCard").click(function () {
+
+        var _id = $(this).attr("data-id");
+        
+       
+        $.ajax({
+            url: '/Order/AddCard',
+            type: 'post',
+            dataType: 'json',
+            data: { "id": _id },
+
+            success: function (data) {
+                if (data == "1") {
+
+                    $.ajax({ // get ile güncel verileri çekme başlangıç
+                        url: '/Order/Index',
+                        type: 'get',
+                        dataType: 'html',
+                        success: function (data) {
+                            
+                            $("#tabletwo").html(data);
+                        }
+                    });// get ile güncel verileri çekme sonu
+                }
+              //  $("#tabletwo").html(data);
+               
+            }//success
+        });//post ajax
+
+    }); //click
+
+
+
+</script>
+
+
+

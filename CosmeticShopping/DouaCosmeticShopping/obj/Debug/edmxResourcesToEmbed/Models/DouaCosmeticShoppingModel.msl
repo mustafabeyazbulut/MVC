@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DouaCosmeticShoppingModelStoreContainer" CdmEntityContainer="DouaCosmeticShoppingEntities">
+    <EntitySetMapping Name="Table_Customer">
+      <EntityTypeMapping TypeName="DouaCosmeticShoppingModel.Table_Customer">
+        <MappingFragment StoreEntitySet="Table_Customer">
+          <ScalarProperty Name="C_Adress" ColumnName="C_Adress" />
+          <ScalarProperty Name="C_PhoneNumber" ColumnName="C_PhoneNumber" />
+          <ScalarProperty Name="C_LastName" ColumnName="C_LastName" />
+          <ScalarProperty Name="C_FirstName" ColumnName="C_FirstName" />
+          <ScalarProperty Name="C_Email" ColumnName="C_Email" />
+          <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Table_Order">
+      <EntityTypeMapping TypeName="DouaCosmeticShoppingModel.Table_Order">
+        <MappingFragment StoreEntitySet="Table_Order">
+          <ScalarProperty Name="O_Status" ColumnName="O_Status" />
+          <ScalarProperty Name="O_Created_at" ColumnName="O_Created_at" />
+          <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+          <ScalarProperty Name="O_ID" ColumnName="O_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Table_OrderProduct">
+      <EntityTypeMapping TypeName="DouaCosmeticShoppingModel.Table_OrderProduct">
+        <MappingFragment StoreEntitySet="Table_OrderProduct">
+          <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+          <ScalarProperty Name="O_ID" ColumnName="O_ID" />
+          <ScalarProperty Name="OP_Quantity" ColumnName="OP_Quantity" />
+          <ScalarProperty Name="OP_ID" ColumnName="OP_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Table_Product">
+      <EntityTypeMapping TypeName="DouaCosmeticShoppingModel.Table_Product">
+        <MappingFragment StoreEntitySet="Table_Product">
+          <ScalarProperty Name="P_Description" ColumnName="P_Description" />
+          <ScalarProperty Name="P_Price" ColumnName="P_Price" />
+          <ScalarProperty Name="P_Quantity" ColumnName="P_Quantity" />
+          <ScalarProperty Name="P_Name" ColumnName="P_Name" />
+          <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

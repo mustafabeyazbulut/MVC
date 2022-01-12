@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0a2c7cd54f234820be6fe609b4838b1d" Name="Diagram1">
+        <EntityTypeShape EntityType="DouaCosmeticShoppingModel.Table_Customer" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="DouaCosmeticShoppingModel.Table_Order" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="DouaCosmeticShoppingModel.Table_OrderProduct" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="DouaCosmeticShoppingModel.Table_Product" Width="1.5" PointX="3" PointY="5" />
+        <AssociationConnector Association="DouaCosmeticShoppingModel.FK_Table_Order_Table_Customer" />
+        <AssociationConnector Association="DouaCosmeticShoppingModel.FK_Table_OrderProduct_Table_Order" />
+        <AssociationConnector Association="DouaCosmeticShoppingModel.FK_Table_OrderProduct_Table_Product" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

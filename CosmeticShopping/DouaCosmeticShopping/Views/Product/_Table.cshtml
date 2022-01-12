@@ -1,0 +1,113 @@
+﻿@using DouaCosmeticShopping.Models
+@model ProductViewModel
+
+<table class="w3-table w3-striped">
+    <tr class="w3-green">
+        <th>Product ID</th>
+        <th>Product Name</th>
+        <th>Amount</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th style="width:10%"></th>
+    </tr>
+    @foreach (var product in Model.ProductList)
+    {
+        <tr>
+
+            <td>@product.P_ID</td>
+            <td>@product.P_Name</td>
+            <td>@product.P_Quantity</td>
+            <td>@product.P_Price</td>
+            <td>@product.P_Description</td>
+            <td>
+                <button class="w3-button w3-circle w3-red edit" data-id="@product.P_ID">Edit</button>
+                <button class="w3-button w3-circle w3-red delete" data-id="@product.P_ID">Delete</button>
+            </td>
+
+        </tr>
+    }
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".edit").click(function () {
+            openSearch()
+
+            var id = $(this).attr("data-id");
+            $.ajax({
+                url: '/Product/GetProduct',
+                type: 'post',
+                dataType: 'json',
+                data: { "id": id },
+
+                success: function (data) {
+                    $("#P_ID").val(data.P_ID);
+                    $("#P_Name").val(data.P_Name);
+                    $("#P_Quantity").val(data.P_Quantity);
+                    $("#P_Price").val(data.P_Price);
+                    $("#P_Description").val(data.P_Description);
+                }
+            });
+       
+            
+
+        });
+     });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".delete").click(function () {
+            
+
+            var id = $(this).attr("data-id");
+            $.ajax({
+                url: '/Product/DeleteProduct',
+                type: 'post',
+                dataType: 'json',
+                data: { "id": id },
+
+                success: function (data) {
+                    
+
+
+                    if (data == "1") {
+                        $.ajax({
+                            url: '/Product/Index',
+                            type: 'get',
+                            dataType: 'html',
+                            success: function (data) {
+                                popupclose()
+                                $("#ajax-main").html(data);
+
+
+                                alert("The product has been deleted");
+                            }
+                        });
+
+
+                    } else if (data == "-1") {
+
+                        alert("The product could not be deleted");
+                    } else if (data == "2") {
+                        $.ajax({
+                            url: '/Product/Index',
+                            type: 'get',
+                            dataType: 'html',
+                            success: function (data) {
+                                popupclose()
+                                $("#ajax-main").html(data);
+                                alert("The product was used in another package. Quantity information changed to 0");
+                            }
+                        });
+                        
+                    }
+
+                }
+            });
+
+
+
+        });
+    });
+</script>
