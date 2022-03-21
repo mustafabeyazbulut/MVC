@@ -5,17 +5,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="92619430d22348408b2b480737d24400" Name="Diagram1">
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Ariza" Width="1.5" PointX="9.75" PointY="4.75" />
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Duyuru" Width="1.5" PointX="5.25" PointY="9.125" />
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Envanter" Width="1.5" PointX="5.25" PointY="4.25" />
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_EnvanterCinsi" Width="1.5" PointX="3" PointY="9.25" />
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_EnvanterMarka" Width="1.5" PointX="3" PointY="0.75" />
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_Firma" Width="1.5" PointX="9.75" PointY="1.125" />
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_Rol" Width="1.5" PointX="0.75" PointY="2.25" />
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_Sube" Width="1.5" PointX="0.75" PointY="5.25" />
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Personel" Width="1.5" PointX="3" PointY="4" />
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Servis" Width="1.5" PointX="12" PointY="4.625" />
-        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Zimmet" Width="1.5" PointX="7.5" PointY="4.5" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Ariza" Width="1.5" PointX="13.5" PointY="4.375" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Duyuru" Width="1.5" PointX="8.25" PointY="4.75" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Envanter" Width="1.5" PointX="3" PointY="3.875" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_EnvanterCinsi" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_EnvanterMarka" Width="1.5" PointX="0.75" PointY="8" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_Firma" Width="1.5" PointX="13.5" PointY="0.75" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_Rol" Width="1.5" PointX="3.75" PointY="1" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_P_Sube" Width="1.5" PointX="0.75" PointY="4.875" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Personel" Width="1.5" PointX="6" PointY="3.75" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Servis" Width="1.5" PointX="15.75" PointY="4.25" />
+        <EntityTypeShape EntityType="ENVSERVYSModel.Tbl_Zimmet" Width="1.5" PointX="11.25" PointY="4.125" />
         <AssociationConnector Association="ENVSERVYSModel.FK_Tbl_Ariza_Tbl_Personel" />
         <AssociationConnector Association="ENVSERVYSModel.FK_Tbl_Ariza_Tbl_Zimmet" />
         <AssociationConnector Association="ENVSERVYSModel.FK_Tbl_Servis_Tbl_Ariza1" />

@@ -41,7 +41,7 @@ namespace EnvanterTakipYönetimSistemi.Controllers
                               select new SelectListItem
                               {
                                   Text = x.Tbl_Envanter.Tbl_P_EnvanterCinsi.EnvCins_Adi + " - " + x.Tbl_Envanter.Tbl_P_EnvanterMarka.EnvMarka_Adi + " - " + x.Tbl_Envanter.Env_Model + " - " + x.Tbl_Envanter.Env_SeriNo,
-                                  Value = x.Env_ID.ToString()
+                                  Value = x.Zim_ID.ToString()
                               }).ToList();
             model.UrunList.Insert(0, new SelectListItem { Value = "", Text = "Seçiniz", Selected = true });
 
